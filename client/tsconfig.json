@@ -1,10 +1,7 @@
 {
   "files": [],
-  "references": [
-    { "path": "./tsconfig.build.json" },
-  ],
-    "compilerOptions": {
-    // ...existing options...
+  "references": [{ "path": "./tsconfig.build.json" }],
+  "compilerOptions": {
     "types": ["jest", "node"]
   },
   "include": ["src"]
