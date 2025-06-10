@@ -2,6 +2,14 @@
   "files": [],
   "references": [{ "path": "./tsconfig.build.json" }],
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "types": ["jest", "node"]
   },
   "include": ["src"]

@@ -1,4 +1,11 @@
 import { makeStyles, tokens } from '@fluentui/react-components';
+import { ICommandBarStyles } from '@fluentui/react';
+
+export const itemStyles: ICommandBarStyles = {
+  root: {
+    fontSize: '24px',
+  },
+};
 
 export const useStyles = makeStyles({
   header: {

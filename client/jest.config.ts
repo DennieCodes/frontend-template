@@ -10,6 +10,7 @@ const config: Config = {
   },
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   testPathIgnorePatterns: ["/node_modules/", "/dist/"],
+  testMatch: ["<rootDir>/src/**/*.test.(ts|tsx)"],
   coverageThreshold: {
     global: {
       branches: 80,

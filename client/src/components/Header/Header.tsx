@@ -1,50 +1,54 @@
 import { useState } from 'react';
-import { Stack, IconButton, CommandBar, ICommandBarItemProps } from '@fluentui/react';
+import { Stack, IconButton, CommandBar, ICommandBarStyles ,ICommandBarItemProps } from '@fluentui/react';
 import { useStyles } from './Header.Styles';
+import { useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const styles = useStyles();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const itemStyles: ICommandBarStyles = {
+    root: {
+      fontSize: '24px',
+    },
+  };
 
   const items: ICommandBarItemProps[] = [
     {
       key: 'home',
       text: 'Home',
       iconProps: { iconName: 'Home' },
+      onClick: () => {
+        navigate('/');
+      },
     },
     {
       key: 'about',
       text: 'About',
       iconProps: { iconName: 'Info' },
+      onClick: () => {
+        navigate('/about');
+      }
     },
     {
       key: 'contact',
       text: 'Contact',
       iconProps: { iconName: 'Mail' },
+      onClick: () => {
+        navigate('/contact');
+      }
     },
   ];
 
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
-
   return (
     <Stack className={styles.header} horizontal verticalAlign="center" horizontalAlign="end" tokens={{ childrenGap: 10 }}>
-      <IconButton
-        iconProps={{ iconName: menuOpen ? 'Cancel' : 'GlobalNavButton' }}
-        className={styles.hamburger}
-        onClick={() => setMenuOpen(!menuOpen)}
-        ariaLabel="Toggle navigation menu"
-      />
       <CommandBar
         items={items}
         className={menuOpen ? '' : styles.navItems}
         ariaLabel="Main navigation"
-      />
-      <IconButton
-        iconProps={{ iconName: isDarkMode ? 'Sunny' : 'ClearNight' }}
-        className={styles.darkModeButton}
-        onClick={toggleDarkMode}
-        ariaLabel="Toggle dark mode"
+        styles={itemStyles}
       />
     </Stack>
   );
