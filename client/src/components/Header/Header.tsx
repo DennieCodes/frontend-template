@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import { AppBar, Toolbar, Button, Stack } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
@@ -6,8 +6,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import { useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  // const [isDarkMode, setIsDarkMode] = useState(false);
+  // const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   return (

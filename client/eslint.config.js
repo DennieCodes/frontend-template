@@ -3,18 +3,18 @@ import globals from "globals";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
-import tseslint from "typescript-eslint";
 
 export default [
-  { ignores: ["dist"] },
-  ...js.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...react.configs.recommended,
+  js.configs.recommended,
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parser: (await import("@typescript-eslint/parser")).default,
+      parserOptions: {
+        project: "./tsconfig.json",
+      },
     },
     plugins: {
       react,
@@ -27,6 +27,12 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
+    },
+  },
+  {
+    files: ["**/*.test.{ts,tsx}", "**/__tests__/**/*.{ts,tsx}"],
+    languageOptions: {
+      globals: globals.jest,
     },
   },
 ];
