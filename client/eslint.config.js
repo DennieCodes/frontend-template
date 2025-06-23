@@ -32,7 +32,11 @@ export default [
   {
     files: ["**/*.test.{ts,tsx}", "**/__tests__/**/*.{ts,tsx}"],
     languageOptions: {
-      globals: globals.jest,
+      globals: {
+        ...globals.jest,
+        ...globals.node,
+        require: true,
+      },
     },
   },
   {
