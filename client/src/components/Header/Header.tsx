@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { Stack, IconButton, CommandBar, ICommandBarStyles ,ICommandBarItemProps } from '@fluentui/react';
+import { AppBar, Toolbar, Button, Stack } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import MailIcon from '@mui/icons-material/Mail';
 import { useStyles } from './Header.Styles';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,48 +12,16 @@ const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const itemStyles: ICommandBarStyles = {
-    root: {
-      fontSize: '24px',
-    },
-  };
-
-  const items: ICommandBarItemProps[] = [
-    {
-      key: 'home',
-      text: 'Home',
-      iconProps: { iconName: 'Home' },
-      onClick: () => {
-        navigate('/');
-      },
-    },
-    {
-      key: 'about',
-      text: 'About',
-      iconProps: { iconName: 'Info' },
-      onClick: () => {
-        navigate('/about');
-      }
-    },
-    {
-      key: 'contact',
-      text: 'Contact',
-      iconProps: { iconName: 'Mail' },
-      onClick: () => {
-        navigate('/contact');
-      }
-    },
-  ];
-
   return (
-    <Stack className={styles.header} horizontal verticalAlign="center" horizontalAlign="end" tokens={{ childrenGap: 10 }}>
-      <CommandBar
-        items={items}
-        className={menuOpen ? '' : styles.navItems}
-        ariaLabel="Main navigation"
-        styles={itemStyles}
-      />
-    </Stack>
+    <AppBar position="static" className={styles.header} color="default" elevation={1}>
+      <Toolbar>
+        <Stack direction="row" spacing={2} sx={{ width: '100%' }} justifyContent="flex-end" alignItems="center">
+          <Button startIcon={<HomeIcon />} onClick={() => navigate('/')}>Home</Button>
+          <Button startIcon={<InfoIcon />} onClick={() => navigate('/about')}>About</Button>
+          <Button startIcon={<MailIcon />} onClick={() => navigate('/contact')}>Contact</Button>
+        </Stack>
+      </Toolbar>
+    </AppBar>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack } from '@fluentui/react';
+import { Stack } from '@mui/material';
 
 const Footer: React.FC = () => {
   return (
