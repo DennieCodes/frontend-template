@@ -5,8 +5,10 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
-  { ignores: ["dist"] },
+export default [
+  {
+    ignores: ["dist"],
+  },
   {
     extends: [
       js.configs.recommended,
@@ -19,7 +21,7 @@ export default tseslint.config(
       globals: globals.browser,
     },
     plugins: {
-      react: react,
+      react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
     },
@@ -31,4 +33,4 @@ export default tseslint.config(
       ],
     },
   },
-);
+];
