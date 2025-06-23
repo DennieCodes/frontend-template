@@ -1,3 +1,4 @@
+/* eslint-env node */
 require('@testing-library/jest-dom');
 
 // Polyfill for TextEncoder/TextDecoder in Jest (Node)

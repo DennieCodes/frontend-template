@@ -35,4 +35,13 @@ export default [
       globals: globals.jest,
     },
   },
+  {
+    files: ["src/setupTests.ts"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        require: true,
+      },
+    },
+  },
 ];
