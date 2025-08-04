@@ -1,14 +1,41 @@
 import React from 'react';
-import { AppBar, Toolbar, Button, Stack } from '@mui/material';
+import { AppBar, Toolbar, Button, Stack, Avatar, Menu, MenuItem, Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import MailIcon from '@mui/icons-material/Mail';
-// import PaletteIcon from '@mui/icons-material/Palette';
+import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout, User } from '../../slice/authSlice';
+import { RootState } from '../../store';
 import { ThemeToggle } from '../ThemeToggle';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useSelector((state: RootState) => state.auth) as { user: User | null; isAuthenticated: boolean };
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    handleClose();
+    navigate('/login');
+  };
+
+  const handleDashboard = () => {
+    handleClose();
+    navigate('/dashboard');
+  };
 
   return (
     <AppBar
@@ -45,7 +72,77 @@ const Header: React.FC = () => {
             {/* <Button startIcon={<PaletteIcon />} onClick={() => navigate('/theme-demo')}>Theme Demo</Button> */}
           </Stack>
 
-          <ThemeToggle />
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+              alignItems: 'center',
+              gap: { xs: 1, sm: 2 },
+            }}
+          >
+            <ThemeToggle />
+
+            {isAuthenticated ? (
+              <>
+                <Button
+                  startIcon={<PersonIcon />}
+                  onClick={() => navigate('/dashboard')}
+                  variant="outlined"
+                >
+                  Dashboard
+                </Button>
+                <Avatar
+                  sx={{
+                    cursor: 'pointer',
+                    bgcolor: 'primary.main',
+                    width: 40,
+                    height: 40,
+                  }}
+                  onClick={handleMenu}
+                >
+                  {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+                </Avatar>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                >
+                  <MenuItem onClick={handleDashboard}>
+                    <PersonIcon sx={{ mr: 1 }} />
+                    Profile
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>
+                    <LogoutIcon sx={{ mr: 1 }} />
+                    Logout
+                  </MenuItem>
+                </Menu>
+              </>
+            ) : (
+              <>
+                <Button
+                  startIcon={<LoginIcon />}
+                  onClick={() => navigate('/login')}
+                  variant="outlined"
+                >
+                  Login
+                </Button>
+                <Button
+                  onClick={() => navigate('/register')}
+                  variant="contained"
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
+          </Stack>
         </Stack>
       </Toolbar>
     </AppBar>
