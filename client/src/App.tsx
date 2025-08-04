@@ -14,6 +14,8 @@ import ThemeDemo from "./views/ThemeDemo";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Dashboard from "./views/Dashboard";
+import AdminDashboard from "./views/AdminDashboard";
+import UserAccountPage from "./views/UserAccountPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
@@ -35,6 +37,22 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/account"
+                element={
+                  <ProtectedRoute>
+                    <UserAccountPage />
                   </ProtectedRoute>
                 }
               />

@@ -4,6 +4,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import MailIcon from '@mui/icons-material/Mail';
 import PersonIcon from '@mui/icons-material/Person';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate } from 'react-router-dom';
@@ -35,6 +37,16 @@ const Header: React.FC = () => {
   const handleDashboard = () => {
     handleClose();
     navigate('/dashboard');
+  };
+
+  const handleAdmin = () => {
+    handleClose();
+    navigate('/admin');
+  };
+
+  const handleAccount = () => {
+    handleClose();
+    navigate('/account');
   };
 
   return (
@@ -91,6 +103,20 @@ const Header: React.FC = () => {
                 >
                   Dashboard
                 </Button>
+                <Button
+                  startIcon={<AdminPanelSettingsIcon />}
+                  onClick={() => navigate('/admin')}
+                  variant="outlined"
+                >
+                  Admin
+                </Button>
+                <Button
+                  startIcon={<AccountCircleIcon />}
+                  onClick={() => navigate('/account')}
+                  variant="outlined"
+                >
+                  Account
+                </Button>
                 <Avatar
                   sx={{
                     cursor: 'pointer',
@@ -117,7 +143,15 @@ const Header: React.FC = () => {
                 >
                   <MenuItem onClick={handleDashboard}>
                     <PersonIcon sx={{ mr: 1 }} />
-                    Profile
+                    Dashboard
+                  </MenuItem>
+                  <MenuItem onClick={handleAdmin}>
+                    <AdminPanelSettingsIcon sx={{ mr: 1 }} />
+                    Admin
+                  </MenuItem>
+                  <MenuItem onClick={handleAccount}>
+                    <AccountCircleIcon sx={{ mr: 1 }} />
+                    Account
                   </MenuItem>
                   <MenuItem onClick={handleLogout}>
                     <LogoutIcon sx={{ mr: 1 }} />

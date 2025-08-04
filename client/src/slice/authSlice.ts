@@ -15,7 +15,7 @@ interface AuthState {
 
 const initialState: AuthState = {
   user: null,
-  isAuthenticated: false,
+  isAuthenticated: true, // Temporarily set to true for UI scaffolding
   isLoading: false,
 };
 
