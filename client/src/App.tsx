@@ -17,6 +17,8 @@ import Dashboard from "./views/Dashboard";
 import AdminDashboard from "./views/AdminDashboard";
 import UserAccountPage from "./views/UserAccountPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ArticlesDirectory from "./views/ArticlesDirectory";
+import ArticlePage from "./views/ArticlePage";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
               <Route path="/theme-demo" element={<ThemeDemo />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/articles" element={<ArticlesDirectory />} />
+              <Route path="/articles/:id" element={<ArticlePage />} />
               <Route
                 path="/dashboard"
                 element={
