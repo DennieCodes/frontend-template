@@ -4,6 +4,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import MailIcon from '@mui/icons-material/Mail';
 import ArticleIcon from '@mui/icons-material/Article';
+import BusinessIcon from '@mui/icons-material/Business';
 import PersonIcon from '@mui/icons-material/Person';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -82,6 +83,7 @@ const Header: React.FC = () => {
             <Button startIcon={<HomeIcon />} onClick={() => navigate('/')}>Home</Button>
             <Button startIcon={<InfoIcon />} onClick={() => navigate('/about')}>About</Button>
             <Button startIcon={<ArticleIcon />} onClick={() => navigate('/articles')}>Articles</Button>
+            <Button startIcon={<BusinessIcon />} onClick={() => navigate('/resources')}>Resources</Button>
             <Button startIcon={<MailIcon />} onClick={() => navigate('/contact')}>Contact</Button>
             {/* <Button startIcon={<PaletteIcon />} onClick={() => navigate('/theme-demo')}>Theme Demo</Button> */}
           </Stack>
