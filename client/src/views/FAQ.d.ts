@@ -1,4 +1,3 @@
-declare module './FAQ' {
-  const FAQ: React.FC;
-  export default FAQ;
-}
+import React from 'react';
+declare const FAQ: React.FC;
+export default FAQ;

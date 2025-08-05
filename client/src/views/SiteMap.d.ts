@@ -1,4 +1,3 @@
-declare module './SiteMap' {
-  const SiteMap: React.FC;
-  export default SiteMap;
-}
+import React from 'react';
+declare const SiteMap: React.FC;
+export default SiteMap;
