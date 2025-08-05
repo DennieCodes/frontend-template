@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import Home from "./views/Home";
+import SearchPage from "./views/SearchPage";
 
 import { Stack, Box } from "@mui/material";
 
@@ -35,6 +36,7 @@ function App() {
           <Box component="main" sx={{ flex: 1, width: '100%' }}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/search" element={<SearchPage />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/theme-demo" element={<ThemeDemo />} />

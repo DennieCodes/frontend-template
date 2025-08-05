@@ -12,6 +12,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import HelpIcon from '@mui/icons-material/Help';
 import MapIcon from '@mui/icons-material/Map';
+import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, User } from '../../slice/authSlice';
@@ -83,6 +84,7 @@ const Header: React.FC = () => {
             }}
           >
             <Button startIcon={<HomeIcon />} onClick={() => navigate('/')}>Home</Button>
+            <Button startIcon={<SearchIcon />} onClick={() => navigate('/search')}>Search</Button>
             <Button startIcon={<InfoIcon />} onClick={() => navigate('/about')}>About</Button>
             <Button startIcon={<ArticleIcon />} onClick={() => navigate('/articles')}>Articles</Button>
             <Button startIcon={<BusinessIcon />} onClick={() => navigate('/resources')}>Resources</Button>
