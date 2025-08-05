@@ -10,6 +10,8 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
+import HelpIcon from '@mui/icons-material/Help';
+import MapIcon from '@mui/icons-material/Map';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, User } from '../../slice/authSlice';
@@ -85,6 +87,8 @@ const Header: React.FC = () => {
             <Button startIcon={<ArticleIcon />} onClick={() => navigate('/articles')}>Articles</Button>
             <Button startIcon={<BusinessIcon />} onClick={() => navigate('/resources')}>Resources</Button>
             <Button startIcon={<MailIcon />} onClick={() => navigate('/contact')}>Contact</Button>
+            <Button startIcon={<HelpIcon />} onClick={() => navigate('/faq')}>FAQ</Button>
+            <Button startIcon={<MapIcon />} onClick={() => navigate('/sitemap')}>Site Map</Button>
             {/* <Button startIcon={<PaletteIcon />} onClick={() => navigate('/theme-demo')}>Theme Demo</Button> */}
           </Stack>
 
