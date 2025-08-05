@@ -22,6 +22,8 @@ import ArticlePage from "./views/ArticlePage";
 import ResourcesDirectoryPage from "./views/ResourcesDirectoryPage";
 import TermsOfService from "./views/TermsOfService";
 import PrivacyPolicy from "./views/PrivacyPolicy";
+import FAQ from "./views/FAQ";
+import SiteMap from "./views/SiteMap";
 import NotFound from "./views/NotFound";
 
 function App() {
@@ -67,6 +69,8 @@ function App() {
               />
               <Route path="/terms" element={<TermsOfService />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/sitemap" element={<SiteMap />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Box>
