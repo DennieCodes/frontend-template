@@ -19,6 +19,7 @@ import UserAccountPage from "./views/UserAccountPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ArticlesDirectory from "./views/ArticlesDirectory";
 import ArticlePage from "./views/ArticlePage";
+import ResourcesDirectoryPage from "./views/ResourcesDirectoryPage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/articles" element={<ArticlesDirectory />} />
               <Route path="/articles/:id" element={<ArticlePage />} />
+              <Route path="/resources" element={<ResourcesDirectoryPage />} />
               <Route
                 path="/dashboard"
                 element={
