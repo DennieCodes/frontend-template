@@ -20,6 +20,9 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ArticlesDirectory from "./views/ArticlesDirectory";
 import ArticlePage from "./views/ArticlePage";
 import ResourcesDirectoryPage from "./views/ResourcesDirectoryPage";
+import TermsOfService from "./views/TermsOfService";
+import PrivacyPolicy from "./views/PrivacyPolicy";
+import NotFound from "./views/NotFound";
 
 function App() {
   return (
@@ -62,6 +65,9 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Box>
           <Footer />
