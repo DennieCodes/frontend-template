@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Typography, Button, Box } from '@mui/material';
+import React, { useState } from 'react';
+import { Container, Typography, Button, Box, Paper, Stack } from '@mui/material';
 
 const Home: React.FC = () => {
   return (
@@ -85,6 +85,7 @@ const Home: React.FC = () => {
               Get Started
             </Button>
           </Box>
+
         </Box>
       </Container>
     </Box>

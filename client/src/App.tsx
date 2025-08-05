@@ -9,6 +9,7 @@ import { Stack, Box } from "@mui/material";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import SystemAlert from "./components/SystemAlert";
 import About from "./views/About";
 import Contact from "./views/Contact";
 import ThemeDemo from "./views/ThemeDemo";
@@ -26,6 +27,7 @@ import PrivacyPolicy from "./views/PrivacyPolicy";
 import FAQ from "./views/FAQ";
 import SiteMap from "./views/SiteMap";
 import NotFound from "./views/NotFound";
+import ComponentDemo from "./views/ComponentDemo";
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
       <BrowserRouter>
         <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <Header />
+          <SystemAlert />
           <Box component="main" sx={{ flex: 1, width: '100%' }}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -73,6 +76,7 @@ function App() {
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/sitemap" element={<SiteMap />} />
+              <Route path="/component-demo" element={<ComponentDemo />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Box>
