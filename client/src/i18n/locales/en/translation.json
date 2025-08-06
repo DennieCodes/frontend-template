@@ -1,0 +1,93 @@
+{
+  "common": {
+    "home": "Home",
+    "account": "Account",
+    "settings": "Settings",
+    "profile": "Profile",
+    "security": "Security",
+    "subscription": "Subscription",
+    "address": "Address",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "articles": "Articles",
+    "resources": "Resources",
+    "search": "Search",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "sitemap": "Site Map"
+  },
+  "account": {
+    "title": "Account Settings",
+    "subtitle": "Manage your profile, security, and subscription preferences",
+    "profileInfo": "Profile Information",
+    "addressInfo": "Address Information",
+    "subscriptionPlan": "Subscription Plan",
+    "securitySettings": "Security Settings",
+    "accountSummary": "Account Summary",
+    "activeProjects": "Active Projects",
+    "completedTasks": "Completed Tasks",
+    "teamMembers": "Team Members",
+    "profileComplete": "Profile Complete"
+  },
+  "language": {
+    "en": "English",
+    "es": "Spanish",
+    "switchLanguage": "Switch Language",
+    "currentLanguage": "Current Language"
+  },
+  "forms": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "street": "Street Address",
+    "city": "City",
+    "state": "State",
+    "zipCode": "ZIP Code",
+    "country": "Country"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordMismatch": "Passwords do not match",
+    "minLength": "Must be at least {{min}} characters",
+    "maxLength": "Must be no more than {{max}} characters"
+  },
+  "pages": {
+    "home": {
+      "title": "Welcome to Our Platform",
+      "subtitle": "Discover amazing features and resources"
+    },
+    "about": {
+      "title": "About Us",
+      "subtitle": "Learn more about our mission and values"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "Get in touch with our team"
+    },
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Access your account"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Join our community"
+    }
+  }
+}
