@@ -1,18 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 
-interface TranslationExampleProps {
-  namespace?: string;
-  key: string;
-  values?: Record<string, any>;
-  fallback?: string;
-}
-
 interface UseTranslationExampleReturn {
   t: (key: string, options?: { values?: Record<string, any>; fallback?: string }) => string;
   currentLanguage: string;
   availableLanguages: string[];
-  changeLanguage: (language: string) => void;
+  changeLanguage: (newLanguage: string) => void;
   isReady: boolean;
 }
 
@@ -29,8 +22,8 @@ export const useTranslationExample = (): UseTranslationExampleReturn => {
     return Object.keys(i18n.options.resources || {});
   }, [i18n.options.resources]);
 
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language);
+  const changeLanguage = (newLanguage: string) => {
+    i18n.changeLanguage(newLanguage);
   };
 
   const isReady = useMemo(() => i18n.isInitialized, [i18n.isInitialized]);
@@ -48,12 +41,12 @@ export const useTranslationExample = (): UseTranslationExampleReturn => {
  * Utility function to get a translation with fallback
  */
 export const getTranslation = (
-  t: (key: string, options?: any) => string,
-  key: string,
+  t: (key: string) => string,
+  translationKey: string,
   fallback?: string
 ): string => {
-  const translation = t(key);
-  return translation === key ? (fallback || key) : translation;
+  const translation = t(translationKey);
+  return translation === translationKey ? (fallback || translationKey) : translation;
 };
 
 /**
@@ -61,12 +54,12 @@ export const getTranslation = (
  */
 export const getTranslationWithValues = (
   t: (key: string, options?: any) => string,
-  key: string,
+  translationKey: string,
   values: Record<string, any>,
   fallback?: string
 ): string => {
-  const translation = t(key, { values });
-  return translation === key ? (fallback || key) : translation;
+  const translation = t(translationKey, { values });
+  return translation === translationKey ? (fallback || translationKey) : translation;
 };
 
 export default useTranslationExample;

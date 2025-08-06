@@ -213,7 +213,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'en',
-    debug: process.env.NODE_ENV === 'development',
+    debug: import.meta.env.DEV,
 
     // Interpolation options
     interpolation: {
@@ -227,9 +227,9 @@ i18n
     },
 
     // Missing key handling
-    saveMissing: process.env.NODE_ENV === 'development',
+    saveMissing: import.meta.env.DEV,
     missingKeyHandler: (lng, ns, key, fallbackValue) => {
-      if (process.env.NODE_ENV === 'development') {
+      if (import.meta.env.DEV) {
         console.warn(`Missing translation key: ${key} for language: ${lng}`);
       }
       return fallbackValue || key;

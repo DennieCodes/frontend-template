@@ -7,7 +7,7 @@ export type ThemeMode = 'light' | 'dark';
 interface ThemeContextType {
   mode: ThemeMode;
   toggleTheme: () => void;
-  setTheme: (mode: ThemeMode) => void;
+  setTheme: (newMode: ThemeMode) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -23,7 +23,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
   defaultMode = 'light',
   storageKey = 'theme-mode'
 }) => {
-  const [mode, setMode] = useState<ThemeMode>(() => {
+  const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
     // Try to get theme from localStorage
     const savedMode = localStorage.getItem(storageKey) as ThemeMode;
     return savedMode && ['light', 'dark'].includes(savedMode) ? savedMode : defaultMode;
@@ -31,13 +31,13 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
 
   useEffect(() => {
     // Save theme to localStorage whenever it changes
-    localStorage.setItem(storageKey, mode);
-    console.log('Theme changed to:', mode);
-  }, [mode, storageKey]);
+    localStorage.setItem(storageKey, themeMode);
+    console.log('Theme changed to:', themeMode);
+  }, [themeMode, storageKey]);
 
   const toggleTheme = () => {
-    console.log('Toggle theme called, current mode:', mode);
-    setMode(prevMode => {
+    console.log('Toggle theme called, current mode:', themeMode);
+    setThemeMode(prevMode => {
       const newMode = prevMode === 'light' ? 'dark' : 'light';
       console.log('Setting theme to:', newMode);
       return newMode;
@@ -46,24 +46,24 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
 
   const setTheme = (newMode: ThemeMode) => {
     console.log('Set theme called with:', newMode);
-    setMode(newMode);
+    setThemeMode(newMode);
   };
 
   // Create a simple theme based on mode
   const theme = useMemo(() => {
-    console.log('Creating theme for mode:', mode);
+    console.log('Creating theme for mode:', themeMode);
     return createTheme({
       palette: {
-        mode,
+        mode: themeMode,
       },
     });
-  }, [mode]);
+  }, [themeMode]);
 
   const contextValue = useMemo(() => ({
-    mode,
+    mode: themeMode,
     toggleTheme,
     setTheme,
-  }), [mode]);
+  }), [themeMode, toggleTheme, setTheme]);
 
   return (
     <ThemeContext.Provider value={contextValue}>

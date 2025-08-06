@@ -11,11 +11,10 @@ import {
   Chip,
   Button,
   Paper,
-  Divider,
 } from '@mui/material';
 import { Search, FilterList, Clear } from '@mui/icons-material';
 import ArticleGrid from '../ArticleGrid';
-import { ArticleDirectoryProps, Article } from '../../types/article';
+import { ArticleDirectoryProps } from '../../types/article';
 
 const ArticleDirectory: React.FC<ArticleDirectoryProps> = ({
   articles,

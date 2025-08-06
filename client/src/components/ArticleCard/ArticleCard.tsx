@@ -12,8 +12,6 @@ import {
 } from '@mui/material';
 import {
   AccessTime,
-  Person,
-  CalendarToday,
   BookmarkBorder,
   Share,
 } from '@mui/icons-material';

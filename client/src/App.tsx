@@ -4,7 +4,7 @@ import { store } from "./store";
 import Home from "./views/Home";
 import SearchPage from "./views/SearchPage";
 
-import { Stack, Box } from "@mui/material";
+import { Box } from "@mui/material";
 
 import "./App.css";
 import Header from "./components/Header/Header";

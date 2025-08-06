@@ -3,7 +3,6 @@ import {
   Container,
   Typography,
   Grid,
-  Card,
   CardContent,
   List,
   ListItem,
@@ -15,14 +14,9 @@ import {
 } from '@mui/material';
 import {
   Home as HomeIcon,
-  Info as InfoIcon,
-  ContactSupport as ContactIcon,
   Article as ArticleIcon,
-  Folder as FolderIcon,
-  Dashboard as DashboardIcon,
   AdminPanelSettings as AdminIcon,
   AccountCircle as AccountIcon,
-  Security as SecurityIcon,
   Description as DescriptionIcon,
   Help as HelpIcon,
   Map as MapIcon,

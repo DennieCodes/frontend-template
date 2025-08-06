@@ -10,7 +10,6 @@ import {
   Chip,
   Rating,
   Button,
-  Divider,
   List,
   ListItem,
   ListItemIcon,

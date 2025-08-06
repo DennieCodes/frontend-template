@@ -6,8 +6,6 @@ import {
   Box,
   Breadcrumbs,
   Link,
-  Tabs,
-  Tab,
   Paper
 } from '@mui/material';
 import {
