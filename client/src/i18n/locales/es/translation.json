@@ -1,0 +1,93 @@
+{
+  "common": {
+    "home": "Inicio",
+    "account": "Cuenta",
+    "settings": "Configuración",
+    "profile": "Perfil",
+    "security": "Seguridad",
+    "subscription": "Suscripción",
+    "address": "Dirección",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información"
+  },
+  "navigation": {
+    "dashboard": "Panel de Control",
+    "articles": "Artículos",
+    "resources": "Recursos",
+    "search": "Buscar",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "faq": "Preguntas Frecuentes",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "sitemap": "Mapa del Sitio"
+  },
+  "account": {
+    "title": "Configuración de Cuenta",
+    "subtitle": "Gestiona tu perfil, seguridad y preferencias de suscripción",
+    "profileInfo": "Información del Perfil",
+    "addressInfo": "Información de Dirección",
+    "subscriptionPlan": "Plan de Suscripción",
+    "securitySettings": "Configuración de Seguridad",
+    "accountSummary": "Resumen de Cuenta",
+    "activeProjects": "Proyectos Activos",
+    "completedTasks": "Tareas Completadas",
+    "teamMembers": "Miembros del Equipo",
+    "profileComplete": "Perfil Completo"
+  },
+  "language": {
+    "en": "Inglés",
+    "es": "Español",
+    "switchLanguage": "Cambiar Idioma",
+    "currentLanguage": "Idioma Actual"
+  },
+  "forms": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "street": "Dirección",
+    "city": "Ciudad",
+    "state": "Estado",
+    "zipCode": "Código Postal",
+    "country": "País"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "invalidEmail": "Por favor ingrese un correo electrónico válido",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "minLength": "Debe tener al menos {{min}} caracteres",
+    "maxLength": "No debe tener más de {{max}} caracteres"
+  },
+  "pages": {
+    "home": {
+      "title": "Bienvenido a Nuestra Plataforma",
+      "subtitle": "Descubre características y recursos increíbles"
+    },
+    "about": {
+      "title": "Acerca de Nosotros",
+      "subtitle": "Conoce más sobre nuestra misión y valores"
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "subtitle": "Ponte en contacto con nuestro equipo"
+    },
+    "login": {
+      "title": "Iniciar Sesión",
+      "subtitle": "Accede a tu cuenta"
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "subtitle": "Únete a nuestra comunidad"
+    }
+  }
+}

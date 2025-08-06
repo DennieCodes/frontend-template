@@ -18,10 +18,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout, User } from '../../slice/authSlice';
 import { RootState } from '../../store';
 import { ThemeToggle } from '../ThemeToggle';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { user, isAuthenticated } = useSelector((state: RootState) => state.auth) as { user: User | null; isAuthenticated: boolean };
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -83,14 +86,14 @@ const Header: React.FC = () => {
               gap: { xs: 1, sm: 2 },
             }}
           >
-            <Button startIcon={<HomeIcon />} onClick={() => navigate('/')}>Home</Button>
-            <Button startIcon={<SearchIcon />} onClick={() => navigate('/search')}>Search</Button>
-            <Button startIcon={<InfoIcon />} onClick={() => navigate('/about')}>About</Button>
-            <Button startIcon={<ArticleIcon />} onClick={() => navigate('/articles')}>Articles</Button>
-            <Button startIcon={<BusinessIcon />} onClick={() => navigate('/resources')}>Resources</Button>
-            <Button startIcon={<MailIcon />} onClick={() => navigate('/contact')}>Contact</Button>
-            <Button startIcon={<HelpIcon />} onClick={() => navigate('/faq')}>FAQ</Button>
-            <Button startIcon={<MapIcon />} onClick={() => navigate('/sitemap')}>Site Map</Button>
+            <Button startIcon={<HomeIcon />} onClick={() => navigate('/')}>{t('common.home')}</Button>
+            <Button startIcon={<SearchIcon />} onClick={() => navigate('/search')}>{t('navigation.search')}</Button>
+            <Button startIcon={<InfoIcon />} onClick={() => navigate('/about')}>{t('navigation.about')}</Button>
+            <Button startIcon={<ArticleIcon />} onClick={() => navigate('/articles')}>{t('navigation.articles')}</Button>
+            <Button startIcon={<BusinessIcon />} onClick={() => navigate('/resources')}>{t('navigation.resources')}</Button>
+            <Button startIcon={<MailIcon />} onClick={() => navigate('/contact')}>{t('navigation.contact')}</Button>
+            <Button startIcon={<HelpIcon />} onClick={() => navigate('/faq')}>{t('navigation.faq')}</Button>
+            <Button startIcon={<MapIcon />} onClick={() => navigate('/sitemap')}>{t('navigation.sitemap')}</Button>
             {/* <Button startIcon={<PaletteIcon />} onClick={() => navigate('/theme-demo')}>Theme Demo</Button> */}
           </Stack>
 
@@ -102,6 +105,7 @@ const Header: React.FC = () => {
               gap: { xs: 1, sm: 2 },
             }}
           >
+            <LanguageSwitcher variant="buttons" size="small" />
             <ThemeToggle />
 
             {isAuthenticated ? (
@@ -111,7 +115,7 @@ const Header: React.FC = () => {
                   onClick={() => navigate('/dashboard')}
                   variant="outlined"
                 >
-                  Dashboard
+                  {t('navigation.dashboard')}
                 </Button>
                 <Button
                   startIcon={<AdminPanelSettingsIcon />}
@@ -125,7 +129,7 @@ const Header: React.FC = () => {
                   onClick={() => navigate('/account')}
                   variant="outlined"
                 >
-                  Account
+                  {t('common.account')}
                 </Button>
                 <Avatar
                   sx={{
@@ -176,13 +180,13 @@ const Header: React.FC = () => {
                   onClick={() => navigate('/login')}
                   variant="outlined"
                 >
-                  Login
+                  {t('pages.login.title')}
                 </Button>
                 <Button
                   onClick={() => navigate('/register')}
                   variant="contained"
                 >
-                  Sign Up
+                  {t('pages.register.title')}
                 </Button>
               </>
             )}
