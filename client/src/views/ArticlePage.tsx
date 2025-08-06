@@ -10,12 +10,10 @@ import {
   Tooltip,
   Paper,
   Grid,
-  CircularProgress,
   Button,
 } from '@mui/material';
 import {
   AccessTime,
-  Person,
   CalendarToday,
   BookmarkBorder,
   Share,

@@ -7,10 +7,8 @@ import {
   Box,
   Chip,
   Rating,
-  Button,
   Grid,
   Divider,
-  IconButton,
   Tooltip,
 } from '@mui/material';
 import {
@@ -19,8 +17,6 @@ import {
   Email,
   Language,
   Verified,
-  Star,
-  AccessTime,
   AttachMoney,
 } from '@mui/icons-material';
 import { ResourceCardProps } from '../../types/resource';

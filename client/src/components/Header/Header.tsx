@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Button, Stack, Avatar, Menu, MenuItem, Typography } from '@mui/material';
+import { AppBar, Toolbar, Button, Stack, Avatar, Menu, MenuItem } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import MailIcon from '@mui/icons-material/Mail';

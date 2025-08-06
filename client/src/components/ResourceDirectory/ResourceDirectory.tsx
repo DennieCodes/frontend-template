@@ -11,7 +11,6 @@ import {
   Chip,
   Button,
   Paper,
-  Divider,
   Slider,
   FormControlLabel,
   Checkbox,
@@ -25,13 +24,10 @@ import {
   FilterList,
   Clear,
   ExpandMore,
-  LocationOn,
-  AttachMoney,
-  Star,
   Verified,
 } from '@mui/icons-material';
 import ResourceGrid from '../ResourceGrid';
-import { ResourceDirectoryProps, Resource } from '../../types/resource';
+import { ResourceDirectoryProps } from '../../types/resource';
 
 const ResourceDirectory: React.FC<ResourceDirectoryProps> = ({
   resources,

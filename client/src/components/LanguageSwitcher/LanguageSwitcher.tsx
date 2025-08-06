@@ -10,12 +10,10 @@ interface LanguageSwitcherProps {
 }
 
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
-  variant = 'buttons',
   size = 'small',
-  showLabel = false,
   className
 }) => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
   const handleLanguageChange = (language: string) => {
     i18n.changeLanguage(language);
