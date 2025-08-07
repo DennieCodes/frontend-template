@@ -28,6 +28,7 @@ import {
 } from '@mui/icons-material';
 import ResourceGrid from '../ResourceGrid';
 import { ResourceDirectoryProps } from '../../types/resource';
+import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
 
 const ResourceDirectory: React.FC<ResourceDirectoryProps> = ({
   resources,
@@ -130,46 +131,68 @@ const ResourceDirectory: React.FC<ResourceDirectoryProps> = ({
     verifiedOnly;
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
-      {/* Header */}
-      <Box sx={{ mb: 4, textAlign: 'center' }}>
+    <Box sx={{ width: '100%' }}>
+      {/* Header Section - Centered with whitespace */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('centered'),
+        py: LAYOUT_CONSTANTS.CONTAINER.PADDING.MD,
+        textAlign: 'center',
+        mb: LAYOUT_CONSTANTS.SPACING.LG,
+      }}>
         <Typography
           variant="h3"
           component="h1"
           gutterBottom
-          sx={{ fontWeight: 700, mb: 2 }}
+          sx={{
+            ...typographyStyles.heading,
+            mb: LAYOUT_CONSTANTS.SPACING.SM,
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}
         >
           {title}
         </Typography>
         <Typography
           variant="h6"
-          color="text.secondary"
-          sx={{ mb: 3, maxWidth: '600px', mx: 'auto' }}
+          sx={{
+            mb: LAYOUT_CONSTANTS.SPACING.MD,
+            ...typographyStyles.body,
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}
         >
           {subtitle}
         </Typography>
       </Box>
 
-      {/* Filters */}
+      {/* Filters Section - Full width with constrained content */}
       {showFilters && (
-        <Paper sx={{ p: 3, mb: 4 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-            <FilterList color="primary" />
-            <Typography variant="h6" component="h2">
-              Filters
-            </Typography>
-            {hasActiveFilters && (
-              <Button
-                startIcon={<Clear />}
-                onClick={clearFilters}
-                variant="outlined"
-                size="small"
-                sx={{ ml: 'auto' }}
-              >
-                Clear Filters
-              </Button>
-            )}
-          </Box>
+        <Box sx={{
+          ...layoutUtils.getContentLayout('full-width'),
+          mb: LAYOUT_CONSTANTS.SPACING.LG,
+        }}>
+          <Paper sx={{
+            p: LAYOUT_CONSTANTS.SPACING.MD,
+            maxWidth: layoutUtils.getContentWidth('wide'),
+            mx: 'auto',
+          }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: LAYOUT_CONSTANTS.SPACING.SM, mb: LAYOUT_CONSTANTS.SPACING.MD }}>
+              <FilterList color="primary" />
+              <Typography variant="h6" component="h2">
+                Filters
+              </Typography>
+              {hasActiveFilters && (
+                <Button
+                  startIcon={<Clear />}
+                  onClick={clearFilters}
+                  variant="outlined"
+                  size="small"
+                  sx={{ ml: 'auto' }}
+                >
+                  Clear Filters
+                </Button>
+              )}
+            </Box>
 
           <Grid container spacing={3}>
             {/* Search */}
@@ -312,11 +335,11 @@ const ResourceDirectory: React.FC<ResourceDirectoryProps> = ({
 
           {/* Tags */}
           {allTags.length > 0 && (
-            <Box sx={{ mt: 3 }}>
+            <Box sx={{ mt: LAYOUT_CONSTANTS.SPACING.MD }}>
               <Typography variant="subtitle2" gutterBottom>
                 Tags
               </Typography>
-              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+              <Box sx={{ display: 'flex', gap: LAYOUT_CONSTANTS.SPACING.XS, flexWrap: 'wrap' }}>
                 {allTags.map((tag) => (
                   <Chip
                     key={tag}
@@ -332,10 +355,17 @@ const ResourceDirectory: React.FC<ResourceDirectoryProps> = ({
             </Box>
           )}
         </Paper>
+      </Box>
       )}
 
-      {/* Results Summary */}
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {/* Results Summary - Centered with whitespace */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('centered'),
+        mb: LAYOUT_CONSTANTS.SPACING.MD,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
         <Typography variant="body1" color="text.secondary">
           Showing {filteredResources.length} of {resources.length} resources
         </Typography>
@@ -346,26 +376,40 @@ const ResourceDirectory: React.FC<ResourceDirectoryProps> = ({
         )}
       </Box>
 
-      {/* Resources Grid */}
-      {filteredResources.length > 0 ? (
-        <ResourceGrid
-          resources={filteredResources}
-          columns={3}
-          spacing={3}
-          variant="default"
-          onResourceClick={onResourceClick}
-        />
-      ) : (
-        <Paper sx={{ p: 4, textAlign: 'center' }}>
-          <Typography variant="h6" color="text.secondary" gutterBottom>
-            No resources found
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Try adjusting your search criteria or filters
-          </Typography>
-        </Paper>
-      )}
-    </Container>
+      {/* Resources Grid - Full width with constrained content */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('full-width'),
+      }}>
+        {filteredResources.length > 0 ? (
+          <Box sx={{
+            maxWidth: layoutUtils.getContentWidth('wide'),
+            mx: 'auto',
+          }}>
+            <ResourceGrid
+              resources={filteredResources}
+              columns={3}
+              spacing={LAYOUT_CONSTANTS.GRID.SPACING.MD}
+              variant="default"
+              onResourceClick={onResourceClick}
+            />
+          </Box>
+        ) : (
+          <Box sx={{
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}>
+            <Paper sx={{ p: LAYOUT_CONSTANTS.SPACING.LG, textAlign: 'center' }}>
+              <Typography variant="h6" color="text.secondary" gutterBottom>
+                No resources found
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Try adjusting your search criteria or filters
+              </Typography>
+            </Paper>
+          </Box>
+        )}
+      </Box>
+    </Box>
   );
 };
 

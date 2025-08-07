@@ -14,9 +14,14 @@ const Footer: React.FC = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          flexWrap: 'wrap',
+          gap: { xs: 3, md: 4 }
+        }}>
           {/* Company Info */}
-          <Box sx={{ flex: '1 1 300px' }}>
+          <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 300px' } }}>
             <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 700 }}>
               Company Name
             </Typography>
@@ -79,7 +84,7 @@ const Footer: React.FC = () => {
           </Box>
 
           {/* Quick Links */}
-          <Box sx={{ flex: '1 1 200px' }}>
+          <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 200px' } }}>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
               Quick Links
             </Typography>
@@ -103,7 +108,7 @@ const Footer: React.FC = () => {
           </Box>
 
           {/* Services */}
-          <Box sx={{ flex: '1 1 250px' }}>
+          <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 250px' } }}>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
               Services
             </Typography>
@@ -127,7 +132,7 @@ const Footer: React.FC = () => {
           </Box>
 
           {/* Resources */}
-          <Box sx={{ flex: '1 1 250px' }}>
+          <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 250px' } }}>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
               Resources
             </Typography>
@@ -154,7 +159,14 @@ const Footer: React.FC = () => {
         <Divider sx={{ my: 4, borderColor: 'rgba(255,255,255,0.2)' }} />
 
         {/* Copyright */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: { xs: 2, sm: 2 }
+        }}>
           <Typography variant="body2" sx={{ opacity: 0.8 }}>
             © {new Date().getFullYear()} Company Name. All rights reserved.
           </Typography>

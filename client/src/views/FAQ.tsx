@@ -9,6 +9,7 @@ import {
   Paper,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../constants/layout';
 
 interface FAQItem {
   question: string;
@@ -61,15 +62,23 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 6 }}>
-      <Box sx={{ textAlign: 'center', mb: 6 }}>
+    <Box sx={{ width: '100%' }}>
+      {/* Header Section - Centered with whitespace */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('centered'),
+        py: LAYOUT_CONSTANTS.CONTAINER.PADDING.MD,
+        textAlign: 'center',
+        mb: LAYOUT_CONSTANTS.SPACING.LG,
+      }}>
         <Typography
           variant="h3"
           component="h1"
           gutterBottom
           sx={{
-            fontWeight: 700,
-            mb: 2,
+            ...typographyStyles.heading,
+            mb: LAYOUT_CONSTANTS.SPACING.SM,
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
             color: 'primary.main',
           }}
         >
@@ -77,24 +86,31 @@ const FAQ: React.FC = () => {
         </Typography>
         <Typography
           variant="h6"
-          color="text.secondary"
           sx={{
-            maxWidth: '600px',
+            ...typographyStyles.body,
+            maxWidth: layoutUtils.getContentWidth('standard'),
             mx: 'auto',
-            lineHeight: 1.6,
           }}
         >
           Find answers to common questions about our platform and services
         </Typography>
       </Box>
 
-      <Paper
-        elevation={2}
-        sx={{
-          borderRadius: 3,
-          overflow: 'hidden',
-        }}
-      >
+      {/* FAQ Content - Centered with whitespace */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('centered'),
+      }}>
+        <Box sx={{
+          maxWidth: layoutUtils.getContentWidth('standard'),
+          mx: 'auto',
+        }}>
+          <Paper
+            elevation={2}
+            sx={{
+              borderRadius: 3,
+              overflow: 'hidden',
+            }}
+          >
         {faqData.map((item, index) => (
           <Accordion
             key={index}
@@ -149,24 +165,35 @@ const FAQ: React.FC = () => {
             </AccordionDetails>
           </Accordion>
         ))}
-      </Paper>
+          </Paper>
+        </Box>
+      </Box>
 
-      <Box sx={{ textAlign: 'center', mt: 6 }}>
+      {/* Footer Section - Centered with whitespace */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('centered'),
+        mt: LAYOUT_CONSTANTS.SPACING.LG,
+        textAlign: 'center',
+      }}>
         <Typography
           variant="body1"
-          color="text.secondary"
-          sx={{ mb: 2 }}
+          sx={{
+            mb: LAYOUT_CONSTANTS.SPACING.SM,
+            ...typographyStyles.body,
+          }}
         >
           Still have questions?
         </Typography>
         <Typography
           variant="body2"
-          color="text.secondary"
+          sx={{
+            ...typographyStyles.body,
+          }}
         >
           Contact our support team for personalized assistance
         </Typography>
       </Box>
-    </Container>
+    </Box>
   );
 };
 

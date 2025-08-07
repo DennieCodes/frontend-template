@@ -26,6 +26,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import ShareIcon from '@mui/icons-material/Share';
 import SearchFilters from '../components/SearchFilters/SearchFilters';
+import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../constants/layout';
 
 interface SearchResult {
   id: string;
@@ -184,18 +185,43 @@ const SearchPage: React.FC = () => {
   const totalPages = Math.ceil(searchResults.length / resultsPerPage);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
-      {/* Search Header */}
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h3" component="h1" gutterBottom>
+    <Box sx={{ width: '100%' }}>
+      {/* Search Header - Centered with whitespace */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('centered'),
+        py: LAYOUT_CONSTANTS.CONTAINER.PADDING.MD,
+        mb: LAYOUT_CONSTANTS.SPACING.LG,
+      }}>
+        <Typography
+          variant="h3"
+          component="h1"
+          gutterBottom
+          sx={{
+            ...typographyStyles.heading,
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}
+        >
           Search
         </Typography>
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+        <Typography
+          variant="body1"
+          sx={{
+            mb: LAYOUT_CONSTANTS.SPACING.MD,
+            ...typographyStyles.body,
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}
+        >
           Find articles, resources, and pages across our platform
         </Typography>
 
-        {/* Search Input */}
-        <Box sx={{ mb: 3 }}>
+        {/* Search Input - Constrained width */}
+        <Box sx={{
+          mb: LAYOUT_CONSTANTS.SPACING.MD,
+          maxWidth: layoutUtils.getContentWidth('wide'),
+          mx: 'auto',
+        }}>
           <TextField
             fullWidth
             variant="outlined"
@@ -225,149 +251,181 @@ const SearchPage: React.FC = () => {
           />
         </Box>
 
-        {/* Search Controls */}
-        <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
-          <Button
-            variant="outlined"
-            startIcon={<FilterListIcon />}
-            onClick={() => setShowFilters(!showFilters)}
-            sx={{ minWidth: 120 }}
-          >
-            {showFilters ? 'Hide' : 'Show'} Filters
-          </Button>
-
-          <FormControl size="small" sx={{ minWidth: 150 }}>
-            <InputLabel>Sort by</InputLabel>
-            <Select
-              value={sortBy}
-              label="Sort by"
-              onChange={handleSortChange}
+        {/* Search Controls - Constrained width */}
+        <Box sx={{
+          maxWidth: layoutUtils.getContentWidth('wide'),
+          mx: 'auto',
+        }}>
+          <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
+            <Button
+              variant="outlined"
+              startIcon={<FilterListIcon />}
+              onClick={() => setShowFilters(!showFilters)}
+              sx={{ minWidth: 120 }}
             >
-              <MenuItem value="relevance">Relevance</MenuItem>
-              <MenuItem value="date">Date</MenuItem>
-              <MenuItem value="title">Title</MenuItem>
-              <MenuItem value="author">Author</MenuItem>
-            </Select>
-          </FormControl>
+              {showFilters ? 'Hide' : 'Show'} Filters
+            </Button>
 
-          <Typography variant="body2" color="text.secondary">
-            {searchResults.length} results found
-          </Typography>
-        </Stack>
+            <FormControl size="small" sx={{ minWidth: 150 }}>
+              <InputLabel>Sort by</InputLabel>
+              <Select
+                value={sortBy}
+                label="Sort by"
+                onChange={handleSortChange}
+              >
+                <MenuItem value="relevance">Relevance</MenuItem>
+                <MenuItem value="date">Date</MenuItem>
+                <MenuItem value="title">Title</MenuItem>
+                <MenuItem value="author">Author</MenuItem>
+              </Select>
+            </FormControl>
+
+            <Typography variant="body2" color="text.secondary">
+              {searchResults.length} results found
+            </Typography>
+          </Stack>
+        </Box>
       </Box>
 
-      <Grid container spacing={3}>
-        {/* Filters Sidebar */}
-        {showFilters && (
-          <Grid item xs={12} md={3}>
-            <SearchFilters
-              selectedTags={selectedTags}
-              onTagFilter={handleTagFilter}
-            />
-          </Grid>
-        )}
-
-        {/* Search Results */}
-        <Grid item xs={12} md={showFilters ? 9 : 12}>
-          {currentResults.length === 0 ? (
-            <Paper sx={{ p: 4, textAlign: 'center' }}>
-              <Typography variant="h6" color="text.secondary" gutterBottom>
-                No results found
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Try adjusting your search terms or filters
-              </Typography>
-            </Paper>
-          ) : (
-            <>
-              <Grid container spacing={3}>
-                {currentResults.map((result) => (
-                  <Grid item xs={12} key={result.id}>
-                    <Card
-                      sx={{
-                        height: '100%',
-                        transition: 'all 0.2s ease-in-out',
-                        '&:hover': {
-                          transform: 'translateY(-2px)',
-                          boxShadow: 3,
-                        },
-                      }}
-                    >
-                      <CardContent>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
-                          <Box sx={{ flex: 1 }}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                              <Chip
-                                label={getTypeLabel(result.type)}
-                                color={getTypeColor(result.type)}
-                                size="small"
-                              />
-                              <Typography variant="body2" color="text.secondary">
-                                {result.readTime}
-                              </Typography>
-                            </Box>
-                            <Typography variant="h6" component="h2" gutterBottom>
-                              {result.title}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                              {result.description}
-                            </Typography>
-                            <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-                              {result.tags.map((tag) => (
-                                <Chip
-                                  key={tag}
-                                  label={tag}
-                                  size="small"
-                                  variant="outlined"
-                                  onClick={() => handleTagFilter([tag])}
-                                  sx={{ cursor: 'pointer' }}
-                                />
-                              ))}
-                            </Stack>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                              <Typography variant="body2" color="text.secondary">
-                                By {result.author} • {new Date(result.date).toLocaleDateString()}
-                              </Typography>
-                              <Stack direction="row" spacing={1}>
-                                <Tooltip title="Bookmark">
-                                  <IconButton size="small">
-                                    <BookmarkIcon />
-                                  </IconButton>
-                                </Tooltip>
-                                <Tooltip title="Share">
-                                  <IconButton size="small">
-                                    <ShareIcon />
-                                  </IconButton>
-                                </Tooltip>
-                              </Stack>
-                            </Box>
-                          </Box>
-                        </Box>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                ))}
+      {/* Search Results Section - Full width with constrained content */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('full-width'),
+      }}>
+        <Box sx={{
+          maxWidth: layoutUtils.getContentWidth('wide'),
+          mx: 'auto',
+        }}>
+          <Grid container spacing={3}>
+            {/* Filters Sidebar */}
+            {showFilters && (
+              <Grid item xs={12} md={3}>
+                <SearchFilters
+                  selectedTags={selectedTags}
+                  onTagFilter={handleTagFilter}
+                />
               </Grid>
+            )}
 
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-                  <Pagination
-                    count={totalPages}
-                    page={currentPage}
-                    onChange={handlePageChange}
-                    color="primary"
-                    size="large"
-                    showFirstButton
-                    showLastButton
-                  />
+            {/* Search Results */}
+            <Grid item xs={12} md={showFilters ? 9 : 12}>
+              {currentResults.length === 0 ? (
+                <Box sx={{
+                  maxWidth: layoutUtils.getContentWidth('standard'),
+                  mx: 'auto',
+                }}>
+                  <Paper sx={{ p: LAYOUT_CONSTANTS.SPACING.LG, textAlign: 'center' }}>
+                    <Typography variant="h6" color="text.secondary" gutterBottom>
+                      No results found
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Try adjusting your search terms or filters
+                    </Typography>
+                  </Paper>
                 </Box>
+              ) : (
+                <>
+                  <Grid container spacing={3}>
+                    {currentResults.map((result) => (
+                      <Grid
+                        item
+                        xs={12}
+                        key={result.id}
+                        sx={layoutUtils.getGridItemStyles()}
+                      >
+                        <Card
+                          sx={{
+                            ...layoutUtils.getCardStyles('default'),
+                            cursor: 'pointer',
+                          }}
+                        >
+                          <CardContent>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+                              <Box sx={{ flex: 1 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                  <Chip
+                                    label={getTypeLabel(result.type)}
+                                    color={getTypeColor(result.type)}
+                                    size="small"
+                                  />
+                                  <Typography variant="body2" color="text.secondary">
+                                    {result.readTime}
+                                  </Typography>
+                                </Box>
+                                <Typography
+                                  variant="h6"
+                                  component="h2"
+                                  gutterBottom
+                                  sx={{ ...typographyStyles.title }}
+                                >
+                                  {result.title}
+                                </Typography>
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    mb: 2,
+                                    ...typographyStyles.excerpt,
+                                  }}
+                                >
+                                  {result.description}
+                                </Typography>
+                                <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+                                  {result.tags.map((tag) => (
+                                    <Chip
+                                      key={tag}
+                                      label={tag}
+                                      size="small"
+                                      variant="outlined"
+                                      onClick={() => handleTagFilter([tag])}
+                                      sx={{ cursor: 'pointer' }}
+                                    />
+                                  ))}
+                                </Stack>
+                                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                  <Typography variant="body2" color="text.secondary">
+                                    By {result.author} • {new Date(result.date).toLocaleDateString()}
+                                  </Typography>
+                                  <Stack direction="row" spacing={1}>
+                                    <Tooltip title="Bookmark">
+                                      <IconButton size="small">
+                                        <BookmarkIcon />
+                                      </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Share">
+                                      <IconButton size="small">
+                                        <ShareIcon />
+                                      </IconButton>
+                                    </Tooltip>
+                                  </Stack>
+                                </Box>
+                              </Box>
+                            </Box>
+                          </CardContent>
+                        </Card>
+                      </Grid>
+                    ))}
+                  </Grid>
+
+                  {/* Pagination */}
+                  {totalPages > 1 && (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: LAYOUT_CONSTANTS.SPACING.LG }}>
+                      <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        color="primary"
+                        size="large"
+                        showFirstButton
+                        showLastButton
+                      />
+                    </Box>
+                  )}
+                </>
               )}
-            </>
-          )}
-        </Grid>
-      </Grid>
-    </Container>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

@@ -14,21 +14,21 @@ export interface Article {
 export interface ArticleCardProps {
     article: Article;
     variant?: 'default' | 'featured' | 'compact';
-    onClick?: (article: Article) => void;
+    onClick?: (_selectedArticle: Article) => void;
 }
 export interface ArticleGridProps {
     articles: Article[];
     columns?: number;
     spacing?: number;
     variant?: 'default' | 'featured' | 'compact';
-    onArticleClick?: (article: Article) => void;
+    onArticleClick?: (_selectedArticle: Article) => void;
 }
 export interface ArticleDirectoryProps {
     articles: Article[];
     title?: string;
     subtitle?: string;
     showFilters?: boolean;
-    onArticleClick?: (article: Article) => void;
+    onArticleClick?: (_selectedArticle: Article) => void;
 }
 export interface ArticlePageProps {
     article: Article;
