@@ -16,6 +16,7 @@ import {
   Share,
 } from '@mui/icons-material';
 import { ArticleCardProps } from '../../types/article';
+import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
 
 const ArticleCard: React.FC<ArticleCardProps> = ({
   article,
@@ -37,29 +38,27 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   const renderCompactCard = () => (
     <Card
       sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
+        ...layoutUtils.getCardStyles('compact'),
         cursor: 'pointer',
-        transition: 'all 0.3s ease',
-        '&:hover': {
-          transform: 'translateY(-4px)',
-          boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-        },
       }}
       onClick={handleClick}
     >
       {article.imageUrl && (
         <CardMedia
           component="img"
-          height="140"
+          height={layoutUtils.getImageHeight('compact')}
           image={article.imageUrl}
           alt={article.title}
           sx={{ objectFit: 'cover' }}
         />
       )}
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ mb: 1 }}>
+      <CardContent sx={{
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        p: LAYOUT_CONSTANTS.CARD.CONTENT.PADDING,
+      }}>
+        <Box sx={{ mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN }}>
           <Chip
             label={article.category}
             size="small"
@@ -73,31 +72,29 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           component="h3"
           gutterBottom
           sx={{
-            fontWeight: 600,
-            lineHeight: 1.3,
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
+            ...typographyStyles.title,
+            mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN,
           }}
         >
           {article.title}
         </Typography>
         <Typography
           variant="body2"
-          color="text.secondary"
           sx={{
-            mb: 2,
-            display: '-webkit-box',
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
+            ...typographyStyles.excerpt,
+            mb: LAYOUT_CONSTANTS.CARD.CONTENT.EXCERPT_MARGIN,
             flexGrow: 1,
           }}
         >
           {article.excerpt}
         </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 'auto' }}>
+        <Box sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          mt: 'auto',
+          pt: LAYOUT_CONSTANTS.CARD.CONTENT.FOOTER_MARGIN,
+        }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Avatar sx={{ width: 24, height: 24, fontSize: '0.75rem' }}>
               {article.author.charAt(0)}
@@ -120,29 +117,27 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   const renderDefaultCard = () => (
     <Card
       sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
+        ...layoutUtils.getCardStyles('default'),
         cursor: 'pointer',
-        transition: 'all 0.3s ease',
-        '&:hover': {
-          transform: 'translateY(-4px)',
-          boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-        },
       }}
       onClick={handleClick}
     >
       {article.imageUrl && (
         <CardMedia
           component="img"
-          height="200"
+          height={layoutUtils.getImageHeight('default')}
           image={article.imageUrl}
           alt={article.title}
           sx={{ objectFit: 'cover' }}
         />
       )}
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ mb: 1, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+      <CardContent sx={{
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        p: LAYOUT_CONSTANTS.CARD.CONTENT.PADDING,
+      }}>
+        <Box sx={{ mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
           <Chip
             label={article.category}
             size="small"
@@ -163,31 +158,29 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           component="h3"
           gutterBottom
           sx={{
-            fontWeight: 600,
-            lineHeight: 1.3,
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
+            ...typographyStyles.title,
+            mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN,
           }}
         >
           {article.title}
         </Typography>
         <Typography
           variant="body1"
-          color="text.secondary"
           sx={{
-            mb: 2,
-            display: '-webkit-box',
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
+            ...typographyStyles.excerpt,
+            mb: LAYOUT_CONSTANTS.CARD.CONTENT.EXCERPT_MARGIN,
             flexGrow: 1,
           }}
         >
           {article.excerpt}
         </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 'auto' }}>
+        <Box sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          mt: 'auto',
+          pt: LAYOUT_CONSTANTS.CARD.CONTENT.FOOTER_MARGIN,
+        }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Avatar sx={{ width: 32, height: 32 }}>
               {article.author.charAt(0)}
@@ -227,31 +220,29 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   const renderFeaturedCard = () => (
     <Card
       sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
+        ...layoutUtils.getCardStyles('featured'),
         cursor: 'pointer',
-        transition: 'all 0.3s ease',
         border: '2px solid',
         borderColor: 'primary.main',
-        '&:hover': {
-          transform: 'translateY(-4px)',
-          boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-        },
       }}
       onClick={handleClick}
     >
       {article.imageUrl && (
         <CardMedia
           component="img"
-          height="250"
+          height={layoutUtils.getImageHeight('featured')}
           image={article.imageUrl}
           alt={article.title}
           sx={{ objectFit: 'cover' }}
         />
       )}
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ mb: 1, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+      <CardContent sx={{
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        p: LAYOUT_CONSTANTS.CARD.CONTENT.PADDING,
+      }}>
+        <Box sx={{ mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
           <Chip
             label={article.category}
             size="small"
@@ -270,32 +261,31 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           component="h3"
           gutterBottom
           sx={{
-            fontWeight: 700,
-            lineHeight: 1.2,
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
+            ...typographyStyles.heading,
+            mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN,
           }}
         >
           {article.title}
         </Typography>
         <Typography
           variant="body1"
-          color="text.secondary"
           sx={{
-            mb: 2,
-            display: '-webkit-box',
-            WebkitLineClamp: 4,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
+            ...typographyStyles.excerpt,
+            mb: LAYOUT_CONSTANTS.CARD.CONTENT.EXCERPT_MARGIN,
             flexGrow: 1,
             fontSize: '1.1rem',
+            WebkitLineClamp: 4,
           }}
         >
           {article.excerpt}
         </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 'auto' }}>
+        <Box sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          mt: 'auto',
+          pt: LAYOUT_CONSTANTS.CARD.CONTENT.FOOTER_MARGIN,
+        }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Avatar sx={{ width: 40, height: 40 }}>
               {article.author.charAt(0)}

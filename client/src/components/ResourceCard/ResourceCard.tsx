@@ -20,6 +20,7 @@ import {
   AttachMoney,
 } from '@mui/icons-material';
 import { ResourceCardProps } from '../../types/resource';
+import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
 
 const ResourceCard: React.FC<ResourceCardProps> = ({
   resource,
@@ -35,26 +36,31 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
   const renderCompact = () => (
     <Card
       sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
+        ...layoutUtils.getCardStyles('compact'),
         cursor: onClick ? 'pointer' : 'default',
         '&:hover': onClick ? { boxShadow: 4 } : {},
-        transition: 'box-shadow 0.2s ease-in-out'
       }}
       onClick={handleClick}
     >
       {resource.imageUrl && (
         <CardMedia
           component="img"
-          height="140"
+          height={layoutUtils.getImageHeight('compact')}
           image={resource.imageUrl}
           alt={resource.name}
         />
       )}
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 1 }}>
-          <Typography variant="h6" component="h3" sx={{ flexGrow: 1 }}>
+      <CardContent sx={{
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        p: LAYOUT_CONSTANTS.CARD.CONTENT.PADDING,
+      }}>
+        <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN }}>
+          <Typography variant="h6" component="h3" sx={{
+            flexGrow: 1,
+            ...typographyStyles.title,
+          }}>
             {resource.name}
           </Typography>
           {resource.verified && (
@@ -64,11 +70,14 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
           )}
         </Box>
 
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+        <Typography variant="body2" sx={{
+          mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN,
+          ...typographyStyles.excerpt,
+        }}>
           {resource.description}
         </Typography>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN }}>
           <LocationOn fontSize="small" color="action" sx={{ mr: 0.5 }} />
           <Typography variant="body2" color="text.secondary">
             {resource.location.city}, {resource.location.state}
@@ -76,7 +85,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
         </Box>
 
         {resource.rating && (
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN }}>
             <Rating value={resource.rating} size="small" readOnly />
             <Typography variant="body2" color="text.secondary" sx={{ ml: 0.5 }}>
               ({resource.reviewCount || 0})
@@ -84,7 +93,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
           </Box>
         )}
 
-        <Box sx={{ mt: 'auto', pt: 1 }}>
+        <Box sx={{ mt: 'auto', pt: LAYOUT_CONSTANTS.CARD.CONTENT.FOOTER_MARGIN }}>
           <Chip
             label={resource.category}
             size="small"
@@ -99,26 +108,31 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
   const renderDefault = () => (
     <Card
       sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
+        ...layoutUtils.getCardStyles('default'),
         cursor: onClick ? 'pointer' : 'default',
         '&:hover': onClick ? { boxShadow: 4 } : {},
-        transition: 'box-shadow 0.2s ease-in-out'
       }}
       onClick={handleClick}
     >
       {resource.imageUrl && (
         <CardMedia
           component="img"
-          height="200"
+          height={layoutUtils.getImageHeight('default')}
           image={resource.imageUrl}
           alt={resource.name}
         />
       )}
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 1 }}>
-          <Typography variant="h6" component="h3" sx={{ flexGrow: 1 }}>
+      <CardContent sx={{
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        p: LAYOUT_CONSTANTS.CARD.CONTENT.PADDING,
+      }}>
+        <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN }}>
+          <Typography variant="h6" component="h3" sx={{
+            flexGrow: 1,
+            ...typographyStyles.title,
+          }}>
             {resource.name}
           </Typography>
           {resource.verified && (
@@ -128,7 +142,10 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
           )}
         </Box>
 
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+        <Typography variant="body2" sx={{
+          mb: LAYOUT_CONSTANTS.CARD.CONTENT.EXCERPT_MARGIN,
+          ...typographyStyles.excerpt,
+        }}>
           {resource.description}
         </Typography>
 
@@ -182,10 +199,9 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
   const renderDetailed = () => (
     <Card
       sx={{
-        height: '100%',
+        ...layoutUtils.getCardStyles('tall'),
         cursor: onClick ? 'pointer' : 'default',
         '&:hover': onClick ? { boxShadow: 4 } : {},
-        transition: 'box-shadow 0.2s ease-in-out'
       }}
       onClick={handleClick}
     >
@@ -309,10 +325,9 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
   const renderFeatured = () => (
     <Card
       sx={{
-        height: '100%',
+        ...layoutUtils.getCardStyles('featured'),
         cursor: onClick ? 'pointer' : 'default',
         '&:hover': onClick ? { boxShadow: 4 } : {},
-        transition: 'box-shadow 0.2s ease-in-out',
         position: 'relative',
         overflow: 'visible'
       }}
@@ -335,15 +350,23 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
       {resource.imageUrl && (
         <CardMedia
           component="img"
-          height="250"
+          height={layoutUtils.getImageHeight('featured')}
           image={resource.imageUrl}
           alt={resource.name}
         />
       )}
 
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 1 }}>
-          <Typography variant="h5" component="h3" sx={{ flexGrow: 1 }}>
+      <CardContent sx={{
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        p: LAYOUT_CONSTANTS.CARD.CONTENT.PADDING,
+      }}>
+        <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: LAYOUT_CONSTANTS.CARD.CONTENT.TITLE_MARGIN }}>
+          <Typography variant="h5" component="h3" sx={{
+            flexGrow: 1,
+            ...typographyStyles.heading,
+          }}>
             {resource.name}
           </Typography>
           {resource.verified && (
@@ -353,7 +376,10 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
           )}
         </Box>
 
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+        <Typography variant="body1" sx={{
+          mb: LAYOUT_CONSTANTS.CARD.CONTENT.EXCERPT_MARGIN,
+          ...typographyStyles.excerpt,
+        }}>
           {resource.description}
         </Typography>
 

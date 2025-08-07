@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Box } from '@mui/material';
 import ArticleCard from '../ArticleCard';
 import { ArticleGridProps } from '../../types/article';
+import { layoutUtils, LAYOUT_CONSTANTS } from '../../constants/layout';
 
 const ArticleGrid: React.FC<ArticleGridProps> = ({
   articles,
@@ -11,27 +12,19 @@ const ArticleGrid: React.FC<ArticleGridProps> = ({
   onArticleClick,
 }) => {
   const getGridColumns = () => {
-    switch (columns) {
-      case 1:
-        return { xs: 12 };
-      case 2:
-        return { xs: 12, sm: 6 };
-      case 3:
-        return { xs: 12, sm: 6, md: 4 };
-      case 4:
-        return { xs: 12, sm: 6, md: 4, lg: 3 };
-      case 6:
-        return { xs: 12, sm: 6, md: 4, lg: 2 };
-      default:
-        return { xs: 12, sm: 6, md: 4 };
-    }
+    return layoutUtils.getGridColumns(columns);
   };
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Grid container spacing={spacing}>
+      <Grid container spacing={LAYOUT_CONSTANTS.GRID.SPACING.MD}>
         {articles.map((article) => (
-          <Grid item key={article.id} {...getGridColumns()}>
+          <Grid
+            item
+            key={article.id}
+            {...getGridColumns()}
+            sx={layoutUtils.getGridItemStyles()}
+          >
             <ArticleCard
               article={article}
               variant={variant}

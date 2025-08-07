@@ -3,7 +3,7 @@ export type ThemeMode = 'light' | 'dark';
 interface ThemeContextType {
     mode: ThemeMode;
     toggleTheme: () => void;
-    setTheme: (mode: ThemeMode) => void;
+    setTheme: (newMode: ThemeMode) => void;
 }
 interface ThemeProviderProps {
     children: ReactNode;

@@ -5,7 +5,7 @@ interface UseTranslationExampleReturn {
     }) => string;
     currentLanguage: string;
     availableLanguages: string[];
-    changeLanguage: (language: string) => void;
+    changeLanguage: (newLanguage: string) => void;
     isReady: boolean;
 }
 /**
@@ -16,9 +16,9 @@ export declare const useTranslationExample: () => UseTranslationExampleReturn;
 /**
  * Utility function to get a translation with fallback
  */
-export declare const getTranslation: (t: (key: string, options?: any) => string, key: string, fallback?: string) => string;
+export declare const getTranslation: (t: (key: string) => string, translationKey: string, fallback?: string) => string;
 /**
  * Utility function to get a translation with interpolation values
  */
-export declare const getTranslationWithValues: (t: (key: string, options?: any) => string, key: string, values: Record<string, any>, fallback?: string) => string;
+export declare const getTranslationWithValues: (t: (key: string, options?: any) => string, translationKey: string, values: Record<string, any>, fallback?: string) => string;
 export default useTranslationExample;

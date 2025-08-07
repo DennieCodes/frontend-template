@@ -44,21 +44,21 @@ export interface Resource {
 export interface ResourceCardProps {
     resource: Resource;
     variant?: 'default' | 'featured' | 'compact' | 'detailed';
-    onClick?: (resource: Resource) => void;
+    onClick?: (_selectedResource: Resource) => void;
 }
 export interface ResourceGridProps {
     resources: Resource[];
     columns?: number;
     spacing?: number;
     variant?: 'default' | 'featured' | 'compact' | 'detailed';
-    onResourceClick?: (resource: Resource) => void;
+    onResourceClick?: (_selectedResource: Resource) => void;
 }
 export interface ResourceDirectoryProps {
     resources: Resource[];
     title?: string;
     subtitle?: string;
     showFilters?: boolean;
-    onResourceClick?: (resource: Resource) => void;
+    onResourceClick?: (_selectedResource: Resource) => void;
 }
 export interface ResourcePageProps {
     resource: Resource;

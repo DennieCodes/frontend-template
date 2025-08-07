@@ -1,7 +1,7 @@
 import React from 'react';
 interface LanguageSwitcherProps {
     variant?: 'select' | 'buttons';
-    size?: 'small' | 'medium';
+    size?: 'small' | 'medium' | 'large';
     showLabel?: boolean;
     className?: string;
 }

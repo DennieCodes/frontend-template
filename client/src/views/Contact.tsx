@@ -1,27 +1,66 @@
 import React from 'react';
 import { Container, Typography, Box, Grid, Paper, TextField, Button, Divider } from '@mui/material';
 import { Email, Phone, LocationOn, AccessTime } from '@mui/icons-material';
+import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../constants/layout';
 
 const Contact: React.FC = () => {
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 6 }}>
-      {/* Hero Section */}
-      <Box sx={{ textAlign: 'center', mb: 6 }}>
-        <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
+    <Box sx={{ width: '100%' }}>
+      {/* Hero Section - Centered with whitespace */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('centered'),
+        py: LAYOUT_CONSTANTS.CONTAINER.PADDING.MD,
+        textAlign: 'center',
+        mb: LAYOUT_CONSTANTS.SPACING.LG,
+      }}>
+        <Typography
+          variant="h2"
+          component="h1"
+          gutterBottom
+          sx={{
+            ...typographyStyles.heading,
+            mb: LAYOUT_CONSTANTS.SPACING.MD,
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}
+        >
           Get in Touch
         </Typography>
-        <Typography variant="h5" color="text.secondary" sx={{ maxWidth: '800px', mx: 'auto' }}>
+        <Typography
+          variant="h5"
+          sx={{
+            ...typographyStyles.body,
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}
+        >
           We'd love to hear from you. Send us a message and we'll respond as soon as possible.
         </Typography>
       </Box>
 
-      <Grid container spacing={6}>
-        {/* Contact Form */}
-        <Grid item xs={12} lg={8}>
-          <Paper elevation={2} sx={{ p: 4 }}>
-            <Typography variant="h4" component="h2" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
-              Send us a Message
-            </Typography>
+      {/* Contact Content - Full width with constrained content */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('full-width'),
+      }}>
+        <Box sx={{
+          maxWidth: layoutUtils.getContentWidth('wide'),
+          mx: 'auto',
+        }}>
+          <Grid container spacing={LAYOUT_CONSTANTS.GRID.SPACING.LG}>
+            {/* Contact Form */}
+            <Grid item xs={12} lg={8}>
+              <Paper elevation={2} sx={{ p: LAYOUT_CONSTANTS.SPACING.LG }}>
+                <Typography
+                  variant="h4"
+                  component="h2"
+                  gutterBottom
+                  sx={{
+                    ...typographyStyles.heading,
+                    mb: LAYOUT_CONSTANTS.SPACING.MD,
+                  }}
+                >
+                  Send us a Message
+                </Typography>
             <Box component="form" sx={{ mt: 2 }}>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
@@ -89,12 +128,20 @@ const Contact: React.FC = () => {
           </Paper>
         </Grid>
 
-        {/* Contact Information */}
-        <Grid item xs={12} lg={4}>
-          <Box sx={{ mb: 4 }}>
-            <Typography variant="h4" component="h2" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
-              Contact Information
-            </Typography>
+            {/* Contact Information */}
+            <Grid item xs={12} lg={4}>
+              <Box sx={{ mb: LAYOUT_CONSTANTS.SPACING.LG }}>
+                <Typography
+                  variant="h4"
+                  component="h2"
+                  gutterBottom
+                  sx={{
+                    ...typographyStyles.heading,
+                    mb: LAYOUT_CONSTANTS.SPACING.MD,
+                  }}
+                >
+                  Contact Information
+                </Typography>
 
             <Box sx={{ mb: 3 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
@@ -157,13 +204,21 @@ const Contact: React.FC = () => {
             </Box>
           </Box>
 
-          <Divider sx={{ my: 3 }} />
+              <Divider sx={{ my: LAYOUT_CONSTANTS.SPACING.MD }} />
 
-          {/* FAQ Section */}
-          <Box>
-            <Typography variant="h5" component="h3" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
-              Frequently Asked Questions
-            </Typography>
+              {/* FAQ Section */}
+              <Box>
+                <Typography
+                  variant="h5"
+                  component="h3"
+                  gutterBottom
+                  sx={{
+                    ...typographyStyles.heading,
+                    mb: LAYOUT_CONSTANTS.SPACING.MD,
+                  }}
+                >
+                  Frequently Asked Questions
+                </Typography>
 
             <Box sx={{ mb: 3 }}>
               <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
@@ -191,10 +246,12 @@ const Contact: React.FC = () => {
                 Absolutely! Contact us to schedule a consultation or demo session.
               </Typography>
             </Box>
-          </Box>
-        </Grid>
-      </Grid>
-    </Container>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

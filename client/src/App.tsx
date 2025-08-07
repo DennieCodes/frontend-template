@@ -4,7 +4,8 @@ import { store } from "./store";
 import Home from "./views/Home";
 import SearchPage from "./views/SearchPage";
 
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
+import { LAYOUT_CONSTANTS } from "./constants/layout";
 
 import "./App.css";
 import Header from "./components/Header/Header";
@@ -34,47 +35,49 @@ function App() {
         <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <Header />
           <Box component="main" sx={{ flex: 1, width: '100%' }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/theme-demo" element={<ThemeDemo />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/articles" element={<ArticlesDirectory />} />
-              <Route path="/articles/:id" element={<ArticlePage />} />
-              <Route path="/resources" element={<ResourcesDirectoryPage />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin"
-                element={
-                  <ProtectedRoute>
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/account"
-                element={
-                  <ProtectedRoute>
-                    <UserAccountPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/terms" element={<TermsOfService />} />
-              <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/sitemap" element={<SiteMap />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <Container maxWidth="xl" sx={{ py: LAYOUT_CONSTANTS.CONTAINER.PADDING.MD }}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/theme-demo" element={<ThemeDemo />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/articles" element={<ArticlesDirectory />} />
+                <Route path="/articles/:id" element={<ArticlePage />} />
+                <Route path="/resources" element={<ResourcesDirectoryPage />} />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin"
+                  element={
+                    <ProtectedRoute>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/account"
+                  element={
+                    <ProtectedRoute>
+                      <UserAccountPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/terms" element={<TermsOfService />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/sitemap" element={<SiteMap />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Container>
           </Box>
           <Footer />
         </Box>

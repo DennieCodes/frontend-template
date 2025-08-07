@@ -15,6 +15,7 @@ import {
 import { Search, FilterList, Clear } from '@mui/icons-material';
 import ArticleGrid from '../ArticleGrid';
 import { ArticleDirectoryProps } from '../../types/article';
+import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
 
 const ArticleDirectory: React.FC<ArticleDirectoryProps> = ({
   articles,
@@ -73,48 +74,70 @@ const ArticleDirectory: React.FC<ArticleDirectoryProps> = ({
   const hasActiveFilters = searchTerm !== '' || selectedCategory !== 'all' || selectedTags.length > 0;
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      {/* Header */}
-      <Box sx={{ mb: 4, textAlign: 'center' }}>
+    <Box sx={{ width: '100%' }}>
+      {/* Header Section - Centered with whitespace */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('centered'),
+        py: LAYOUT_CONSTANTS.CONTAINER.PADDING.MD,
+        textAlign: 'center',
+        mb: LAYOUT_CONSTANTS.SPACING.LG,
+      }}>
         <Typography
           variant="h3"
           component="h1"
           gutterBottom
-          sx={{ fontWeight: 700, mb: 2 }}
+          sx={{
+            ...typographyStyles.heading,
+            mb: LAYOUT_CONSTANTS.SPACING.SM,
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}
         >
           {title}
         </Typography>
         <Typography
           variant="h6"
-          color="text.secondary"
-          sx={{ mb: 3, maxWidth: '600px', mx: 'auto' }}
+          sx={{
+            ...typographyStyles.body,
+            mb: LAYOUT_CONSTANTS.SPACING.MD,
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}
         >
           {subtitle}
         </Typography>
       </Box>
 
-      {/* Filters */}
+      {/* Filters Section - Full width with constrained content */}
       {showFilters && (
-        <Paper sx={{ p: 3, mb: 4 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-            <FilterList color="primary" />
-            <Typography variant="h6" component="h2">
-              Filters
-            </Typography>
-            {hasActiveFilters && (
-              <Button
-                startIcon={<Clear />}
-                onClick={clearFilters}
-                variant="outlined"
-                size="small"
-                sx={{ ml: 'auto' }}
-              >
-                Clear Filters
-              </Button>
-            )}
-          </Box>
+        <Box sx={{
+          ...layoutUtils.getContentLayout('full-width'),
+          mb: LAYOUT_CONSTANTS.SPACING.LG,
+        }}>
+          <Paper sx={{
+            p: LAYOUT_CONSTANTS.SPACING.MD,
+            maxWidth: layoutUtils.getContentWidth('wide'),
+            mx: 'auto',
+          }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: LAYOUT_CONSTANTS.SPACING.SM, mb: LAYOUT_CONSTANTS.SPACING.MD }}>
+              <FilterList color="primary" />
+              <Typography variant="h6" component="h2">
+                Filters
+              </Typography>
+              {hasActiveFilters && (
+                <Button
+                  startIcon={<Clear />}
+                  onClick={clearFilters}
+                  variant="outlined"
+                  size="small"
+                  sx={{ ml: 'auto' }}
+                >
+                  Clear Filters
+                </Button>
+              )}
+            </Box>
 
-          <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
+          <Box sx={{ display: 'flex', gap: LAYOUT_CONSTANTS.SPACING.SM, mb: LAYOUT_CONSTANTS.SPACING.MD, flexWrap: 'wrap' }}>
             <TextField
               label="Search articles"
               variant="outlined"
@@ -150,7 +173,7 @@ const ArticleDirectory: React.FC<ArticleDirectoryProps> = ({
               <Typography variant="subtitle2" gutterBottom>
                 Tags
               </Typography>
-              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+              <Box sx={{ display: 'flex', gap: LAYOUT_CONSTANTS.SPACING.XS, flexWrap: 'wrap' }}>
                 {allTags.map((tag) => (
                   <Chip
                     key={tag}
@@ -166,10 +189,17 @@ const ArticleDirectory: React.FC<ArticleDirectoryProps> = ({
             </Box>
           )}
         </Paper>
+      </Box>
       )}
 
-      {/* Results Summary */}
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {/* Results Summary - Centered with whitespace */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('centered'),
+        mb: LAYOUT_CONSTANTS.SPACING.MD,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
         <Typography variant="body1" color="text.secondary">
           Showing {filteredArticles.length} of {articles.length} articles
         </Typography>
@@ -180,26 +210,40 @@ const ArticleDirectory: React.FC<ArticleDirectoryProps> = ({
         )}
       </Box>
 
-      {/* Articles Grid */}
-      {filteredArticles.length > 0 ? (
-        <ArticleGrid
-          articles={filteredArticles}
-          columns={3}
-          spacing={3}
-          variant="default"
-          onArticleClick={onArticleClick}
-        />
-      ) : (
-        <Paper sx={{ p: 4, textAlign: 'center' }}>
-          <Typography variant="h6" color="text.secondary" gutterBottom>
-            No articles found
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Try adjusting your search criteria or filters
-          </Typography>
-        </Paper>
-      )}
-    </Container>
+      {/* Articles Grid - Full width with constrained content */}
+      <Box sx={{
+        ...layoutUtils.getContentLayout('full-width'),
+      }}>
+        {filteredArticles.length > 0 ? (
+          <Box sx={{
+            maxWidth: layoutUtils.getContentWidth('wide'),
+            mx: 'auto',
+          }}>
+            <ArticleGrid
+              articles={filteredArticles}
+              columns={3}
+              spacing={LAYOUT_CONSTANTS.GRID.SPACING.MD}
+              variant="default"
+              onArticleClick={onArticleClick}
+            />
+          </Box>
+        ) : (
+          <Box sx={{
+            maxWidth: layoutUtils.getContentWidth('standard'),
+            mx: 'auto',
+          }}>
+            <Paper sx={{ p: LAYOUT_CONSTANTS.SPACING.LG, textAlign: 'center' }}>
+              <Typography variant="h6" color="text.secondary" gutterBottom>
+                No articles found
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Try adjusting your search criteria or filters
+              </Typography>
+            </Paper>
+          </Box>
+        )}
+      </Box>
+    </Box>
   );
 };
 
