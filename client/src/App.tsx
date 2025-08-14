@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import Home from "./views/Home";
-import SearchPage from "./views/SearchPage";
+import SearchPage from "./views/Search";
 
 import { Box, Container } from "@mui/material";
 import { LAYOUT_CONSTANTS } from "./constants/layout";
