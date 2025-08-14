@@ -1,6 +1,6 @@
 import React from 'react';
 interface LanguageSwitcherProps {
-    variant?: 'select' | 'buttons';
+    variant?: 'select' | 'buttons' | 'dropdown';
     size?: 'small' | 'medium' | 'large';
     showLabel?: boolean;
     className?: string;

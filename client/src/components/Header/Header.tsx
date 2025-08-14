@@ -300,7 +300,7 @@ const Header: React.FC = () => {
             spacing={1}
             sx={{ alignItems: 'center' }}
           >
-            <LanguageSwitcher variant="buttons" size="small" />
+            <LanguageSwitcher variant="dropdown" size="small" />
             <ThemeToggle />
 
             {isAuthenticated ? (
