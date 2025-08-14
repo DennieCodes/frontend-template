@@ -1,9 +1,6 @@
-import React from 'react';
-import ResourceDirectory from '../components/ResourceDirectory';
-import { Resource } from '../types/resource';
+import { Resource } from './types';
 
-// Mock data for demonstration
-const mockResources: Resource[] = [
+export const mockResources: Resource[] = [
   {
     id: '1',
     name: 'Community Health Center',
@@ -257,24 +254,3 @@ const mockResources: Resource[] = [
     updatedAt: '2024-01-03T10:00:00Z'
   }
 ];
-
-const ResourcesDirectoryPage: React.FC = () => {
-  const handleResourceClick = (resource: Resource) => {
-    // This would typically navigate to the resource detail page
-    console.log('Resource clicked:', resource.name);
-    // In a real app, you would use React Router to navigate
-    // navigate(`/resources/${resource.id}`);
-  };
-
-  return (
-    <ResourceDirectory
-      resources={mockResources}
-      title="Community Resources"
-      subtitle="Find services and support in your area"
-      showFilters={true}
-      onResourceClick={handleResourceClick}
-    />
-  );
-};
-
-export default ResourcesDirectoryPage;

@@ -21,7 +21,7 @@ import UserAccountPage from "./views/UserAccountPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ArticlesDirectory from "./views/Articles";
 import ArticlePage from "./views/ArticlePage";
-import ResourcesDirectoryPage from "./views/ResourcesDirectoryPage";
+import ResourcesDirectoryPage from "./views/Resources";
 import QuizPage from "./views/QuizPage";
 import TermsOfService from "./views/TermsOfService";
 import PrivacyPolicy from "./views/PrivacyPolicy";
