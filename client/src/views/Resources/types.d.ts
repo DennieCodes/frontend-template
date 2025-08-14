@@ -27,8 +27,8 @@ export interface Resource {
     verified?: boolean;
     hours?: {
         [key: string]: {
-            open: string;
-            close: string;
+            open?: string;
+            close?: string;
             closed?: boolean;
         };
     };

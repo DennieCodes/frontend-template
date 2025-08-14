@@ -22,7 +22,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ArticlesDirectory from "./views/Articles";
 import ArticlePage from "./views/ArticlePage";
 import ResourcesDirectoryPage from "./views/Resources";
-import QuizPage from "./views/QuizPage";
+import QuizPage from "./views/Quiz";
 import TermsOfService from "./views/TermsOfService";
 import PrivacyPolicy from "./views/PrivacyPolicy";
 import FAQ from "./views/FAQ";
