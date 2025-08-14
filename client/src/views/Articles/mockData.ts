@@ -1,10 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import ArticleDirectory from '../components/ArticleDirectory';
-import { Article } from '../types/article';
+import { Article } from './types';
 
-// Sample data for demonstration
-const sampleArticles: Article[] = [
+export const sampleArticles: Article[] = [
   {
     id: '1',
     title: 'Getting Started with React and TypeScript',
@@ -324,23 +320,3 @@ Accessibility should be considered from the beginning of any web project, not as
     imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop',
   },
 ];
-
-const ArticlesDirectory: React.FC = () => {
-  const navigate = useNavigate();
-
-  const handleArticleClick = (article: Article) => {
-    navigate(`/articles/${article.id}`);
-  };
-
-  return (
-    <ArticleDirectory
-      articles={sampleArticles}
-      title="Articles"
-      subtitle="Discover our latest articles and insights on web development, design, and technology"
-      showFilters={true}
-      onArticleClick={handleArticleClick}
-    />
-  );
-};
-
-export default ArticlesDirectory;

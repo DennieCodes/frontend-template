@@ -19,7 +19,7 @@ import Dashboard from "./views/Dashboard";
 import AdminDashboard from "./views/AdminDashboard";
 import UserAccountPage from "./views/UserAccountPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import ArticlesDirectory from "./views/ArticlesDirectory";
+import ArticlesDirectory from "./views/Articles";
 import ArticlePage from "./views/ArticlePage";
 import ResourcesDirectoryPage from "./views/ResourcesDirectoryPage";
 import QuizPage from "./views/QuizPage";
