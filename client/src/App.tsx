@@ -16,7 +16,7 @@ import ThemeDemo from "./views/ThemeDemo";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Dashboard from "./views/Dashboard";
-import AdminDashboard from "./views/AdminDashboard";
+import AdminDashboard from "./views/Admin";
 import UserAccountPage from "./views/UserAccountPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ArticlesDirectory from "./views/Articles";
