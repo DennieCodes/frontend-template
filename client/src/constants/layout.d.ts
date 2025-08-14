@@ -103,6 +103,12 @@ export declare const LAYOUT_CONSTANTS: {
             FEATURED: string;
             TALL: string;
         };
+        WIDTH: {
+            COMPACT: string;
+            DEFAULT: string;
+            FEATURED: string;
+            TALL: string;
+        };
         CONTENT: {
             PADDING: number;
             TITLE_MARGIN: number;
@@ -114,6 +120,24 @@ export declare const LAYOUT_CONSTANTS: {
             COMPACT_HEIGHT: number;
             DEFAULT_HEIGHT: number;
             FEATURED_HEIGHT: number;
+        };
+        STYLES: {
+            BASE: {
+                width: string;
+                height: string;
+                display: string;
+                flexDirection: string;
+                transition: string;
+                '&:hover': {
+                    transform: string;
+                    boxShadow: string;
+                };
+            };
+            GRID_ITEM: {
+                display: string;
+                flexDirection: string;
+                height: string;
+            };
         };
     };
     TEXT: {
@@ -162,25 +186,25 @@ export declare const layoutUtils: {
     getContainerMaxWidth: (size: "sm" | "md" | "lg" | "xl") => string;
     getGridColumns: (columns: number) => {
         xs: number;
-    } | {
-        xs: number;
-        sm: number;
-    } | {
-        xs: number;
-        sm: number;
-        md: number;
-    } | {
-        xs: number;
-        sm: number;
-        md: number;
-        lg: number;
-    } | {
-        xs: number;
-        sm: number;
-        md: number;
-        lg: number;
     };
     getCardHeight: (variant: "compact" | "default" | "featured" | "tall") => string;
+    getCardWidth: (variant: "compact" | "default" | "featured" | "tall") => string;
+    getCardStyles: (variant: "compact" | "default" | "featured" | "tall") => {
+        height: string;
+        width: string;
+        display: string;
+        flexDirection: string;
+        transition: string;
+        '&:hover': {
+            transform: string;
+            boxShadow: string;
+        };
+    };
+    getGridItemStyles: () => {
+        display: string;
+        flexDirection: string;
+        height: string;
+    };
     getImageHeight: (variant: "compact" | "default" | "featured") => number;
     getContentLayout: (type: "centered" | "two-column" | "full-width") => {
         maxWidth: string;
