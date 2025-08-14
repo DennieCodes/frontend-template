@@ -20,12 +20,15 @@
     "navigation": "Navegación",
     "welcome": "Bienvenido",
     "user": "Usuario",
-    "logout": "Cerrar Sesión"
+    "logout": "Cerrar Sesión",
+    "back": "Atrás",
+    "next": "Siguiente"
   },
   "navigation": {
     "dashboard": "Panel de Control",
     "articles": "Artículos",
     "resources": "Recursos",
+    "quiz": "Cuestionario",
     "search": "Buscar",
     "about": "Acerca de",
     "contact": "Contacto",
@@ -94,6 +97,12 @@
     "register": {
       "title": "Crear Cuenta",
       "subtitle": "Únete a nuestra comunidad"
+    },
+    "quiz": {
+      "title": "Cuestionario de Evaluación de Desarrollador",
+      "subtitle": "Por favor responde las siguientes preguntas para ayudarnos a entender tu experiencia y preferencias.",
+      "progress": "Paso {{current}} de {{total}}",
+      "submit": "Enviar Cuestionario"
     }
   }
 }
