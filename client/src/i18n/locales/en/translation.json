@@ -20,12 +20,15 @@
     "navigation": "Navigation",
     "welcome": "Welcome",
     "user": "User",
-    "logout": "Logout"
+    "logout": "Logout",
+    "back": "Back",
+    "next": "Next"
   },
   "navigation": {
     "dashboard": "Dashboard",
     "articles": "Articles",
     "resources": "Resources",
+    "quiz": "Quiz",
     "search": "Search",
     "about": "About",
     "contact": "Contact",
@@ -94,6 +97,12 @@
     "register": {
       "title": "Create Account",
       "subtitle": "Join our community"
+    },
+    "quiz": {
+      "title": "Developer Assessment Quiz",
+      "subtitle": "Please answer the following questions to help us understand your background and preferences.",
+      "progress": "Step {{current}} of {{total}}",
+      "submit": "Submit Quiz"
     }
   }
 }

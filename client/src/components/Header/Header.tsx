@@ -40,6 +40,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
+import QuizIcon from '@mui/icons-material/Quiz';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, User } from '../../slice/authSlice';
@@ -117,6 +118,7 @@ const Header: React.FC = () => {
   const contentNavigation = [
     { label: t('navigation.articles'), path: '/articles', icon: <ArticleIcon /> },
     { label: t('navigation.resources'), path: '/resources', icon: <BusinessIcon /> },
+    { label: t('navigation.quiz'), path: '/quiz', icon: <QuizIcon /> },
   ];
 
   const accountNavigation = [
@@ -298,7 +300,7 @@ const Header: React.FC = () => {
             spacing={1}
             sx={{ alignItems: 'center' }}
           >
-            <LanguageSwitcher variant="buttons" size="small" />
+            <LanguageSwitcher variant="dropdown" size="small" />
             <ThemeToggle />
 
             {isAuthenticated ? (

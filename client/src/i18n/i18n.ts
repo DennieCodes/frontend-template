@@ -27,19 +27,28 @@ const enTranslation = {
     "error": "Error",
     "success": "Success",
     "warning": "Warning",
-    "info": "Information"
+    "info": "Information",
+    "brand": "Frontend Template",
+    "navigation": "Navigation",
+    "welcome": "Welcome",
+    "user": "User",
+    "logout": "Logout",
+    "back": "Back",
+    "next": "Next"
   },
   "navigation": {
     "dashboard": "Dashboard",
     "articles": "Articles",
     "resources": "Resources",
+    "quiz": "Quiz",
     "search": "Search",
     "about": "About",
     "contact": "Contact",
     "faq": "FAQ",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "sitemap": "Site Map"
+    "sitemap": "Site Map",
+    "content": "Content"
   },
   "account": {
     "title": "Account Settings",
@@ -100,6 +109,12 @@ const enTranslation = {
     "register": {
       "title": "Create Account",
       "subtitle": "Join our community"
+    },
+    "quiz": {
+      "title": "Developer Assessment Quiz",
+      "subtitle": "Please answer the following questions to help us understand your background and preferences.",
+      "progress": "Step {{current}} of {{total}}",
+      "submit": "Submit Quiz"
     }
   }
 };
@@ -121,19 +136,28 @@ const esTranslation = {
     "error": "Error",
     "success": "Éxito",
     "warning": "Advertencia",
-    "info": "Información"
+    "info": "Información",
+    "brand": "Plantilla Frontend",
+    "navigation": "Navegación",
+    "welcome": "Bienvenido",
+    "user": "Usuario",
+    "logout": "Cerrar Sesión",
+    "back": "Atrás",
+    "next": "Siguiente"
   },
   "navigation": {
     "dashboard": "Panel de Control",
     "articles": "Artículos",
     "resources": "Recursos",
+    "quiz": "Cuestionario",
     "search": "Buscar",
     "about": "Acerca de",
     "contact": "Contacto",
     "faq": "Preguntas Frecuentes",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio",
-    "sitemap": "Mapa del Sitio"
+    "sitemap": "Mapa del Sitio",
+    "content": "Contenido"
   },
   "account": {
     "title": "Configuración de Cuenta",
@@ -194,6 +218,12 @@ const esTranslation = {
     "register": {
       "title": "Crear Cuenta",
       "subtitle": "Únete a nuestra comunidad"
+    },
+    "quiz": {
+      "title": "Cuestionario de Evaluación de Desarrollador",
+      "subtitle": "Por favor responde las siguientes preguntas para ayudarnos a entender tu experiencia y preferencias.",
+      "progress": "Paso {{current}} de {{total}}",
+      "submit": "Enviar Cuestionario"
     }
   }
 };
