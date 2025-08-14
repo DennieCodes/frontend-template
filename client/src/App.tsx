@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import Home from "./views/Home";
-import SearchPage from "./views/SearchPage";
+import SearchPage from "./views/Search";
 
 import { Box, Container } from "@mui/material";
 import { LAYOUT_CONSTANTS } from "./constants/layout";
@@ -16,13 +16,14 @@ import ThemeDemo from "./views/ThemeDemo";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Dashboard from "./views/Dashboard";
-import AdminDashboard from "./views/AdminDashboard";
-import UserAccountPage from "./views/UserAccountPage";
+import AdminDashboard from "./views/Admin";
+import UserAccountPage from "./views/UserAccount";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import ArticlesDirectory from "./views/ArticlesDirectory";
+import ArticlesDirectory from "./views/Articles";
 import ArticlePage from "./views/ArticlePage";
-import ResourcesDirectoryPage from "./views/ResourcesDirectoryPage";
-import QuizPage from "./views/QuizPage";
+import ResourcesDirectoryPage from "./views/Resources";
+import ResourcePage from "./views/ResourcePage";
+import QuizPage from "./views/Quiz";
 import TermsOfService from "./views/TermsOfService";
 import PrivacyPolicy from "./views/PrivacyPolicy";
 import FAQ from "./views/FAQ";
@@ -48,6 +49,7 @@ function App() {
                 <Route path="/articles" element={<ArticlesDirectory />} />
                 <Route path="/articles/:id" element={<ArticlePage />} />
                 <Route path="/resources" element={<ResourcesDirectoryPage />} />
+                <Route path="/resources/:id" element={<ResourcePage />} />
                 <Route path="/quiz" element={<QuizPage />} />
                 <Route
                   path="/dashboard"
