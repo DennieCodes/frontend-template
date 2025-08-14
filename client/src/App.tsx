@@ -22,6 +22,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ArticlesDirectory from "./views/Articles";
 import ArticlePage from "./views/ArticlePage";
 import ResourcesDirectoryPage from "./views/Resources";
+import ResourcePage from "./views/ResourcePage";
 import QuizPage from "./views/Quiz";
 import TermsOfService from "./views/TermsOfService";
 import PrivacyPolicy from "./views/PrivacyPolicy";
@@ -48,6 +49,7 @@ function App() {
                 <Route path="/articles" element={<ArticlesDirectory />} />
                 <Route path="/articles/:id" element={<ArticlePage />} />
                 <Route path="/resources" element={<ResourcesDirectoryPage />} />
+                <Route path="/resources/:id" element={<ResourcePage />} />
                 <Route path="/quiz" element={<QuizPage />} />
                 <Route
                   path="/dashboard"
