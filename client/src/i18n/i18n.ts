@@ -40,7 +40,9 @@ const enTranslation = {
     "dashboard": "Dashboard",
     "articles": "Articles",
     "resources": "Resources",
+    "products": "Products",
     "quiz": "Quiz",
+    "survey": "Survey",
     "search": "Search",
     "about": "About",
     "contact": "Contact",
@@ -115,6 +117,14 @@ const enTranslation = {
       "subtitle": "Please answer the following questions to help us understand your background and preferences.",
       "progress": "Step {{current}} of {{total}}",
       "submit": "Submit Quiz"
+    },
+    "survey": {
+      "title": "User Feedback Survey",
+      "subtitle": "Please take a moment to share your thoughts and help us improve our platform."
+    },
+    "products": {
+      "title": "Our Products",
+      "subtitle": "Discover our amazing collection of high-quality products"
     }
   }
 };
@@ -149,7 +159,9 @@ const esTranslation = {
     "dashboard": "Panel de Control",
     "articles": "Artículos",
     "resources": "Recursos",
+    "products": "Productos",
     "quiz": "Cuestionario",
+    "survey": "Encuesta",
     "search": "Buscar",
     "about": "Acerca de",
     "contact": "Contacto",
@@ -224,6 +236,14 @@ const esTranslation = {
       "subtitle": "Por favor responde las siguientes preguntas para ayudarnos a entender tu experiencia y preferencias.",
       "progress": "Paso {{current}} de {{total}}",
       "submit": "Enviar Cuestionario"
+    },
+    "survey": {
+      "title": "Encuesta de Opinión de Usuario",
+      "subtitle": "Por favor toma un momento para compartir tus pensamientos y ayudarnos a mejorar nuestra plataforma."
+    },
+    "products": {
+      "title": "Nuestros Productos",
+      "subtitle": "Descubre nuestra increíble colección de productos de alta calidad"
     }
   }
 };

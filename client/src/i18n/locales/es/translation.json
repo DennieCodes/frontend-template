@@ -30,6 +30,7 @@
     "resources": "Recursos",
     "quiz": "Cuestionario",
     "survey": "Encuesta",
+    "products": "Productos",
     "search": "Buscar",
     "about": "Acerca de",
     "contact": "Contacto",
@@ -108,6 +109,10 @@
     "survey": {
       "title": "Encuesta de Opinión de Usuario",
       "subtitle": "Por favor toma un momento para compartir tus pensamientos y ayudarnos a mejorar nuestra plataforma."
+    },
+    "products": {
+      "title": "Nuestros Productos",
+      "subtitle": "Descubre nuestra increíble colección de productos de alta calidad"
     }
   }
 }
