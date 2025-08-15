@@ -29,6 +29,7 @@
     "articles": "Articles",
     "resources": "Resources",
     "quiz": "Quiz",
+    "survey": "Survey",
     "search": "Search",
     "about": "About",
     "contact": "Contact",
@@ -103,6 +104,10 @@
       "subtitle": "Please answer the following questions to help us understand your background and preferences.",
       "progress": "Step {{current}} of {{total}}",
       "submit": "Submit Quiz"
+    },
+    "survey": {
+      "title": "User Feedback Survey",
+      "subtitle": "Please take a moment to share your thoughts and help us improve our platform."
     }
   }
 }
