@@ -21,6 +21,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import QuizIcon from '@mui/icons-material/Quiz';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import EventIcon from '@mui/icons-material/Event';
 import { useSelector } from 'react-redux';
 import { User } from '../../slice/authSlice';
 import { RootState } from '../../store';
@@ -59,6 +60,7 @@ const HeaderDropdownMenus: React.FC<HeaderDropdownMenusProps> = ({
     { label: t('navigation.articles'), path: '/articles', icon: <ArticleIcon /> },
     { label: t('navigation.resources'), path: '/resources', icon: <BusinessIcon /> },
     { label: t('navigation.products'), path: '/products', icon: <ShoppingCartIcon /> },
+    { label: t('navigation.events'), path: '/events', icon: <EventIcon /> },
     { label: t('navigation.quiz'), path: '/quiz', icon: <QuizIcon /> },
     { label: t('navigation.survey'), path: '/survey', icon: <AssignmentIcon /> },
   ];

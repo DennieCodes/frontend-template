@@ -27,6 +27,8 @@ import QuizPage from "./views/Quiz";
 import SurveyPage from "./views/Survey";
 import ProductsPage from "./views/Products";
 import ProductPage from "./views/Products/ProductPage";
+import EventsPage from "./views/Events";
+import EventPage from "./views/Events/EventPage";
 import TermsOfService from "./views/TermsOfService";
 import PrivacyPolicy from "./views/PrivacyPolicy";
 import FAQ from "./views/FAQ";
@@ -57,6 +59,9 @@ function App() {
                 <Route path="/survey" element={<SurveyPage />} />
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/products/:id" element={<ProductPage />} />
+                <Route path="/events" element={<EventsPage />} />
+                <Route path="/events/:id" element={<EventPage />} />
+                <Route path="/events-test" element={<div>Events Test Route Working!</div>} />
                 <Route
                   path="/dashboard"
                   element={
