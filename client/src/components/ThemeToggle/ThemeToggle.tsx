@@ -6,14 +6,13 @@ import { useTheme } from '../../contexts/ThemeContext';
 const ThemeToggle: React.FC = () => {
   const { mode, toggleTheme } = useTheme();
 
-  const handleClick = () => {
-    console.log('Theme toggle clicked, current mode:', mode);
+  const handleToggle = () => {
     toggleTheme();
   };
 
   return (
     <Tooltip title="Toggle theme">
-      <IconButton onClick={handleClick} aria-label="Toggle theme mode">
+      <IconButton onClick={handleToggle} aria-label="Toggle theme mode">
         {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
       </IconButton>
     </Tooltip>

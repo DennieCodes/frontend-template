@@ -13,8 +13,9 @@ import { ThemeToggle } from '../components/ThemeToggle';
 import { Brightness4, Brightness7 } from '@mui/icons-material';
 
 const ThemeDemo: React.FC = () => {
-  const handleThemeChange = (mode: 'light' | 'dark') => {
-    console.log(`Theme changed to: ${mode}`);
+  const handleThemeChange = (event: SelectChangeEvent) => {
+    const newMode = event.target.value as 'light' | 'dark';
+    setTheme(newMode);
   };
 
   return (

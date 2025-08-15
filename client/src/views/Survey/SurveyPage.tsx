@@ -38,11 +38,10 @@ const SurveyPage: React.FC = () => {
     navigate('/');
   };
 
-  const handleSubmit = () => {
-    // Here you would typically submit the survey answers to your backend
-    console.log('Survey answers:', answers);
+  const handleSubmit = (answers: Record<string, any>) => {
+    // Handle survey submission
+    // You can add API call here to save survey responses
     alert('Survey submitted successfully!');
-    navigate('/');
   };
 
   const getQuestionsForStep = (step: number) => {

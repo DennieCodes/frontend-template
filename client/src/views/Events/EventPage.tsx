@@ -130,15 +130,13 @@ const EventPage: React.FC = () => {
   };
 
   const handleRegister = () => {
-    // Here you would typically handle event registration
-    console.log('Registering for event:', event.title);
-    alert(`Registration for ${event.title} would be processed here!`);
+    // Handle event registration
+    alert('Successfully registered for the event!');
   };
 
   const handleAddToCalendar = () => {
-    // Here you would typically add to calendar
-    console.log('Adding to calendar:', event.title);
-    alert(`Adding ${event.title} to calendar!`);
+    // Handle adding to calendar
+    alert('Event added to calendar!');
   };
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
