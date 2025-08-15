@@ -41,6 +41,7 @@ const enTranslation = {
     "articles": "Articles",
     "resources": "Resources",
     "products": "Products",
+    "events": "Events",
     "quiz": "Quiz",
     "survey": "Survey",
     "search": "Search",
@@ -125,6 +126,10 @@ const enTranslation = {
     "products": {
       "title": "Our Products",
       "subtitle": "Discover our amazing collection of high-quality products"
+    },
+    "events": {
+      "title": "Events",
+      "subtitle": "Discover amazing events happening near you"
     }
   }
 };
@@ -160,6 +165,7 @@ const esTranslation = {
     "articles": "Artículos",
     "resources": "Recursos",
     "products": "Productos",
+    "events": "Eventos",
     "quiz": "Cuestionario",
     "survey": "Encuesta",
     "search": "Buscar",
@@ -244,6 +250,10 @@ const esTranslation = {
     "products": {
       "title": "Nuestros Productos",
       "subtitle": "Descubre nuestra increíble colección de productos de alta calidad"
+    },
+    "events": {
+      "title": "Eventos",
+      "subtitle": "Descubre eventos increíbles que suceden cerca de ti"
     }
   }
 };
