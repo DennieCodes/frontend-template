@@ -30,6 +30,7 @@
     "resources": "Resources",
     "quiz": "Quiz",
     "survey": "Survey",
+    "products": "Products",
     "search": "Search",
     "about": "About",
     "contact": "Contact",
@@ -108,6 +109,10 @@
     "survey": {
       "title": "User Feedback Survey",
       "subtitle": "Please take a moment to share your thoughts and help us improve our platform."
+    },
+    "products": {
+      "title": "Our Products",
+      "subtitle": "Discover our amazing collection of high-quality products"
     }
   }
 }

@@ -25,6 +25,8 @@ import ResourcesDirectoryPage from "./views/Resources";
 import ResourcePage from "./views/ResourcePage";
 import QuizPage from "./views/Quiz";
 import SurveyPage from "./views/Survey";
+import ProductsPage from "./views/Products";
+import ProductPage from "./views/Products/ProductPage";
 import TermsOfService from "./views/TermsOfService";
 import PrivacyPolicy from "./views/PrivacyPolicy";
 import FAQ from "./views/FAQ";
@@ -53,6 +55,8 @@ function App() {
                 <Route path="/resources/:id" element={<ResourcePage />} />
                 <Route path="/quiz" element={<QuizPage />} />
                 <Route path="/survey" element={<SurveyPage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/products/:id" element={<ProductPage />} />
                 <Route
                   path="/dashboard"
                   element={
