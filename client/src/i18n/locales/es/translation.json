@@ -29,6 +29,7 @@
     "articles": "Artículos",
     "resources": "Recursos",
     "quiz": "Cuestionario",
+    "survey": "Encuesta",
     "search": "Buscar",
     "about": "Acerca de",
     "contact": "Contacto",
@@ -103,6 +104,10 @@
       "subtitle": "Por favor responde las siguientes preguntas para ayudarnos a entender tu experiencia y preferencias.",
       "progress": "Paso {{current}} de {{total}}",
       "submit": "Enviar Cuestionario"
+    },
+    "survey": {
+      "title": "Encuesta de Opinión de Usuario",
+      "subtitle": "Por favor toma un momento para compartir tus pensamientos y ayudarnos a mejorar nuestra plataforma."
     }
   }
 }
