@@ -7,9 +7,8 @@ import { ContactFormData } from './types';
 
 const ContactPage: React.FC = () => {
   const handleSubmit = (data: ContactFormData) => {
-    // Handle form submission here
-    console.log('Contact form submitted:', data);
-    // You can add API call, validation, etc.
+    // Handle form submission
+    alert('Thank you for your message! We will get back to you soon.');
   };
 
   return (

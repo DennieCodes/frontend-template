@@ -94,15 +94,13 @@ const ProductPage: React.FC = () => {
   };
 
   const handleAddToCart = () => {
-    // Here you would typically add the product to cart
-    console.log('Adding to cart:', product, 'Quantity:', quantity);
+    // Handle adding to cart
     alert(`Added ${quantity} ${product.name} to cart!`);
   };
 
   const handleAddToWishlist = () => {
     setIsWishlisted(!isWishlisted);
-    // Here you would typically add/remove from wishlist
-    console.log('Wishlist toggled:', product.name);
+    // Handle wishlist toggle
   };
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {

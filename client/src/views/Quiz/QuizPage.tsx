@@ -38,11 +38,9 @@ const QuizPage: React.FC = () => {
     navigate('/');
   };
 
-  const handleSubmit = () => {
-    // Here you would typically submit the answers to your backend
-    console.log('Quiz answers:', answers);
+  const handleSubmit = (answers: Record<string, any>) => {
+    // Handle quiz submission
     alert('Quiz submitted successfully!');
-    navigate('/');
   };
 
   const getQuestionsForStep = (step: number) => {

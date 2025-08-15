@@ -6,6 +6,7 @@ import ResourcesSummary from './ResourcesSummary';
 import ResourcesResults from './ResourcesResults';
 import { Resource } from './types';
 import { mockResources } from './mockData';
+import { useNavigate } from 'react-router-dom';
 
 const ResourcesPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,6 +17,8 @@ const ResourcesPage: React.FC = () => {
   const [priceRange, setPriceRange] = useState<string>('all');
   const [ratingFilter, setRatingFilter] = useState<number>(0);
   const [verifiedOnly, setVerifiedOnly] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   // Get unique categories, subcategories, locations, and tags
   const categories = useMemo(() => {
@@ -102,10 +105,8 @@ const ResourcesPage: React.FC = () => {
     verifiedOnly;
 
   const handleResourceClick = (resource: Resource) => {
-    // This would typically navigate to the resource detail page
-    console.log('Resource clicked:', resource.name);
-    // In a real app, you would use React Router to navigate
-    // navigate(`/resources/${resource.id}`);
+    // Handle resource click
+    navigate(`/resources/${resource.id}`);
   };
 
   return (

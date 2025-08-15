@@ -80,13 +80,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ selectedTags, onTagFilter
 
   const handleApplyFilters = () => {
     // In a real app, this would apply all filters together
-    console.log('Applying filters:', {
-      tags: selectedTags,
-      types: selectedTypes,
-      authors: selectedAuthors,
-      dateRange,
-      readTimeRange,
-    });
   };
 
   return (

@@ -1,72 +1,58 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-export type ThemeMode = 'light' | 'dark';
+type ThemeMode = 'light' | 'dark';
 
 interface ThemeContextType {
-  mode: ThemeMode;
+  themeMode: ThemeMode;
   toggleTheme: () => void;
-  setTheme: (newMode: ThemeMode) => void;
+  setTheme: (mode: ThemeMode) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 interface ThemeProviderProps {
   children: ReactNode;
-  defaultMode?: ThemeMode;
-  storageKey?: string;
 }
 
-const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  children,
-  defaultMode = 'light',
-  storageKey = 'theme-mode'
-}) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
-    // Try to get theme from localStorage
-    const savedMode = localStorage.getItem(storageKey) as ThemeMode;
-    return savedMode && ['light', 'dark'].includes(savedMode) ? savedMode : defaultMode;
+    const saved = localStorage.getItem('themeMode');
+    return (saved as ThemeMode) || 'light';
   });
 
-  useEffect(() => {
-    // Save theme to localStorage whenever it changes
-    localStorage.setItem(storageKey, themeMode);
-    console.log('Theme changed to:', themeMode);
-  }, [themeMode, storageKey]);
-
   const toggleTheme = () => {
-    console.log('Toggle theme called, current mode:', themeMode);
-    setThemeMode(prevMode => {
-      const newMode = prevMode === 'light' ? 'dark' : 'light';
-      console.log('Setting theme to:', newMode);
-      return newMode;
-    });
+    const newMode = themeMode === 'light' ? 'dark' : 'light';
+    setThemeMode(newMode);
+    localStorage.setItem('themeMode', newMode);
   };
 
   const setTheme = (newMode: ThemeMode) => {
-    console.log('Set theme called with:', newMode);
     setThemeMode(newMode);
+    localStorage.setItem('themeMode', newMode);
   };
 
-  // Create a simple theme based on mode
-  const theme = useMemo(() => {
-    console.log('Creating theme for mode:', themeMode);
-    return createTheme({
-      palette: {
-        mode: themeMode,
+  const theme = createTheme({
+    palette: {
+      mode: themeMode,
+      primary: {
+        main: '#1976d2',
       },
-    });
-  }, [themeMode]);
+      secondary: {
+        main: '#dc004e',
+      },
+    },
+  });
 
-  const contextValue = useMemo(() => ({
-    mode: themeMode,
+  const value = {
+    themeMode,
     toggleTheme,
     setTheme,
-  }), [themeMode, toggleTheme, setTheme]);
+  };
 
   return (
-    <ThemeContext.Provider value={contextValue}>
+    <ThemeContext.Provider value={value}>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         {children}
@@ -75,12 +61,10 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
   );
 };
 
-const useTheme = (): ThemeContextType => {
+export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
 };
-
-export { ThemeProvider, useTheme };
