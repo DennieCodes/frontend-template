@@ -31,6 +31,7 @@
     "quiz": "Quiz",
     "survey": "Survey",
     "products": "Products",
+    "users": "Users",
     "search": "Search",
     "about": "About",
     "contact": "Contact",
@@ -113,6 +114,24 @@
     "products": {
       "title": "Our Products",
       "subtitle": "Discover our amazing collection of high-quality products"
+    },
+    "users": {
+      "title": "Community Members",
+      "subtitle": "Discover and connect with other users in our community",
+      "searchPlaceholder": "Search by name, username, or bio...",
+      "filters": "Filters",
+      "clearFilters": "Clear Filters",
+      "sortBy": "Sort By",
+      "order": "Order",
+      "role": "Role",
+      "allRoles": "All Roles",
+      "ascending": "Ascending",
+      "descending": "Descending",
+      "name": "Name",
+      "joinDate": "Join Date",
+      "reputation": "Reputation",
+      "followers": "Followers",
+      "usersFound": "{{count}} of {{total}} users found"
     }
   }
 }

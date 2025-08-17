@@ -42,6 +42,7 @@ const enTranslation = {
     "resources": "Resources",
     "products": "Products",
     "events": "Events",
+    "users": "Users",
     "quiz": "Quiz",
     "survey": "Survey",
     "search": "Search",
@@ -130,6 +131,24 @@ const enTranslation = {
     "events": {
       "title": "Events",
       "subtitle": "Discover amazing events happening near you"
+    },
+    "users": {
+      "title": "Community Members",
+      "subtitle": "Discover and connect with other users in our community",
+      "searchPlaceholder": "Search by name, username, or bio...",
+      "filters": "Filters",
+      "clearFilters": "Clear Filters",
+      "sortBy": "Sort By",
+      "order": "Order",
+      "role": "Role",
+      "allRoles": "All Roles",
+      "ascending": "Ascending",
+      "descending": "Descending",
+      "name": "Name",
+      "joinDate": "Join Date",
+      "reputation": "Reputation",
+      "followers": "Followers",
+      "usersFound": "{{count}} of {{total}} users found"
     }
   }
 };
@@ -166,6 +185,7 @@ const esTranslation = {
     "resources": "Recursos",
     "products": "Productos",
     "events": "Eventos",
+    "users": "Usuarios",
     "quiz": "Cuestionario",
     "survey": "Encuesta",
     "search": "Buscar",
@@ -254,6 +274,24 @@ const esTranslation = {
     "events": {
       "title": "Eventos",
       "subtitle": "Descubre eventos increíbles que suceden cerca de ti"
+    },
+    "users": {
+      "title": "Miembros de la Comunidad",
+      "subtitle": "Descubre y conéctate con otros usuarios en nuestra comunidad",
+      "searchPlaceholder": "Buscar por nombre, usuario o biografía...",
+      "filters": "Filtros",
+      "clearFilters": "Limpiar Filtros",
+      "sortBy": "Ordenar Por",
+      "order": "Orden",
+      "role": "Rol",
+      "allRoles": "Todos los Roles",
+      "ascending": "Ascendente",
+      "descending": "Descendente",
+      "name": "Nombre",
+      "joinDate": "Fecha de Registro",
+      "reputation": "Reputación",
+      "followers": "Seguidores",
+      "usersFound": "{{count}} de {{total}} usuarios encontrados"
     }
   }
 };

@@ -21,6 +21,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import MapIcon from '@mui/icons-material/Map';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import QuizIcon from '@mui/icons-material/Quiz';
+import PeopleIcon from '@mui/icons-material/People';
 import { useSelector } from 'react-redux';
 import { User } from '../../slice/authSlice';
 import { RootState } from '../../store';
@@ -55,6 +56,7 @@ const HeaderMobileDrawer: React.FC<HeaderMobileDrawerProps> = ({
   const contentNavigation: NavigationItem[] = [
     { label: t('navigation.articles'), path: '/articles', icon: <ArticleIcon /> },
     { label: t('navigation.resources'), path: '/resources', icon: <BusinessIcon /> },
+    { label: t('navigation.users'), path: '/users', icon: <PeopleIcon /> },
     { label: t('navigation.quiz'), path: '/quiz', icon: <QuizIcon /> },
   ];
 

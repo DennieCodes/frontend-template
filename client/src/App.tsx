@@ -29,6 +29,8 @@ import ProductsPage from "./views/Products";
 import ProductPage from "./views/Products/ProductPage";
 import EventsPage from "./views/Events";
 import EventPage from "./views/Events/EventPage";
+import UsersPage from "./views/Users";
+import UserProfileRoute from "./views/Users/UserProfileRoute";
 import TermsOfService from "./views/TermsOfService";
 import PrivacyPolicy from "./views/PrivacyPolicy";
 import FAQ from "./views/FAQ";
@@ -61,6 +63,8 @@ function App() {
                 <Route path="/products/:id" element={<ProductPage />} />
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/events/:id" element={<EventPage />} />
+                <Route path="/users" element={<UsersPage />} />
+                <Route path="/users/:userId" element={<UserProfileRoute />} />
                 <Route path="/events-test" element={<div>Events Test Route Working!</div>} />
                 <Route
                   path="/dashboard"
