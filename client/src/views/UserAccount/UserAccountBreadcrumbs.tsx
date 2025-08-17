@@ -5,7 +5,7 @@ import {
   AccountCircle as AccountIcon
 } from '@mui/icons-material';
 import { UserAccountBreadcrumbsProps } from './types';
-import { LAYOUT_CONSTANTS, layoutUtils } from '../../constants/layout';
+import { LAYOUT_CONSTANTS } from '../../constants/layout';
 
 const UserAccountBreadcrumbs: React.FC<UserAccountBreadcrumbsProps> = ({ currentPage }) => {
   return (

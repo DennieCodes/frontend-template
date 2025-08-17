@@ -6,7 +6,6 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  Box,
 } from '@mui/material';
 
 interface MultipleChoiceQuestionProps {

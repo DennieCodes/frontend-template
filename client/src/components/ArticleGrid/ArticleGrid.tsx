@@ -8,7 +8,7 @@ import { layoutUtils, LAYOUT_CONSTANTS } from '../../constants/layout';
 const ArticleGrid: React.FC<ArticleGridProps> = ({
   articles,
   columns = 3,
-  spacing = 3,
+  _spacing = 3,
   variant = 'default',
   onArticleClick,
 }) => {

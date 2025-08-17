@@ -1,8 +1,7 @@
 import React from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/GridLegacy';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+
 import Box from '@mui/material/Box';
 import ResourceHeader from './ResourceHeader';
 import ResourceDescription from './ResourceDescription';

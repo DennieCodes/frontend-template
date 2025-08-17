@@ -23,7 +23,7 @@ import {
 import { UserProfileActivityProps } from './types';
 import { LAYOUT_CONSTANTS } from '../../constants/layout';
 
-const UserProfileActivity: React.FC<UserProfileActivityProps> = ({ userId, activityType = 'all' }) => {
+const UserProfileActivity: React.FC<UserProfileActivityProps> = ({ _userId, activityType = 'all' }) => {
   const [selectedTab, setSelectedTab] = React.useState(0);
 
   // Mock activity data - in a real app, this would come from an API

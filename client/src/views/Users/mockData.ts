@@ -1,4 +1,4 @@
-import { User, Badge, SocialLink, UserPreferences } from './types';
+import { User } from './types';
 
 export const mockUsers: User[] = [
   {

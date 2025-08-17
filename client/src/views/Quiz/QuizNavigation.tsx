@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Button, Box } from '@mui/material';
 import { QuizNavigationProps } from './types';
-import { LAYOUT_CONSTANTS, layoutUtils } from '../../constants/layout';
+import { layoutUtils } from '../../constants/layout';
 
 const QuizNavigation: React.FC<QuizNavigationProps> = ({
   currentStep,

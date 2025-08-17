@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Tabs, Tab, Box } from '@mui/material';
+import { Paper, Tabs, Tab } from '@mui/material';
 import { ResourceTabsProps } from './types';
 
 const ResourceTabs: React.FC<ResourceTabsProps> = ({ activeTab, onTabChange }) => {

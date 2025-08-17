@@ -8,7 +8,7 @@ import { layoutUtils, LAYOUT_CONSTANTS } from '../../constants/layout';
 const EventGrid: React.FC<EventGridProps> = ({
   events,
   columns = 3,
-  spacing = 3,
+  _spacing = 3,
   variant = 'default',
   onEventClick,
 }) => {

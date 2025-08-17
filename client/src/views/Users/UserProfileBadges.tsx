@@ -7,7 +7,6 @@ import {
   Grid,
   Chip,
   Tooltip,
-  Stack,
 } from '@mui/material';
 import { UserProfileBadgesProps } from './types';
 import { LAYOUT_CONSTANTS } from '../../constants/layout';

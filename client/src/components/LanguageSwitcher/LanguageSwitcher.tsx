@@ -23,7 +23,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   size = 'small',
   className
 }) => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleLanguageChange = (language: string) => {

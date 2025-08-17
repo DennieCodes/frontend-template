@@ -6,7 +6,7 @@ import SurveyStepper from './SurveyStepper';
 import SurveyProgress from './SurveyProgress';
 import SurveyQuestions from './SurveyQuestions';
 import SurveyNavigation from './SurveyNavigation';
-import { SurveyQuestion } from './types';
+
 import { sampleSurveyQuestions, surveySteps } from './mockData';
 
 const SurveyPage: React.FC = () => {
@@ -38,7 +38,7 @@ const SurveyPage: React.FC = () => {
     navigate('/');
   };
 
-  const handleSubmit = (answers: Record<string, any>) => {
+  const handleSubmit = (_answers: Record<string, any>) => {
     // Handle survey submission
     // You can add API call here to save survey responses
     alert('Survey submitted successfully!');

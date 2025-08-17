@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
+
 
 interface ResourceContactInfoProps {
   resource?: {

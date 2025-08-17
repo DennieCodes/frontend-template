@@ -5,7 +5,7 @@ import {
   AdminPanelSettings as AdminIcon
 } from '@mui/icons-material';
 import { AdminBreadcrumbsProps } from './types';
-import { LAYOUT_CONSTANTS, layoutUtils } from '../../constants/layout';
+import { LAYOUT_CONSTANTS } from '../../constants/layout';
 
 const AdminBreadcrumbs: React.FC<AdminBreadcrumbsProps> = ({ currentPage }) => {
   return (

@@ -6,7 +6,7 @@ import QuizStepper from './QuizStepper';
 import QuizProgress from './QuizProgress';
 import QuizQuestions from './QuizQuestions';
 import QuizNavigation from './QuizNavigation';
-import { Question } from './types';
+
 import { sampleQuestions, quizSteps } from './mockData';
 
 const QuizPage: React.FC = () => {
@@ -38,7 +38,7 @@ const QuizPage: React.FC = () => {
     navigate('/');
   };
 
-  const handleSubmit = (answers: Record<string, any>) => {
+  const handleSubmit = (_answers: Record<string, any>) => {
     // Handle quiz submission
     alert('Quiz submitted successfully!');
   };

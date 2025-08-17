@@ -48,7 +48,7 @@ const HeaderDropdownMenus: React.FC<HeaderDropdownMenusProps> = ({
   onLogoutClick,
 }) => {
   const { t } = useTranslation();
-  const { user, isAuthenticated } = useSelector((state: RootState) => state.auth) as { user: User | null; isAuthenticated: boolean };
+  const { user } = useSelector((state: RootState) => state.auth) as { user: User | null; isAuthenticated: boolean };
 
   const aboutNavigation: NavigationItem[] = [
     { label: t('navigation.about'), path: '/about', icon: <InfoIcon /> },

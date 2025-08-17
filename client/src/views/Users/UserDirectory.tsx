@@ -39,7 +39,7 @@ const UserDirectory: React.FC<UserDirectoryProps> = ({
   });
 
   const filteredAndSortedUsers = useMemo(() => {
-    let filtered = users.filter(user => {
+    const filtered = users.filter(user => {
       const matchesSearch = !filters.search ||
         user.firstName.toLowerCase().includes(filters.search.toLowerCase()) ||
         user.lastName.toLowerCase().includes(filters.search.toLowerCase()) ||
