@@ -1,264 +1,234 @@
-import React from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  Box,
-  TextField,
-  Switch,
-  FormControlLabel,
-  Button,
-  Divider,
-  Grid,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Slider,
-  Chip
-} from '@mui/material';
-import {
-  Save as SaveIcon,
-  Refresh as RefreshIcon,
-  Settings as SettingsIcon
-} from '@mui/icons-material';
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/GridLegacy';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Divider from '@mui/material/Divider';
+import { SiteSettingsPanelProps } from './types';
 
-const SiteSettingsPanel: React.FC = () => {
+const SiteSettingsPanel: React.FC<SiteSettingsPanelProps> = ({ settings, onSave }) => {
+  const [formData, setFormData] = useState({
+    siteName: settings?.siteName || '',
+    siteDescription: settings?.siteDescription || '',
+    contactEmail: settings?.contactEmail || '',
+    contactPhone: settings?.contactPhone || '',
+    timezone: settings?.timezone || 'UTC',
+    language: settings?.language || 'en',
+    maintenanceMode: settings?.maintenanceMode || false,
+    allowRegistration: settings?.allowRegistration || true,
+    requireEmailVerification: settings?.requireEmailVerification || true,
+    maxFileSize: settings?.maxFileSize || 10,
+    sessionTimeout: settings?.sessionTimeout || 30,
+  });
+
+  const handleChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: event.target.value,
+    }));
+  };
+
+  const handleSwitchChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: event.target.checked,
+    }));
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    onSave(formData);
+  };
+
   return (
-    <Card>
-      <CardHeader
-        title="Site Settings"
-        action={
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button
-              variant="outlined"
-              startIcon={<RefreshIcon />}
-              size="small"
-            >
-              Reset
-            </Button>
-            <Button
-              variant="contained"
-              startIcon={<SaveIcon />}
-              size="small"
-            >
-              Save Changes
-            </Button>
-          </Box>
-        }
-      />
-      <CardContent>
-        <Box sx={{ mb: 2 }}>
-          <Typography variant="body2" color="text.secondary">
-            Configure global site settings and preferences
+    <Paper elevation={2} sx={{ p: 4 }}>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Site Settings
+      </Typography>
+      <Typography variant="body2" color="text.secondary" paragraph>
+        Configure general site settings and preferences.
+      </Typography>
+
+      <Box component="form" onSubmit={handleSubmit}>
+        {/* Basic Information */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h6" component="h3" gutterBottom>
+            Basic Information
           </Typography>
+          <Grid container spacing={3}>
+            <Grid xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Site Name"
+                value={formData.siteName}
+                onChange={handleChange('siteName')}
+                required
+              />
+            </Grid>
+            <Grid xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Contact Email"
+                type="email"
+                value={formData.contactEmail}
+                onChange={handleChange('contactEmail')}
+                required
+              />
+            </Grid>
+            <Grid xs={12}>
+              <TextField
+                fullWidth
+                label="Site Description"
+                multiline
+                rows={3}
+                value={formData.siteDescription}
+                onChange={handleChange('siteDescription')}
+              />
+            </Grid>
+            <Grid xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Contact Phone"
+                value={formData.contactPhone}
+                onChange={handleChange('contactPhone')}
+              />
+            </Grid>
+            <Grid xs={12} md={6}>
+              <FormControl fullWidth>
+                <InputLabel>Timezone</InputLabel>
+                <Select
+                  value={formData.timezone}
+                  label="Timezone"
+                  onChange={(e) => setFormData(prev => ({ ...prev, timezone: e.target.value }))}
+                >
+                  <MenuItem value="UTC">UTC</MenuItem>
+                  <MenuItem value="America/New_York">Eastern Time</MenuItem>
+                  <MenuItem value="America/Chicago">Central Time</MenuItem>
+                  <MenuItem value="America/Denver">Mountain Time</MenuItem>
+                  <MenuItem value="America/Los_Angeles">Pacific Time</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
         </Box>
 
-        <Grid container spacing={3}>
-          {/* General Settings */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
-              <SettingsIcon fontSize="small" />
-              General Settings
-            </Typography>
+        <Divider sx={{ my: 3 }} />
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <TextField
-                label="Site Name"
-                defaultValue="My Application"
-                fullWidth
-                size="small"
+        {/* User Settings */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h6" component="h3" gutterBottom>
+            User Settings
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid xs={12} md={6}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={formData.allowRegistration}
+                    onChange={handleSwitchChange('allowRegistration')}
+                  />
+                }
+                label="Allow User Registration"
               />
-
-              <TextField
-                label="Site Description"
-                defaultValue="A modern web application"
-                fullWidth
-                multiline
-                rows={2}
-                size="small"
+              <Typography variant="body2" color="text.secondary" sx={{ ml: 4 }}>
+                Enable new user registration
+              </Typography>
+            </Grid>
+            <Grid xs={12} md={6}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={formData.requireEmailVerification}
+                    onChange={handleSwitchChange('requireEmailVerification')}
+                  />
+                }
+                label="Require Email Verification"
               />
-
+              <Typography variant="body2" color="text.secondary" sx={{ ml: 4 }}>
+                Users must verify their email address
+              </Typography>
+            </Grid>
+            <Grid xs={12} md={6}>
               <TextField
-                label="Contact Email"
-                defaultValue="admin@example.com"
                 fullWidth
-                size="small"
+                label="Session Timeout (minutes)"
+                type="number"
+                value={formData.sessionTimeout}
+                onChange={handleChange('sessionTimeout')}
+                inputProps={{ min: 5, max: 480 }}
               />
-
-              <FormControl fullWidth size="small">
+            </Grid>
+            <Grid xs={12} md={6}>
+              <FormControl fullWidth>
                 <InputLabel>Default Language</InputLabel>
-                <Select label="Default Language" defaultValue="en">
+                <Select
+                  value={formData.language}
+                  label="Default Language"
+                  onChange={(e) => setFormData(prev => ({ ...prev, language: e.target.value }))}
+                >
                   <MenuItem value="en">English</MenuItem>
                   <MenuItem value="es">Spanish</MenuItem>
                   <MenuItem value="fr">French</MenuItem>
                   <MenuItem value="de">German</MenuItem>
                 </Select>
               </FormControl>
-
-              <FormControl fullWidth size="small">
-                <InputLabel>Time Zone</InputLabel>
-                <Select label="Time Zone" defaultValue="utc">
-                  <MenuItem value="utc">UTC</MenuItem>
-                  <MenuItem value="est">Eastern Time</MenuItem>
-                  <MenuItem value="pst">Pacific Time</MenuItem>
-                  <MenuItem value="gmt">GMT</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
+            </Grid>
           </Grid>
+        </Box>
 
-          {/* Feature Toggles */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Feature Toggles
-            </Typography>
+        <Divider sx={{ my: 3 }} />
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        {/* System Settings */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h6" component="h3" gutterBottom>
+            System Settings
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid xs={12} md={6}>
               <FormControlLabel
-                control={<Switch defaultChecked />}
-                label="User Registration"
-                labelPlacement="start"
-                sx={{ justifyContent: 'space-between', ml: 0 }}
-              />
-
-              <FormControlLabel
-                control={<Switch defaultChecked />}
-                label="Email Notifications"
-                labelPlacement="start"
-                sx={{ justifyContent: 'space-between', ml: 0 }}
-              />
-
-              <FormControlLabel
-                control={<Switch />}
+                control={
+                  <Switch
+                    checked={formData.maintenanceMode}
+                    onChange={handleSwitchChange('maintenanceMode')}
+                  />
+                }
                 label="Maintenance Mode"
-                labelPlacement="start"
-                sx={{ justifyContent: 'space-between', ml: 0 }}
               />
-
-              <FormControlLabel
-                control={<Switch defaultChecked />}
-                label="Two-Factor Authentication"
-                labelPlacement="start"
-                sx={{ justifyContent: 'space-between', ml: 0 }}
-              />
-
-              <FormControlLabel
-                control={<Switch defaultChecked />}
-                label="API Rate Limiting"
-                labelPlacement="start"
-                sx={{ justifyContent: 'space-between', ml: 0 }}
-              />
-
-              <FormControlLabel
-                control={<Switch />}
-                label="Debug Mode"
-                labelPlacement="start"
-                sx={{ justifyContent: 'space-between', ml: 0 }}
-              />
-            </Box>
-          </Grid>
-
-          <Grid item xs={12}>
-            <Divider sx={{ my: 2 }} />
-          </Grid>
-
-          {/* Performance Settings */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Performance Settings
-            </Typography>
-
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-              <Box>
-                <Typography variant="body2" gutterBottom>
-                  Cache Duration (minutes)
-                </Typography>
-                <Slider
-                  defaultValue={30}
-                  min={5}
-                  max={120}
-                  marks
-                  valueLabelDisplay="auto"
-                  size="small"
-                />
-              </Box>
-
-              <Box>
-                <Typography variant="body2" gutterBottom>
-                  Session Timeout (hours)
-                </Typography>
-                <Slider
-                  defaultValue={24}
-                  min={1}
-                  max={168}
-                  marks
-                  valueLabelDisplay="auto"
-                  size="small"
-                />
-              </Box>
-
+              <Typography variant="body2" color="text.secondary" sx={{ ml: 4 }}>
+                Temporarily disable the site for maintenance
+              </Typography>
+            </Grid>
+            <Grid xs={12} md={6}>
               <TextField
-                label="Max Upload Size (MB)"
-                defaultValue="10"
-                type="number"
-                size="small"
                 fullWidth
+                label="Max File Upload Size (MB)"
+                type="number"
+                value={formData.maxFileSize}
+                onChange={handleChange('maxFileSize')}
+                inputProps={{ min: 1, max: 100 }}
               />
-            </Box>
+            </Grid>
           </Grid>
+        </Box>
 
-          {/* Security Settings */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Security Settings
-            </Typography>
-
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <TextField
-                label="Password Min Length"
-                defaultValue="8"
-                type="number"
-                size="small"
-                fullWidth
-              />
-
-              <TextField
-                label="Login Attempts Before Lockout"
-                defaultValue="5"
-                type="number"
-                size="small"
-                fullWidth
-              />
-
-              <TextField
-                label="Lockout Duration (minutes)"
-                defaultValue="15"
-                type="number"
-                size="small"
-                fullWidth
-              />
-
-              <FormControl fullWidth size="small">
-                <InputLabel>Password Policy</InputLabel>
-                <Select label="Password Policy" defaultValue="medium">
-                  <MenuItem value="low">Low (Basic)</MenuItem>
-                  <MenuItem value="medium">Medium (Recommended)</MenuItem>
-                  <MenuItem value="high">High (Strict)</MenuItem>
-                </Select>
-              </FormControl>
-
-              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                <Chip label="Uppercase Required" color="primary" size="small" />
-                <Chip label="Numbers Required" color="primary" size="small" />
-                <Chip label="Special Characters" color="primary" size="small" />
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Button type="submit" variant="contained" size="large">
+            Save Settings
+          </Button>
+          <Button variant="outlined" size="large">
+            Cancel
+          </Button>
+        </Box>
+      </Box>
+    </Paper>
   );
 };
 

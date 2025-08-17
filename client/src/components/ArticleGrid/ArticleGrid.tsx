@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Box } from '@mui/material';
+import Grid from '@mui/material/GridLegacy';
+import Box from '@mui/material/Box';
 import ArticleCard from '../ArticleCard';
 import { ArticleGridProps } from '../../types/article';
 import { layoutUtils, LAYOUT_CONSTANTS } from '../../constants/layout';
@@ -11,7 +12,7 @@ const ArticleGrid: React.FC<ArticleGridProps> = ({
   variant = 'default',
   onArticleClick,
 }) => {
-  const getGridColumns = () => {
+  const getGridSize = () => {
     return layoutUtils.getGridColumns(columns);
   };
 
@@ -20,9 +21,8 @@ const ArticleGrid: React.FC<ArticleGridProps> = ({
       <Grid container spacing={LAYOUT_CONSTANTS.GRID.SPACING.MD}>
         {articles.map((article) => (
           <Grid
-            item
             key={article.id}
-            {...getGridColumns()}
+            {...getGridSize()}
             sx={layoutUtils.getGridItemStyles()}
           >
             <ArticleCard

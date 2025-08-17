@@ -9,8 +9,9 @@ export interface AboutMissionProps {
 }
 
 export interface AboutValuesProps {
-  title: string;
-  values: Value[];
+  title?: string;
+  subtitle?: string;
+  values?: any[];
 }
 
 export interface Value {
@@ -20,9 +21,10 @@ export interface Value {
 }
 
 export interface AboutTeamProps {
-  title: string;
-  description: string;
-  teamMembers: TeamMember[];
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  teamMembers?: any[];
 }
 
 export interface TeamMember {

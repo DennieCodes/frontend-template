@@ -1,43 +1,26 @@
 import React from 'react';
-import { Container, Grid } from '@mui/material';
-import { useNavigate, useParams } from 'react-router-dom';
-import { sampleArticles } from './mockData';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/GridLegacy';
 import ArticleHeader from './ArticleHeader';
 import ArticleContent from './ArticleContent';
 import ArticleSidebar from './ArticleSidebar';
-import ArticleNotFound from './ArticleNotFound';
+import ArticleFooter from './ArticleFooter';
+import { ArticlePageProps } from './types';
 
-const ArticlePage: React.FC = () => {
-  const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
-
-  // Find the article by ID
-  const article = sampleArticles.find(a => a.id === id);
-
-  const handleBack = () => {
-    navigate(-1);
-  };
-
-  const handleBackToArticles = () => {
-    navigate('/articles');
-  };
-
-  // Show loading or error state if article not found
+const ArticlePage: React.FC<ArticlePageProps> = ({ article }) => {
   if (!article) {
-    return <ArticleNotFound onBackToArticles={handleBackToArticles} />;
+    return <div>Article not found</div>;
   }
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      <ArticleHeader article={article} onBack={handleBack} />
-
-      {/* Article Content and Sidebar */}
       <Grid container spacing={4}>
-        <Grid item xs={12} md={8}>
-          <ArticleContent content={article.content} />
+        <Grid xs={12} md={8}>
+          <ArticleHeader article={article} />
+          <ArticleContent article={article} />
+          <ArticleFooter article={article} />
         </Grid>
-
-        <Grid item xs={12} md={4}>
+        <Grid xs={12} md={4}>
           <ArticleSidebar article={article} />
         </Grid>
       </Grid>

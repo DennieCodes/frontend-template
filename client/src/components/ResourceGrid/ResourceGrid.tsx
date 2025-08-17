@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/GridLegacy';
 import ResourceCard from '../ResourceCard';
 import { ResourceGridProps } from '../../types/resource';
 import { layoutUtils, LAYOUT_CONSTANTS } from '../../constants/layout';
@@ -19,7 +19,6 @@ const ResourceGrid: React.FC<ResourceGridProps> = ({
     <Grid container spacing={LAYOUT_CONSTANTS.GRID.SPACING.MD}>
       {resources.map((resource) => (
         <Grid
-          item
           key={resource.id}
           {...getGridSize()}
           sx={layoutUtils.getGridItemStyles()}

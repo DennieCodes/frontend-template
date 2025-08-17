@@ -1,98 +1,96 @@
-import React from 'react';
-import { Paper, Typography, Box, Grid, TextField, Button } from '@mui/material';
+import React, { useState } from 'react';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/GridLegacy';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import { ContactFormProps } from './types';
-import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
 
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: event.target.value,
+    }));
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const formData = new FormData(event.target as HTMLFormElement);
-    const data = {
-      firstName: formData.get('firstName') as string,
-      lastName: formData.get('lastName') as string,
-      email: formData.get('email') as string,
-      subject: formData.get('subject') as string,
-      message: formData.get('message') as string,
-    };
-    onSubmit(data);
+    const [firstName, ...lastNameParts] = formData.name.split(' ');
+    const lastName = lastNameParts.join(' ') || '';
+    onSubmit({
+      firstName,
+      lastName,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    });
   };
 
   return (
-    <Paper elevation={2} sx={{ p: LAYOUT_CONSTANTS.SPACING.LG }}>
-      <Typography
-        variant="h4"
-        component="h2"
-        gutterBottom
-        sx={{
-          ...typographyStyles.heading,
-          mb: LAYOUT_CONSTANTS.SPACING.MD,
-        }}
-      >
-        Send us a Message
+    <Paper elevation={2} sx={{ p: 4 }}>
+      <Typography variant="h4" component="h2" gutterBottom>
+        Send us a message
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+      <Typography variant="body1" color="text.secondary" paragraph>
+        We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+      </Typography>
+
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid xs={12} sm={6}>
             <TextField
               fullWidth
-              name="firstName"
-              label="First Name"
-              variant="outlined"
+              label="Name"
+              value={formData.name}
+              onChange={handleChange('name')}
               required
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid xs={12} sm={6}>
             <TextField
               fullWidth
-              name="lastName"
-              label="Last Name"
-              variant="outlined"
-              required
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              name="email"
               label="Email"
               type="email"
-              variant="outlined"
+              value={formData.email}
+              onChange={handleChange('email')}
               required
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid xs={12}>
             <TextField
               fullWidth
-              name="subject"
               label="Subject"
-              variant="outlined"
+              value={formData.subject}
+              onChange={handleChange('subject')}
               required
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid xs={12}>
             <TextField
               fullWidth
-              name="message"
               label="Message"
               multiline
-              rows={6}
-              variant="outlined"
+              rows={4}
+              value={formData.message}
+              onChange={handleChange('message')}
               required
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid xs={12}>
             <Button
               type="submit"
               variant="contained"
               size="large"
-              sx={{
-                px: 4,
-                py: 1.5,
-                fontSize: '1.1rem',
-                fontWeight: 600,
-                borderRadius: 2,
-                textTransform: 'none',
-              }}
+              fullWidth
             >
               Send Message
             </Button>

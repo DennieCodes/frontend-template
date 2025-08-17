@@ -1,185 +1,190 @@
-import React from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  Box,
-  Avatar,
-  TextField,
-  Button,
-  Grid,
-  Divider
-} from '@mui/material';
-import {
-  Edit as EditIcon,
-  Save as SaveIcon,
-  Cancel as CancelIcon,
-  Person as PersonIcon
-} from '@mui/icons-material';
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/GridLegacy';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import { ProfileInfoProps } from './types';
 
-const ProfileInfo: React.FC = () => {
+const ProfileInfo: React.FC<ProfileInfoProps> = ({ profile, onSave }) => {
+  const [formData, setFormData] = useState({
+    firstName: profile?.firstName || '',
+    lastName: profile?.lastName || '',
+    email: profile?.email || '',
+    phone: profile?.phone || '',
+    bio: profile?.bio || '',
+    location: profile?.location || '',
+    website: profile?.website || '',
+    company: profile?.company || '',
+    jobTitle: profile?.jobTitle || '',
+    department: profile?.department || '',
+    startDate: profile?.startDate || '',
+  });
+
+  const handleChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: event.target.value,
+    }));
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    onSave(formData);
+  };
+
   return (
-    <Card>
-      <CardHeader
-        title="Profile Information"
-        action={
-          <Button
-            variant="outlined"
-            startIcon={<EditIcon />}
-            size="small"
-          >
-            Edit Profile
-          </Button>
-        }
-      />
-      <CardContent>
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="body2" color="text.secondary">
-            Manage your personal information and account details
-          </Typography>
-        </Box>
+    <Paper elevation={2} sx={{ p: 4 }}>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Profile Information
+      </Typography>
+      <Typography variant="body2" color="text.secondary" paragraph>
+        Update your personal information and profile details.
+      </Typography>
 
+      <Box component="form" onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-          {/* Avatar Section */}
-          <Grid item xs={12} md={3}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+          <Grid xs={12} md={3}>
+            <Box sx={{ textAlign: 'center' }}>
               <Avatar
-                sx={{ width: 120, height: 120, bgcolor: 'primary.main' }}
+                src={profile?.avatar}
+                alt={`${formData.firstName} ${formData.lastName}`}
+                sx={{ width: 120, height: 120, mx: 'auto', mb: 2 }}
+              />
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="label"
+                sx={{ mb: 2 }}
               >
-                <PersonIcon sx={{ fontSize: 60 }} />
-              </Avatar>
-              <Button
-                variant="outlined"
-                size="small"
-                startIcon={<EditIcon />}
-              >
-                Change Photo
-              </Button>
-              <Typography variant="caption" color="text.secondary" textAlign="center">
-                JPG, PNG or GIF. Max size 2MB.
+                <input hidden accept="image/*" type="file" />
+                <PhotoCamera />
+              </IconButton>
+              <Typography variant="body2" color="text.secondary">
+                Click to upload new photo
               </Typography>
             </Box>
           </Grid>
 
-          {/* Profile Form */}
-          <Grid item xs={12} md={9}>
+          <Grid xs={12} md={9}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid xs={12} sm={6}>
                 <TextField
+                  fullWidth
                   label="First Name"
-                  defaultValue="John"
-                  fullWidth
-                  size="small"
+                  value={formData.firstName}
+                  onChange={handleChange('firstName')}
+                  required
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid xs={12} sm={6}>
                 <TextField
+                  fullWidth
                   label="Last Name"
-                  defaultValue="Doe"
-                  fullWidth
-                  size="small"
+                  value={formData.lastName}
+                  onChange={handleChange('lastName')}
+                  required
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <TextField
-                  label="Email Address"
-                  defaultValue="john.doe@example.com"
                   fullWidth
-                  size="small"
+                  label="Email"
                   type="email"
+                  value={formData.email}
+                  onChange={handleChange('email')}
+                  required
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid xs={12} sm={6}>
                 <TextField
-                  label="Phone Number"
-                  defaultValue="+1 (555) 123-4567"
                   fullWidth
-                  size="small"
+                  label="Phone"
+                  value={formData.phone}
+                  onChange={handleChange('phone')}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid xs={12} sm={6}>
                 <TextField
-                  label="Date of Birth"
-                  defaultValue="1990-01-15"
                   fullWidth
-                  size="small"
-                  type="date"
-                  InputLabelProps={{ shrink: true }}
+                  label="Location"
+                  value={formData.location}
+                  onChange={handleChange('location')}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <TextField
+                  fullWidth
                   label="Bio"
-                  defaultValue="Software developer with 5+ years of experience in web development and cloud technologies."
-                  fullWidth
                   multiline
                   rows={3}
-                  size="small"
+                  value={formData.bio}
+                  onChange={handleChange('bio')}
+                  placeholder="Tell us about yourself..."
                 />
               </Grid>
-            </Grid>
-
-            <Divider sx={{ my: 3 }} />
-
-            {/* Social Links */}
-            <Typography variant="h6" gutterBottom>
-              Social Links
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid xs={12} sm={6}>
                 <TextField
-                  label="LinkedIn"
-                  defaultValue="linkedin.com/in/johndoe"
                   fullWidth
-                  size="small"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  label="GitHub"
-                  defaultValue="github.com/johndoe"
-                  fullWidth
-                  size="small"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  label="Twitter"
-                  defaultValue="@johndoe"
-                  fullWidth
-                  size="small"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
                   label="Website"
-                  defaultValue="johndoe.dev"
+                  value={formData.website}
+                  onChange={handleChange('website')}
+                />
+              </Grid>
+              <Grid xs={12} sm={6}>
+                <TextField
                   fullWidth
-                  size="small"
+                  label="Company"
+                  value={formData.company}
+                  onChange={handleChange('company')}
+                />
+              </Grid>
+              <Grid xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label="Job Title"
+                  value={formData.jobTitle}
+                  onChange={handleChange('jobTitle')}
+                />
+              </Grid>
+              <Grid xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label="Department"
+                  value={formData.department}
+                  onChange={handleChange('department')}
+                />
+              </Grid>
+              <Grid xs={12}>
+                <TextField
+                  fullWidth
+                  label="Start Date"
+                  type="date"
+                  value={formData.startDate}
+                  onChange={handleChange('startDate')}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </Grid>
             </Grid>
 
-            {/* Action Buttons */}
             <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-              <Button
-                variant="contained"
-                startIcon={<SaveIcon />}
-              >
+              <Button type="submit" variant="contained" size="large">
                 Save Changes
               </Button>
-              <Button
-                variant="outlined"
-                startIcon={<CancelIcon />}
-              >
+              <Button variant="outlined" size="large">
                 Cancel
               </Button>
             </Box>
           </Grid>
         </Grid>
-      </CardContent>
-    </Card>
+      </Box>
+    </Paper>
   );
 };
 

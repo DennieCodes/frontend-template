@@ -12,14 +12,17 @@ export interface QuickStatsProps {
 }
 
 export interface StatItem {
-  id: string;
-  value: string | number;
+  id?: string;
   label: string;
-  color: 'primary' | 'success' | 'warning' | 'info' | 'error';
+  value: string | number;
+  description?: string;
+  change?: number;
+  changeType?: 'increase' | 'decrease';
+  color?: 'primary' | 'success' | 'warning' | 'info' | 'error';
 }
 
 export interface AdminDashboardGridProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface AdminPageState {

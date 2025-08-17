@@ -1,76 +1,82 @@
 import React from 'react';
-import { Grid, Typography, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
-import { Phone, Email, Language, AccessTime } from '@mui/icons-material';
+import Grid from '@mui/material/GridLegacy';
+import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { ResourceContactHoursProps } from './types';
 
-const ResourceContactHours: React.FC<ResourceContactHoursProps> = ({ resource }) => {
-  const formatHours = (hours: any) => {
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    return days.map(day => {
-      const dayHours = hours[day.toLowerCase()];
-      if (!dayHours) return null;
-
-      if (dayHours.closed) {
-        return `${day}: Closed`;
-      }
-      return `${day}: ${dayHours.open} - ${dayHours.close}`;
-    }).filter(Boolean);
-  };
+const ResourceContactHours: React.FC<ResourceContactHoursProps> = ({ hours }) => {
+  const daysOfWeek = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ];
 
   return (
-    <Grid container spacing={3} sx={{ p: 3 }}>
-      <Grid item xs={12} md={6}>
-        <Typography variant="h6" gutterBottom>
-          Contact Information
-        </Typography>
-        <List>
-          {resource.contact.phone && (
-            <ListItem>
-              <ListItemIcon>
-                <Phone color="primary" />
-              </ListItemIcon>
-              <ListItemText primary={resource.contact.phone} />
-            </ListItem>
-          )}
-          {resource.contact.email && (
-            <ListItem>
-              <ListItemIcon>
-                <Email color="primary" />
-              </ListItemIcon>
-              <ListItemText primary={resource.contact.email} />
-            </ListItem>
-          )}
-          {resource.contact.website && (
-            <ListItem>
-              <ListItemIcon>
-                <Language color="primary" />
-              </ListItemIcon>
-              <ListItemText primary={resource.contact.website} />
-            </ListItem>
-          )}
-        </List>
-      </Grid>
+    <Box sx={{ mt: 3 }}>
+      <Typography variant="h6" component="h3" gutterBottom>
+        Contact Hours
+      </Typography>
 
-      <Grid item xs={12} md={6}>
-        {resource.hours && (
-          <Box>
-            <Typography variant="h6" gutterBottom>
-              Hours of Operation
-            </Typography>
-            <List>
-              {formatHours(resource.hours).map((hours, index) => (
-                <ListItem key={index}>
+      <Grid container spacing={2}>
+        <Grid xs={12} md={6}>
+          <List>
+            {daysOfWeek.slice(0, 5).map((day) => {
+              const dayHours = hours[day.toLowerCase()];
+              return (
+                <ListItem key={day}>
                   <ListItemIcon>
-                    <AccessTime color="primary" />
+                    <AccessTimeIcon />
                   </ListItemIcon>
-                  <ListItemText primary={hours} />
+                  <ListItemText
+                    primary={day}
+                    secondary={
+                      dayHours?.closed
+                        ? 'Closed'
+                        : dayHours?.open && dayHours?.close
+                        ? `${dayHours.open} - ${dayHours.close}`
+                        : 'Hours not available'
+                    }
+                  />
                 </ListItem>
-              ))}
-            </List>
-          </Box>
-        )}
+              );
+            })}
+          </List>
+        </Grid>
+        <Grid xs={12} md={6}>
+          <List>
+            {daysOfWeek.slice(5).map((day) => {
+              const dayHours = hours[day.toLowerCase()];
+              return (
+                <ListItem key={day}>
+                  <ListItemIcon>
+                    <AccessTimeIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={day}
+                    secondary={
+                      dayHours?.closed
+                        ? 'Closed'
+                        : dayHours?.open && dayHours?.close
+                        ? `${dayHours.open} - ${dayHours.close}`
+                        : 'Hours not available'
+                    }
+                  />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 

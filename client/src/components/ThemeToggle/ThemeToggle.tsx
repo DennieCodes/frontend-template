@@ -4,7 +4,7 @@ import { LightMode as LightModeIcon, DarkMode as DarkModeIcon } from '@mui/icons
 import { useTheme } from '../../contexts/ThemeContext';
 
 const ThemeToggle: React.FC = () => {
-  const { mode, toggleTheme } = useTheme();
+  const { themeMode, toggleTheme } = useTheme();
 
   const handleToggle = () => {
     toggleTheme();
@@ -13,7 +13,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <Tooltip title="Toggle theme">
       <IconButton onClick={handleToggle} aria-label="Toggle theme mode">
-        {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+        {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
       </IconButton>
     </Tooltip>
   );

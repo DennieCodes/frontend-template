@@ -1,6 +1,4 @@
 {
-  "files": [],
-  "references": [{ "path": "./tsconfig.build.json" }],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
@@ -12,7 +10,11 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "noEmit": true
   },
-  "include": ["src"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "build"]
 }

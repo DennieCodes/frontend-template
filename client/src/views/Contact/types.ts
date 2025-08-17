@@ -28,7 +28,7 @@ export interface ContactFormData {
 }
 
 export interface ContactInfoProps {
-  contactInfo: ContactInfo[];
+  contactInfo?: ContactInfo[];
 }
 
 export interface ContactInfoItemProps {
@@ -36,7 +36,8 @@ export interface ContactInfoItemProps {
 }
 
 export interface ContactFAQProps {
-  faqItems: FAQItem[];
+  faqs?: any[];
+  faqData?: any;
 }
 
 export interface ContactFAQItemProps {
@@ -44,9 +45,13 @@ export interface ContactFAQItemProps {
 }
 
 export interface ContactContentProps {
-  onSubmit: (data: ContactFormData) => void;
-  contactInfo: ContactInfo[];
-  faqItems: FAQItem[];
+  title?: string;
+  subtitle?: string;
+  faqData?: any;
+  onFormSubmit?: (data: any) => void;
+  contactInfo?: any[];
+  onSubmit?: (data: any) => void;
+  faqItems?: any[];
 }
 
 export interface ContactPageState {

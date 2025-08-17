@@ -5,7 +5,7 @@ export interface ResourceBreadcrumbsProps {
 }
 
 export interface ResourceHeaderProps {
-  resource: Resource;
+  resource: any;
   isBookmarked: boolean;
   onBookmarkToggle: () => void;
 }
@@ -20,15 +20,18 @@ export interface ResourceOverviewProps {
 }
 
 export interface ResourceServicesProps {
-  services: string[];
+  resource?: {
+    services?: any[];
+  };
 }
 
 export interface ResourceContactHoursProps {
-  resource: Resource;
+  hours?: any;
+  resource?: any;
 }
 
 export interface ResourceReviewsProps {
-  // Add review-related props when implementing reviews
+  resource?: any;
 }
 
 export interface ResourceSidebarProps {
@@ -40,7 +43,7 @@ export interface ResourceContactCardProps {
 }
 
 export interface ResourceAdditionalInfoProps {
-  resource: Resource;
+  resource?: any;
 }
 
 export interface ResourcePageState {
@@ -49,5 +52,18 @@ export interface ResourcePageState {
 }
 
 export interface ResourcePageProps {
-  // This interface is no longer used but kept for potential future use
+  resource?: {
+    id?: string;
+    name?: string;
+    description?: string;
+    hours?: any;
+    services?: any[];
+    faqs?: any[];
+    contactInfo?: any;
+    location?: any;
+    socialMedia?: any;
+    documents?: any[];
+    relatedResources?: any[];
+    coordinates?: any;
+  };
 }

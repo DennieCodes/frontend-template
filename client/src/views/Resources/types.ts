@@ -1,3 +1,30 @@
+export interface ResourcesFiltersProps {
+  filters?: any;
+  onFiltersChange?: (filters: any) => void;
+  searchTerm?: string;
+  onSearchChange?: (term: string) => void;
+  selectedCategory?: string;
+  onCategoryChange?: (category: string) => void;
+  selectedSubcategory?: string;
+  onSubcategoryChange?: (subcategory: string) => void;
+  selectedLocation?: string;
+  onLocationChange?: (location: string) => void;
+  selectedTags?: string[];
+  onTagToggle?: (tag: string) => void;
+  priceRange?: string;
+  onPriceRangeChange?: (range: string) => void;
+  ratingFilter?: number;
+  onRatingFilterChange?: (rating: number) => void;
+  verifiedOnly?: boolean;
+  onVerifiedOnlyChange?: (verified: boolean) => void;
+  categories?: string[];
+  subcategories?: string[];
+  locations?: string[];
+  allTags?: string[];
+  hasActiveFilters?: boolean;
+  onClearFilters?: () => void;
+}
+
 export interface Resource {
   id: string;
   name: string;
@@ -23,6 +50,7 @@ export interface Resource {
   rating?: number;
   reviewCount?: number;
   imageUrl?: string;
+  images?: string[];
   featured?: boolean;
   verified?: boolean;
   hours?: {
@@ -45,31 +73,6 @@ export interface Resource {
 export interface ResourcesHeaderProps {
   title: string;
   subtitle: string;
-}
-
-export interface ResourcesFiltersProps {
-  searchTerm: string;
-  onSearchChange: (term: string) => void;
-  selectedCategory: string;
-  onCategoryChange: (category: string) => void;
-  selectedSubcategory: string;
-  onSubcategoryChange: (subcategory: string) => void;
-  selectedLocation: string;
-  onLocationChange: (location: string) => void;
-  selectedTags: string[];
-  onTagToggle: (tag: string) => void;
-  priceRange: string;
-  onPriceRangeChange: (range: string) => void;
-  ratingFilter: number;
-  onRatingFilterChange: (rating: number) => void;
-  verifiedOnly: boolean;
-  onVerifiedOnlyChange: (verified: boolean) => void;
-  categories: string[];
-  subcategories: string[];
-  locations: string[];
-  allTags: string[];
-  hasActiveFilters: boolean;
-  onClearFilters: () => void;
 }
 
 export interface ResourcesSummaryProps {

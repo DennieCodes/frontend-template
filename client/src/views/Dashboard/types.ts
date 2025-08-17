@@ -24,7 +24,12 @@ export interface FeatureCardProps {
 }
 
 export interface DashboardContentProps {
-  user: User;
+  title?: string;
+  subtitle?: string;
+  stats?: any[];
+  recentActivity?: any[];
+  quickActions?: any[];
+  user?: any;
 }
 
 export interface DashboardPageState {

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   Container,
-  Grid,
   Typography,
   Box,
   Paper,
@@ -22,6 +21,7 @@ import {
   Tooltip,
   Badge,
 } from '@mui/material';
+import Grid from '@mui/material/GridLegacy';
 import {
   ArrowBack,
   Favorite,
@@ -122,7 +122,7 @@ const ProductPage: React.FC = () => {
 
       <Grid container spacing={4}>
         {/* Product Images */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Paper sx={{ p: 2 }}>
             <Box sx={{ position: 'relative', mb: 2 }}>
               <img
@@ -171,7 +171,7 @@ const ProductPage: React.FC = () => {
         </Grid>
 
         {/* Product Details */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Paper sx={{ p: 3 }}>
             {/* Category and Brand */}
             <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
@@ -303,7 +303,7 @@ const ProductPage: React.FC = () => {
         <TabPanel value={tabValue} index={1}>
           <Grid container spacing={2}>
             {Object.entries(product.specifications).map(([key, value]) => (
-              <Grid item xs={12} sm={6} key={key}>
+              <Grid xs={12} sm={6} key={key}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', py: 1 }}>
                   <Typography variant="body1" fontWeight={500}>
                     {key}:

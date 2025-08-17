@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Box } from '@mui/material';
+import Grid from '@mui/material/GridLegacy';
+import Box from '@mui/material/Box';
 import EventCard from '../EventCard';
 import { EventGridProps } from '../../types/event';
 import { layoutUtils, LAYOUT_CONSTANTS } from '../../constants/layout';
@@ -11,7 +12,7 @@ const EventGrid: React.FC<EventGridProps> = ({
   variant = 'default',
   onEventClick,
 }) => {
-  const getGridColumns = () => {
+  const getGridSize = () => {
     return layoutUtils.getGridColumns(columns);
   };
 
@@ -20,9 +21,8 @@ const EventGrid: React.FC<EventGridProps> = ({
       <Grid container spacing={LAYOUT_CONSTANTS.GRID.SPACING.MD}>
         {events.map((event) => (
           <Grid
-            item
             key={event.id}
-            {...getGridColumns()}
+            {...getGridSize()}
             sx={layoutUtils.getGridItemStyles()}
           >
             <EventCard
