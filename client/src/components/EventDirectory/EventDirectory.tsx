@@ -64,7 +64,7 @@ const EventDirectory: React.FC<EventDirectoryProps> = ({
 
   // Filter and sort events
   const filteredEvents = useMemo(() => {
-    let filtered = events.filter(event => {
+    const filtered = events.filter(event => {
       const matchesSearch = filters.searchTerm === '' ||
         event.title.toLowerCase().includes(filters.searchTerm.toLowerCase()) ||
         event.description.toLowerCase().includes(filters.searchTerm.toLowerCase()) ||

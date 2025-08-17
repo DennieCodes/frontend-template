@@ -63,7 +63,7 @@ const ProductDirectory: React.FC<ProductDirectoryProps> = ({
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
-    let filtered = products.filter(product => {
+    const filtered = products.filter(product => {
       const matchesSearch = filters.searchTerm === '' ||
         product.name.toLowerCase().includes(filters.searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(filters.searchTerm.toLowerCase()) ||
