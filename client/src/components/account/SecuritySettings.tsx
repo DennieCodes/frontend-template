@@ -1,301 +1,202 @@
-import React from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  Box,
-  TextField,
-  Button,
-  Grid,
-  Switch,
-  FormControlLabel,
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Chip,
-  Alert
-} from '@mui/material';
-import {
-  Lock as LockIcon,
-  Security as SecurityIcon,
-  Visibility as VisibilityIcon,
-  VisibilityOff as VisibilityOffIcon,
-  Phone as PhoneIcon,
-  Email as EmailIcon,
-  Key as KeyIcon,
-  Shield as ShieldIcon
-} from '@mui/icons-material';
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/GridLegacy';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Divider from '@mui/material/Divider';
+import { SecuritySettingsProps } from './types';
 
-const SecuritySettings: React.FC = () => {
+const SecuritySettings: React.FC<SecuritySettingsProps> = ({ settings, onSave }) => {
+  const [formData, setFormData] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+    twoFactorEnabled: settings?.twoFactorEnabled || false,
+    emailNotifications: settings?.emailNotifications || true,
+    loginAlerts: settings?.loginAlerts || true,
+    sessionTimeout: settings?.sessionTimeout || 30,
+  });
+
+  const handleChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: event.target.value,
+    }));
+  };
+
+  const handleSwitchChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: event.target.checked,
+    }));
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    onSave(formData);
+  };
+
   return (
-    <Card>
-      <CardHeader
-        title="Security Settings"
-        action={
-          <SecurityIcon color="primary" />
-        }
-      />
-      <CardContent>
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="body2" color="text.secondary">
-            Manage your account security and authentication preferences
+    <Paper elevation={2} sx={{ p: 4 }}>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Security Settings
+      </Typography>
+      <Typography variant="body2" color="text.secondary" paragraph>
+        Manage your account security preferences and password.
+      </Typography>
+
+      <Box component="form" onSubmit={handleSubmit}>
+        {/* Password Change Section */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h6" component="h3" gutterBottom>
+            Change Password
           </Typography>
-        </Box>
-
-        <Grid container spacing={3}>
-          {/* Password Change */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" gutterBottom>
-              Change Password
-            </Typography>
-
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Grid container spacing={3}>
+            <Grid xs={12} md={6}>
               <TextField
+                fullWidth
                 label="Current Password"
                 type="password"
-                fullWidth
-                size="small"
-                InputProps={{
-                  endAdornment: <VisibilityIcon sx={{ cursor: 'pointer' }} />
-                }}
+                value={formData.currentPassword}
+                onChange={handleChange('currentPassword')}
+                required
               />
-
+            </Grid>
+            <Grid xs={12} md={6}>
               <TextField
+                fullWidth
                 label="New Password"
                 type="password"
-                fullWidth
-                size="small"
-                InputProps={{
-                  endAdornment: <VisibilityOffIcon sx={{ cursor: 'pointer' }} />
-                }}
+                value={formData.newPassword}
+                onChange={handleChange('newPassword')}
+                required
               />
-
+            </Grid>
+            <Grid xs={12} md={6}>
               <TextField
+                fullWidth
                 label="Confirm New Password"
                 type="password"
-                fullWidth
-                size="small"
-                InputProps={{
-                  endAdornment: <VisibilityOffIcon sx={{ cursor: 'pointer' }} />
-                }}
+                value={formData.confirmPassword}
+                onChange={handleChange('confirmPassword')}
+                required
               />
-
+            </Grid>
+            <Grid xs={12} md={6}>
               <Button
+                type="submit"
                 variant="contained"
-                startIcon={<LockIcon />}
-                sx={{ alignSelf: 'flex-start' }}
+                size="large"
+                fullWidth
+                sx={{ mt: 1 }}
               >
                 Update Password
               </Button>
-            </Box>
+            </Grid>
           </Grid>
+        </Box>
 
-          {/* Two-Factor Authentication */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" gutterBottom>
-              Two-Factor Authentication
-            </Typography>
+        <Divider sx={{ my: 3 }} />
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <Alert severity="info" sx={{ mb: 2 }}>
-                Two-factor authentication adds an extra layer of security to your account.
-              </Alert>
-
+        {/* Security Preferences Section */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h6" component="h3" gutterBottom>
+            Security Preferences
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid xs={12} md={6}>
               <FormControlLabel
-                control={<Switch defaultChecked />}
-                label="Enable SMS Authentication"
-                labelPlacement="start"
-                sx={{ justifyContent: 'space-between', ml: 0 }}
+                control={
+                  <Switch
+                    checked={formData.twoFactorEnabled}
+                    onChange={handleSwitchChange('twoFactorEnabled')}
+                  />
+                }
+                label="Two-Factor Authentication"
               />
-
+              <Typography variant="body2" color="text.secondary" sx={{ ml: 4 }}>
+                Add an extra layer of security to your account
+              </Typography>
+            </Grid>
+            <Grid xs={12} md={6}>
               <FormControlLabel
-                control={<Switch />}
-                label="Enable Email Authentication"
-                labelPlacement="start"
-                sx={{ justifyContent: 'space-between', ml: 0 }}
+                control={
+                  <Switch
+                    checked={formData.emailNotifications}
+                    onChange={handleSwitchChange('emailNotifications')}
+                  />
+                }
+                label="Email Notifications"
               />
-
+              <Typography variant="body2" color="text.secondary" sx={{ ml: 4 }}>
+                Receive security alerts via email
+              </Typography>
+            </Grid>
+            <Grid xs={12} md={6}>
               <FormControlLabel
-                control={<Switch />}
-                label="Enable Authenticator App"
-                labelPlacement="start"
-                sx={{ justifyContent: 'space-between', ml: 0 }}
+                control={
+                  <Switch
+                    checked={formData.loginAlerts}
+                    onChange={handleSwitchChange('loginAlerts')}
+                  />
+                }
+                label="Login Alerts"
               />
-
+              <Typography variant="body2" color="text.secondary" sx={{ ml: 4 }}>
+                Get notified of new login attempts
+              </Typography>
+            </Grid>
+            <Grid xs={12} md={6}>
               <TextField
-                label="Phone Number"
-                defaultValue="+1 (555) 123-4567"
                 fullWidth
-                size="small"
-                InputProps={{
-                  startAdornment: <PhoneIcon sx={{ mr: 1, color: 'text.secondary' }} />
-                }}
+                label="Session Timeout (minutes)"
+                type="number"
+                value={formData.sessionTimeout}
+                onChange={handleChange('sessionTimeout')}
+                inputProps={{ min: 5, max: 480 }}
               />
+            </Grid>
+          </Grid>
+        </Box>
 
-              <Button
-                variant="outlined"
-                startIcon={<KeyIcon />}
-                sx={{ alignSelf: 'flex-start' }}
-              >
-                Setup Authenticator
+        <Divider sx={{ my: 3 }} />
+
+        {/* Account Recovery Section */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h6" component="h3" gutterBottom>
+            Account Recovery
+          </Typography>
+          <Typography variant="body2" color="text.secondary" paragraph>
+            Set up recovery options in case you lose access to your account.
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid xs={12} md={6}>
+              <Button variant="outlined" fullWidth>
+                Add Recovery Email
               </Button>
-            </Box>
+            </Grid>
+            <Grid xs={12} md={6}>
+              <Button variant="outlined" fullWidth>
+                Add Phone Number
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
 
-        <Divider sx={{ my: 3 }} />
-
-        {/* Security Preferences */}
-        <Typography variant="h6" gutterBottom>
-          Security Preferences
-        </Typography>
-
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <List>
-              <ListItem>
-                <ListItemIcon>
-                  <ShieldIcon color="primary" />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Login Notifications"
-                  secondary="Get notified when someone logs into your account"
-                />
-                <Switch defaultChecked />
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <EmailIcon color="primary" />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Email Notifications"
-                  secondary="Receive security alerts via email"
-                />
-                <Switch defaultChecked />
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <PhoneIcon color="primary" />
-                </ListItemIcon>
-                <ListItemText
-                  primary="SMS Notifications"
-                  secondary="Receive security alerts via SMS"
-                />
-                <Switch />
-              </ListItem>
-            </List>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <List>
-              <ListItem>
-                <ListItemIcon>
-                  <LockIcon color="primary" />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Session Timeout"
-                  secondary="Automatically log out after inactivity"
-                />
-                <Switch defaultChecked />
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <SecurityIcon color="primary" />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Device Management"
-                  secondary="Manage trusted devices"
-                />
-                <Button size="small" variant="outlined">
-                  Manage
-                </Button>
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <KeyIcon color="primary" />
-                </ListItemIcon>
-                <ListItemText
-                  primary="API Keys"
-                  secondary="Manage API access tokens"
-                />
-                <Button size="small" variant="outlined">
-                  Manage
-                </Button>
-              </ListItem>
-            </List>
-          </Grid>
-        </Grid>
-
-        <Divider sx={{ my: 3 }} />
-
-        {/* Recent Activity */}
-        <Typography variant="h6" gutterBottom>
-          Recent Security Activity
-        </Typography>
-
-        <List>
-          <ListItem>
-            <ListItemIcon>
-              <LockIcon color="success" />
-            </ListItemIcon>
-            <ListItemText
-              primary="Successful login"
-              secondary="New York, NY • January 15, 2024 at 2:30 PM"
-            />
-            <Chip label="Success" color="success" size="small" />
-          </ListItem>
-
-          <ListItem>
-            <ListItemIcon>
-              <SecurityIcon color="warning" />
-            </ListItemIcon>
-            <ListItemText
-              primary="Failed login attempt"
-              secondary="Unknown location • January 14, 2024 at 11:45 PM"
-            />
-            <Chip label="Failed" color="error" size="small" />
-          </ListItem>
-
-          <ListItem>
-            <ListItemIcon>
-              <KeyIcon color="info" />
-            </ListItemIcon>
-            <ListItemText
-              primary="Password changed"
-              secondary="New York, NY • January 10, 2024 at 9:15 AM"
-            />
-            <Chip label="Updated" color="info" size="small" />
-          </ListItem>
-
-          <ListItem>
-            <ListItemIcon>
-              <PhoneIcon color="success" />
-            </ListItemIcon>
-            <ListItemText
-              primary="Two-factor authentication enabled"
-              secondary="New York, NY • January 5, 2024 at 3:20 PM"
-            />
-            <Chip label="Enabled" color="success" size="small" />
-          </ListItem>
-        </List>
-
-        <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-          <Button variant="outlined" size="small">
-            View All Activity
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Button type="submit" variant="contained" size="large">
+            Save Settings
           </Button>
-          <Button variant="outlined" size="small" color="warning">
-            Revoke All Sessions
+          <Button variant="outlined" size="large">
+            Cancel
           </Button>
         </Box>
-      </CardContent>
-    </Card>
+      </Box>
+    </Paper>
   );
 };
 

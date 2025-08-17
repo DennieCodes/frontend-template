@@ -15,6 +15,8 @@ export const siteMapData: SiteMapSection[] = [
     icon: <HomeIcon />,
     items: [
       {
+        title: 'Home',
+        url: '/',
         name: 'Home',
         path: '/',
         description: 'Welcome page with platform overview and getting started information'

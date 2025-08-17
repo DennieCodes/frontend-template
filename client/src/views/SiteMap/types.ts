@@ -6,8 +6,21 @@ export interface SiteMapItem {
 
 export interface SiteMapSection {
   title: string;
-  icon: React.ReactNode;
-  items: SiteMapItem[];
+  icon?: React.ReactNode;
+  links?: Array<{
+    title?: string;
+    url?: string;
+    name?: string;
+    path?: string;
+    description?: string;
+  }>;
+  items?: Array<{
+    title?: string;
+    url?: string;
+    name?: string;
+    path?: string;
+    description?: string;
+  }>;
 }
 
 export interface SiteMapHeaderProps {

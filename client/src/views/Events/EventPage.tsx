@@ -1,383 +1,176 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import {
-  Container,
-  Grid,
-  Typography,
-  Box,
-  Paper,
-  Chip,
-  Button,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Tabs,
-  Tab,
-  Breadcrumbs,
-  Link,
-  IconButton,
-  Tooltip,
-} from '@mui/material';
-import {
-  ArrowBack,
-  CalendarToday,
-  LocationOn,
-  AccessTime,
-  People,
-  Star,
-  Event,
-  Email,
-  Phone,
-  Language,
-  CheckCircle,
-  Cancel,
-  CalendarMonth,
-} from '@mui/icons-material';
-import { sampleEvents } from './mockData';
-import { Event as EventType } from '../../types/event';
-import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/GridLegacy';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import { EventPageProps } from './types';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <Box
-      role="tabpanel"
-      hidden={value !== index}
-      id={`event-tabpanel-${index}`}
-      aria-labelledby={`event-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ py: 3 }}>{children}</Box>}
-    </Box>
-  );
-}
-
-const EventPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+const EventPage: React.FC<EventPageProps> = ({ event }) => {
   const [selectedImage, setSelectedImage] = useState(0);
-  const [tabValue, setTabValue] = useState(0);
-
-  // Find the event by ID
-  const event = sampleEvents.find(e => e.id === id);
 
   if (!event) {
-    return (
-      <Container maxWidth="lg" sx={{ py: 4 }}>
-        <Typography variant="h4" color="error">
-          Event not found
-        </Typography>
-        <Button
-          startIcon={<ArrowBack />}
-          onClick={() => navigate('/events')}
-          sx={{ mt: 2 }}
-        >
-          Back to Events
-        </Button>
-      </Container>
-    );
+    return <div>Event not found</div>;
   }
-
-  const formatPrice = (price: any) => {
-    if (price.type === 'free') {
-      return 'Free';
-    }
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: price.currency,
-    }).format(price.amount);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
-
-  const formatTime = (timeString: string) => {
-    return new Date(`2000-01-01T${timeString}`).toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-    });
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'upcoming':
-        return 'primary';
-      case 'ongoing':
-        return 'success';
-      case 'completed':
-        return 'default';
-      case 'cancelled':
-        return 'error';
-      default:
-        return 'default';
-    }
-  };
-
-  const handleRegister = () => {
-    // Handle event registration
-    alert('Successfully registered for the event!');
-  };
-
-  const handleAddToCalendar = () => {
-    // Handle adding to calendar
-    alert('Event added to calendar!');
-  };
-
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setTabValue(newValue);
-  };
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      {/* Breadcrumbs */}
-      <Breadcrumbs sx={{ mb: 3 }}>
-        <Link href="/" color="inherit" sx={{ display: 'flex', alignItems: 'center' }}>
-          Home
-        </Link>
-        <Link href="/events" color="inherit">
-          Events
-        </Link>
-        <Typography color="text.primary">{event.title}</Typography>
-      </Breadcrumbs>
-
       <Grid container spacing={4}>
-        {/* Event Images */}
-        <Grid item xs={12} md={6}>
-          <Paper sx={{ p: 2 }}>
-            <Box sx={{ position: 'relative', mb: 2 }}>
-              <img
-                src={event.images[selectedImage]}
-                alt={event.title}
-                style={{
-                  width: '100%',
-                  height: '400px',
-                  objectFit: 'cover',
-                  borderRadius: '8px',
-                }}
-              />
-              {event.featured && (
-                <Chip
-                  label="Featured"
-                  color="secondary"
-                  sx={{
-                    position: 'absolute',
-                    top: 16,
-                    left: 16,
-                  }}
-                />
-              )}
-            </Box>
-
-            {/* Thumbnail Images */}
-            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-              {event.images.map((image, index) => (
+        <Grid xs={12} md={6}>
+          <Box sx={{ mb: 3 }}>
+            <img
+              src={event.images[selectedImage]}
+              alt={event.title}
+              style={{ width: '100%', height: 'auto', borderRadius: 8 }}
+            />
+          </Box>
+          <Grid container spacing={1}>
+            {event.images.map((image, index) => (
+              <Grid xs={3} key={index}>
                 <img
-                  key={index}
                   src={image}
                   alt={`${event.title} ${index + 1}`}
                   style={{
-                    width: '80px',
-                    height: '80px',
-                    objectFit: 'cover',
-                    borderRadius: '4px',
+                    width: '100%',
+                    height: 'auto',
+                    borderRadius: 4,
                     cursor: 'pointer',
                     border: selectedImage === index ? '2px solid #1976d2' : '2px solid transparent',
                   }}
                   onClick={() => setSelectedImage(index)}
                 />
-              ))}
-            </Box>
-          </Paper>
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
 
-        {/* Event Details */}
-        <Grid item xs={12} md={6}>
-          <Paper sx={{ p: 3 }}>
-            {/* Category and Status */}
-            <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-              <Chip label={event.category} color="primary" variant="outlined" />
-              <Chip label={event.status} color={getStatusColor(event.status)} variant="outlined" />
-              {event.subcategory && (
-                <Chip label={event.subcategory} variant="outlined" />
-              )}
-            </Box>
+        <Grid xs={12} md={6}>
+          <Typography variant="h3" component="h1" gutterBottom>
+            {event.title}
+          </Typography>
 
-            {/* Event Title */}
-            <Typography variant="h3" component="h1" gutterBottom sx={{ ...typographyStyles.heading }}>
-              {event.title}
+          <Box sx={{ mb: 2 }}>
+            {event.tags.map((tag, index) => (
+              <Chip key={index} label={tag} sx={{ mr: 1, mb: 1 }} />
+            ))}
+          </Box>
+
+          <Typography variant="h5" component="div" color="primary" gutterBottom>
+            {event.date} • {event.time}
+          </Typography>
+
+          <Typography variant="body1" paragraph>
+            {event.description}
+          </Typography>
+
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="h6" gutterBottom>
+              Location
             </Typography>
-
-            {/* Date and Time */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-              <CalendarToday color="primary" />
-              <Typography variant="body1" color="text.secondary">
-                {formatDate(event.startDate)}
-              </Typography>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-              <AccessTime color="primary" />
-              <Typography variant="body1" color="text.secondary">
-                {formatTime(event.startTime)} - {formatTime(event.endTime)} ({event.timezone})
-              </Typography>
-            </Box>
-
-            {/* Location */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-              <LocationOn color="primary" />
-              <Typography variant="body1" color="text.secondary">
-                {event.location.venue}
-              </Typography>
-            </Box>
-            <Typography variant="body2" color="text.secondary" sx={{ ml: 4, mb: 2 }}>
-              {event.location.address}<br />
-              {event.location.city}, {event.location.state} {event.location.zipCode}<br />
-              {event.location.country}
+            <Typography variant="body1" paragraph>
+              {typeof event.location === 'string' ? event.location : event.location?.name}
             </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {typeof event.location === 'string' ? '' : event.location?.address}
+            </Typography>
+          </Box>
 
-            {/* Price */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-              <Typography variant="h4" color="primary" fontWeight={600}>
-                {formatPrice(event.price)}
-              </Typography>
-              {event.price.type === 'free' && (
-                <Chip label="Free Event" color="success" variant="outlined" />
-              )}
-            </Box>
+          <Box sx={{ mb: 3 }}>
+            <Button variant="contained" size="large" sx={{ mr: 2 }}>
+              Register Now
+            </Button>
+            <Button variant="outlined" size="large">
+              Add to Calendar
+            </Button>
+          </Box>
 
-            {/* Capacity */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
-              <People color="primary" />
-              <Typography variant="body1" color="text.secondary">
-                {event.registeredAttendees} of {event.capacity} spots filled
-              </Typography>
-            </Box>
-
-            {/* Registration Status */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
-              {event.registrationRequired ? (
-                <>
-                  <CheckCircle color="success" />
-                  <Typography color="success.main" fontWeight={500}>
-                    Registration Required
-                  </Typography>
-                </>
-              ) : (
-                <>
-                  <Cancel color="error" />
-                  <Typography color="error.main" fontWeight={500}>
-                    No Registration Required
-                  </Typography>
-                </>
-              )}
-            </Box>
-
-            {/* Actions */}
-            <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
-              <Button
-                variant="contained"
-                size="large"
-                onClick={handleRegister}
-                disabled={!event.registrationRequired}
-                sx={{ flexGrow: 1 }}
-              >
-                {event.registrationRequired ? 'Register Now' : 'Learn More'}
-              </Button>
-              <Tooltip title="Add to Calendar">
-                <IconButton
-                  onClick={handleAddToCalendar}
-                  color="primary"
-                  size="large"
-                >
-                  <CalendarMonth />
-                </IconButton>
-              </Tooltip>
-            </Box>
-
-            {/* Tags */}
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-              {event.tags.map((tag) => (
-                <Chip key={tag} label={tag} size="small" variant="outlined" />
-              ))}
-            </Box>
+          <Paper elevation={1} sx={{ p: 2 }}>
+            <Typography variant="subtitle2" gutterBottom>
+              Event Details
+            </Typography>
+            <Typography variant="body2" color="text.secondary" paragraph>
+              Price: {event.price}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" paragraph>
+              Capacity: {event.capacity} attendees
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Organizer: {event.organizer}
+            </Typography>
           </Paper>
         </Grid>
       </Grid>
 
-      {/* Event Details Tabs */}
-      <Paper sx={{ mt: 4 }}>
-        <Tabs value={tabValue} onChange={handleTabChange} aria-label="event details tabs">
-          <Tab label="Description" />
-          <Tab label="Features" />
-          <Tab label="Organizer" />
-        </Tabs>
-
-        <TabPanel value={tabValue} index={0}>
-          <Typography variant="body1" paragraph>
-            {event.description}
+      {event.speakers && event.speakers.length > 0 && (
+        <Box sx={{ mt: 6 }}>
+          <Typography variant="h4" component="h2" gutterBottom>
+            Speakers
           </Typography>
-        </TabPanel>
-
-        <TabPanel value={tabValue} index={1}>
-          <List>
-            {event.features.map((feature, index) => (
-              <ListItem key={index}>
-                <ListItemIcon>
-                  <CheckCircle color="primary" />
-                </ListItemIcon>
-                <ListItemText primary={feature} />
-              </ListItem>
+          <Grid container spacing={3}>
+            {event.speakers.map((speaker, index) => (
+              <Grid xs={12} sm={6} md={4} key={index}>
+                <Card>
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={speaker.avatar}
+                    alt={speaker.name}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" component="h3" gutterBottom>
+                      {speaker.name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                      {speaker.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {speaker.bio}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
             ))}
-          </List>
-        </TabPanel>
+          </Grid>
+        </Box>
+      )}
 
-        <TabPanel value={tabValue} index={2}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-            <Typography variant="h6" fontWeight={600}>
-              {event.organizer.name}
-            </Typography>
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Email sx={{ fontSize: 20 }} />
-              <Typography variant="body1">
-                {event.organizer.email}
-              </Typography>
-            </Box>
-            {event.organizer.phone && (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Phone sx={{ fontSize: 20 }} />
-                <Typography variant="body1">
-                  {event.organizer.phone}
-                </Typography>
-              </Box>
-            )}
-            {event.organizer.website && (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Language sx={{ fontSize: 20 }} />
-                <Link href={event.organizer.website} target="_blank" rel="noopener">
-                  {event.organizer.website}
-                </Link>
-              </Box>
-            )}
-          </Box>
-        </TabPanel>
-      </Paper>
+      {event.relatedEvents && event.relatedEvents.length > 0 && (
+        <Box sx={{ mt: 6 }}>
+          <Typography variant="h4" component="h2" gutterBottom>
+            Related Events
+          </Typography>
+          <Grid container spacing={3}>
+            {event.relatedEvents.map((relatedEvent, index) => (
+              <Grid xs={12} sm={6} md={4} key={index}>
+                <Card>
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={relatedEvent.image}
+                    alt={relatedEvent.title}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" component="h3" gutterBottom>
+                      {relatedEvent.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                      {relatedEvent.date}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {relatedEvent.shortDescription}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      )}
     </Container>
   );
 };

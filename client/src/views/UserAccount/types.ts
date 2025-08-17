@@ -8,7 +8,9 @@ export interface UserAccountBreadcrumbsProps {
 }
 
 export interface AccountSummaryProps {
-  summaryItems: SummaryItem[];
+  user?: any;
+  stats?: any;
+  summaryItems?: any[];
 }
 
 export interface SummaryItem {

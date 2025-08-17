@@ -3,14 +3,14 @@ import { Box, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mu
 import { Star } from '@mui/icons-material';
 import { ResourceServicesProps } from './types';
 
-const ResourceServices: React.FC<ResourceServicesProps> = ({ services }) => {
+const ResourceServices: React.FC<ResourceServicesProps> = ({ resource }) => {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom>
         Services
       </Typography>
       <List>
-        {services.map((service, index) => (
+        {resource?.services?.map((service, index) => (
           <ListItem key={index}>
             <ListItemIcon>
               <Star color="primary" />

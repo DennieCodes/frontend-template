@@ -31,10 +31,10 @@ export interface ArticlesFiltersProps {
 }
 
 export interface ArticlesResultsProps {
-  articles: Article[];
-  totalArticles: number;
-  filteredArticles: Article[];
-  hasActiveFilters: boolean;
+  articles?: Article[];
+  totalArticles?: number;
+  filteredArticles?: Article[];
+  hasActiveFilters?: boolean;
   onArticleClick: (article: Article) => void;
 }
 

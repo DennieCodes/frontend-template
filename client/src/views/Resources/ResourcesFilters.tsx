@@ -1,247 +1,185 @@
-import React from 'react';
-import {
-  Box,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Chip,
-  Button,
-  Paper,
-  Slider,
-  FormControlLabel,
-  Checkbox,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Grid,
-  Typography,
-} from '@mui/material';
-import {
-  Search,
-  FilterList,
-  Clear,
-  ExpandMore,
-  Verified,
-} from '@mui/icons-material';
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/GridLegacy';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
+import Slider from '@mui/material/Slider';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import { ResourcesFiltersProps } from './types';
-import { LAYOUT_CONSTANTS, layoutUtils } from '../../constants/layout';
 
 const ResourcesFilters: React.FC<ResourcesFiltersProps> = ({
-  searchTerm,
-  onSearchChange,
-  selectedCategory,
-  onCategoryChange,
-  selectedSubcategory,
-  onSubcategoryChange,
-  selectedLocation,
-  onLocationChange,
-  selectedTags,
-  onTagToggle,
-  priceRange,
-  onPriceRangeChange,
-  ratingFilter,
-  onRatingFilterChange,
-  verifiedOnly,
-  onVerifiedOnlyChange,
-  categories,
-  subcategories,
-  locations,
-  allTags,
-  hasActiveFilters,
+  filters,
+  onFiltersChange,
   onClearFilters,
 }) => {
+  const [localFilters, setLocalFilters] = useState(filters);
+
+  const handleFilterChange = (key: string, value: any) => {
+    const newFilters = { ...localFilters, [key]: value };
+    setLocalFilters(newFilters);
+    onFiltersChange(newFilters);
+  };
+
+  const handleClearFilters = () => {
+    const clearedFilters = {
+      search: '',
+      category: '',
+      location: '',
+      priceRange: [0, 1000],
+      rating: 0,
+      tags: [],
+      verifiedOnly: false,
+    };
+    setLocalFilters(clearedFilters);
+    onClearFilters();
+  };
+
   return (
-    <Box sx={{
-      ...layoutUtils.getContentLayout('full-width'),
-      mb: LAYOUT_CONSTANTS.SPACING.LG,
-    }}>
-      <Paper sx={{
-        p: LAYOUT_CONSTANTS.SPACING.MD,
-        maxWidth: layoutUtils.getContentWidth('wide'),
-        mx: 'auto',
-      }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: LAYOUT_CONSTANTS.SPACING.SM, mb: LAYOUT_CONSTANTS.SPACING.MD }}>
-          <FilterList color="primary" />
-          <Typography variant="h6" component="h2">
-            Filters
-          </Typography>
-          {hasActiveFilters && (
-            <Button
-              startIcon={<Clear />}
-              onClick={onClearFilters}
-              variant="outlined"
-              size="small"
-              sx={{ ml: 'auto' }}
-            >
-              Clear Filters
-            </Button>
-          )}
-        </Box>
+    <Paper elevation={2} sx={{ p: 3 }}>
+      <Typography variant="h6" component="h2" gutterBottom>
+        Filters
+      </Typography>
 
-        <Grid container spacing={3}>
-          {/* Search */}
-          <Grid item xs={12} md={6}>
-            <TextField
-              label="Search resources"
-              variant="outlined"
-              size="small"
-              fullWidth
-              value={searchTerm}
-              onChange={(e) => onSearchChange(e.target.value)}
-              InputProps={{
-                startAdornment: <Search sx={{ mr: 1, color: 'text.secondary' }} />,
-              }}
-            />
-          </Grid>
-
-          {/* Category */}
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Category</InputLabel>
-              <Select
-                value={selectedCategory}
-                label="Category"
-                onChange={(e) => onCategoryChange(e.target.value)}
-              >
-                <MenuItem value="all">All Categories</MenuItem>
-                {categories.map((category) => (
-                  <MenuItem key={category} value={category}>
-                    {category}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-
-          {/* Subcategory */}
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Subcategory</InputLabel>
-              <Select
-                value={selectedSubcategory}
-                label="Subcategory"
-                onChange={(e) => onSubcategoryChange(e.target.value)}
-              >
-                <MenuItem value="all">All Subcategories</MenuItem>
-                {subcategories.map((subcategory) => (
-                  <MenuItem key={subcategory} value={subcategory}>
-                    {subcategory}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-
-          {/* Location */}
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Location</InputLabel>
-              <Select
-                value={selectedLocation}
-                label="Location"
-                onChange={(e) => onLocationChange(e.target.value)}
-              >
-                <MenuItem value="all">All Locations</MenuItem>
-                {locations.map((location) => (
-                  <MenuItem key={location} value={location}>
-                    {location}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-
-          {/* Price Range */}
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Price Range</InputLabel>
-              <Select
-                value={priceRange}
-                label="Price Range"
-                onChange={(e) => onPriceRangeChange(e.target.value)}
-              >
-                <MenuItem value="all">All Prices</MenuItem>
-                <MenuItem value="free">Free</MenuItem>
-                <MenuItem value="low">Low Cost</MenuItem>
-                <MenuItem value="medium">Medium Cost</MenuItem>
-                <MenuItem value="high">High Cost</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
+      <Grid container spacing={3}>
+        <Grid xs={12} md={6}>
+          <TextField
+            fullWidth
+            label="Search resources"
+            value={localFilters.search}
+            onChange={(e) => handleFilterChange('search', e.target.value)}
+            placeholder="Search by name or description..."
+          />
         </Grid>
-
-        {/* Advanced Filters */}
-        <Accordion sx={{ mt: 2 }}>
-          <AccordionSummary expandIcon={<ExpandMore />}>
-            <Typography variant="subtitle1">Advanced Filters</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Grid container spacing={3}>
-              {/* Rating Filter */}
-              <Grid item xs={12} sm={6} md={4}>
-                <Typography variant="subtitle2" gutterBottom>
-                  Minimum Rating
-                </Typography>
-                <Box sx={{ px: 2 }}>
-                  <Slider
-                    value={ratingFilter}
-                    onChange={(_, value) => onRatingFilterChange(value as number)}
-                    min={0}
-                    max={5}
-                    step={0.5}
-                    marks={[
-                      { value: 0, label: 'Any' },
-                      { value: 2.5, label: '2.5+' },
-                      { value: 5, label: '5.0' },
-                    ]}
-                    valueLabelDisplay="auto"
-                  />
-                </Box>
-              </Grid>
-
-              {/* Verified Only */}
-              <Grid item xs={12} sm={6} md={4}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={verifiedOnly}
-                      onChange={(e) => onVerifiedOnlyChange(e.target.checked)}
-                      icon={<Verified />}
-                      checkedIcon={<Verified color="primary" />}
-                    />
-                  }
-                  label="Verified Only"
-                />
-              </Grid>
-            </Grid>
-          </AccordionDetails>
-        </Accordion>
-
-        {/* Tags */}
-        {allTags.length > 0 && (
-          <Box sx={{ mt: LAYOUT_CONSTANTS.SPACING.MD }}>
-            <Typography variant="subtitle2" gutterBottom>
-              Tags
-            </Typography>
-            <Box sx={{ display: 'flex', gap: LAYOUT_CONSTANTS.SPACING.XS, flexWrap: 'wrap' }}>
-              {allTags.map((tag) => (
-                <Chip
-                  key={tag}
-                  label={tag}
-                  size="small"
-                  variant={selectedTags.includes(tag) ? "filled" : "outlined"}
-                  color={selectedTags.includes(tag) ? "primary" : "default"}
-                  onClick={() => onTagToggle(tag)}
-                  sx={{ cursor: 'pointer' }}
-                />
-              ))}
-            </Box>
+        <Grid xs={12} sm={6} md={3}>
+          <FormControl fullWidth>
+            <InputLabel>Category</InputLabel>
+            <Select
+              value={localFilters.category}
+              label="Category"
+              onChange={(e) => handleFilterChange('category', e.target.value)}
+            >
+              <MenuItem value="">All Categories</MenuItem>
+              <MenuItem value="healthcare">Healthcare</MenuItem>
+              <MenuItem value="education">Education</MenuItem>
+              <MenuItem value="housing">Housing</MenuItem>
+              <MenuItem value="employment">Employment</MenuItem>
+              <MenuItem value="legal">Legal</MenuItem>
+              <MenuItem value="financial">Financial</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid xs={12} sm={6} md={3}>
+          <FormControl fullWidth>
+            <InputLabel>Location</InputLabel>
+            <Select
+              value={localFilters.location}
+              label="Location"
+              onChange={(e) => handleFilterChange('location', e.target.value)}
+            >
+              <MenuItem value="">All Locations</MenuItem>
+              <MenuItem value="downtown">Downtown</MenuItem>
+              <MenuItem value="north">North Side</MenuItem>
+              <MenuItem value="south">South Side</MenuItem>
+              <MenuItem value="east">East Side</MenuItem>
+              <MenuItem value="west">West Side</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid xs={12} sm={6} md={3}>
+          <Typography variant="subtitle2" gutterBottom>
+            Price Range
+          </Typography>
+          <Slider
+            value={localFilters.priceRange}
+            onChange={(_, value) => handleFilterChange('priceRange', value)}
+            valueLabelDisplay="auto"
+            min={0}
+            max={1000}
+            step={50}
+          />
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant="caption">${localFilters.priceRange[0]}</Typography>
+            <Typography variant="caption">${localFilters.priceRange[1]}</Typography>
           </Box>
-        )}
-      </Paper>
-    </Box>
+        </Grid>
+        <Grid xs={12} sm={6} md={3}>
+          <Typography variant="subtitle2" gutterBottom>
+            Minimum Rating
+          </Typography>
+          <Slider
+            value={localFilters.rating}
+            onChange={(_, value) => handleFilterChange('rating', value)}
+            valueLabelDisplay="auto"
+            min={0}
+            max={5}
+            step={0.5}
+            marks={[
+              { value: 0, label: 'Any' },
+              { value: 2.5, label: '2.5+' },
+              { value: 5, label: '5.0' },
+            ]}
+          />
+        </Grid>
+        <Grid xs={12} sm={6} md={4}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={localFilters.verifiedOnly}
+                onChange={(e) => handleFilterChange('verifiedOnly', e.target.checked)}
+              />
+            }
+            label="Verified Only"
+          />
+        </Grid>
+      </Grid>
+
+      {/* Tags Filter */}
+      <Box sx={{ mt: 3 }}>
+        <Typography variant="subtitle2" gutterBottom>
+          Filter by Tags:
+        </Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+          {['Free', 'Low Cost', 'Wheelchair Accessible', 'Bilingual', '24/7', 'Emergency'].map((tag) => (
+            <Chip
+              key={tag}
+              label={tag}
+              onClick={() => {
+                const newTags = localFilters.tags.includes(tag)
+                  ? localFilters.tags.filter(t => t !== tag)
+                  : [...localFilters.tags, tag];
+                handleFilterChange('tags', newTags);
+              }}
+              color={localFilters.tags.includes(tag) ? 'primary' : 'default'}
+              variant={localFilters.tags.includes(tag) ? 'filled' : 'outlined'}
+              clickable
+            />
+          ))}
+        </Box>
+      </Box>
+
+      <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
+        <Button
+          variant="outlined"
+          onClick={handleClearFilters}
+        >
+          Clear All Filters
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => onFiltersChange(localFilters)}
+        >
+          Apply Filters
+        </Button>
+      </Box>
+    </Paper>
   );
 };
 

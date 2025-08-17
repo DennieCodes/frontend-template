@@ -1,54 +1,45 @@
 import React from 'react';
-import { Box, Paper, Typography, Grid } from '@mui/material';
-import { QuickStatsProps, StatItem } from './types';
-import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/GridLegacy';
+import { QuickStatsProps } from './types';
 
 const QuickStats: React.FC<QuickStatsProps> = ({ stats }) => {
   return (
-    <Box sx={{ mt: LAYOUT_CONSTANTS.SPACING.LG }}>
-      <Paper sx={{
-        p: LAYOUT_CONSTANTS.SPACING.MD,
-        maxWidth: layoutUtils.getContentWidth('wide'),
-        mx: 'auto',
-      }}>
-        <Typography
-          variant="h6"
-          gutterBottom
-          sx={{
-            ...typographyStyles.title,
-            mb: LAYOUT_CONSTANTS.SPACING.MD,
-          }}
-        >
-          Quick Stats
-        </Typography>
-        <Grid container spacing={LAYOUT_CONSTANTS.GRID.SPACING.MD}>
-          {stats.map((stat) => (
-            <Grid item xs={12} sm={6} md={3} key={stat.id}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography
-                  variant="h4"
-                  color={`${stat.color}.main`}
-                  sx={{
-                    ...typographyStyles.heading,
-                    mb: LAYOUT_CONSTANTS.SPACING.XS,
-                  }}
-                >
-                  {stat.value}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{
-                    ...typographyStyles.body,
-                  }}
-                >
-                  {stat.label}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Paper>
+    <Box sx={{ mb: 4 }}>
+      <Grid container spacing={3}>
+        {stats.map((stat, index) => (
+          <Grid
+            key={index}
+            xs={12}
+            sm={6}
+            md={3}
+          >
+            <Paper
+              elevation={2}
+              sx={{
+                p: 3,
+                textAlign: 'center',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}
+            >
+              <Typography variant="h4" component="div" color="primary" gutterBottom>
+                {stat.value}
+              </Typography>
+              <Typography variant="h6" component="div" gutterBottom>
+                {stat.label}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {stat.description}
+              </Typography>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 };

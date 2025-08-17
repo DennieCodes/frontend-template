@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Box } from '@mui/material';
+import Grid from '@mui/material/GridLegacy';
+import Box from '@mui/material/Box';
 import ProductCard from '../ProductCard';
 import { ProductGridProps } from '../../types/product';
 import { layoutUtils, LAYOUT_CONSTANTS } from '../../constants/layout';
@@ -11,7 +12,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   variant = 'default',
   onProductClick,
 }) => {
-  const getGridColumns = () => {
+  const getGridSize = () => {
     return layoutUtils.getGridColumns(columns);
   };
 
@@ -20,9 +21,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       <Grid container spacing={LAYOUT_CONSTANTS.GRID.SPACING.MD}>
         {products.map((product) => (
           <Grid
-            item
             key={product.id}
-            {...getGridColumns()}
+            {...getGridSize()}
             sx={layoutUtils.getGridItemStyles()}
           >
             <ProductCard

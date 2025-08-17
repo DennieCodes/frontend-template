@@ -23,12 +23,13 @@ export interface Resource {
   rating?: number;
   reviewCount?: number;
   imageUrl?: string;
+  images?: string[];
   featured?: boolean;
   verified?: boolean;
   hours?: {
     [key: string]: {
-      open: string;
-      close: string;
+      open?: string;
+      close?: string;
       closed?: boolean;
     };
   };

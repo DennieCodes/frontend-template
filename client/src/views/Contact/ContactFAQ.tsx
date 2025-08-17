@@ -4,7 +4,7 @@ import ContactFAQItem from './ContactFAQItem';
 import { ContactFAQProps } from './types';
 import { LAYOUT_CONSTANTS, typographyStyles } from '../../constants/layout';
 
-const ContactFAQ: React.FC<ContactFAQProps> = ({ faqItems }) => {
+const ContactFAQ: React.FC<ContactFAQProps> = ({ faqs = [] }) => {
   return (
     <Box>
       <Divider sx={{ my: LAYOUT_CONSTANTS.SPACING.MD }} />
@@ -21,7 +21,7 @@ const ContactFAQ: React.FC<ContactFAQProps> = ({ faqItems }) => {
         Frequently Asked Questions
       </Typography>
 
-      {faqItems.map((item, index) => (
+              {faqs.map((item, index) => (
         <ContactFAQItem key={index} item={item} />
       ))}
     </Box>

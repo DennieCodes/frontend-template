@@ -1,293 +1,211 @@
-import React from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  Box,
-  Button,
-  Grid,
-  Chip,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Paper
-} from '@mui/material';
-import {
-  Check as CheckIcon,
-  Close as CloseIcon,
-  Star as StarIcon,
-  Business as BusinessIcon,
-  Person as PersonIcon,
-  Diamond as DiamondIcon
-} from '@mui/icons-material';
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/GridLegacy';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import CheckIcon from '@mui/icons-material/Check';
+import { SubscriptionPlanProps } from './types';
 
-const SubscriptionPlan: React.FC = () => {
+const SubscriptionPlan: React.FC<SubscriptionPlanProps> = ({ currentPlan, onPlanChange }) => {
+  const [selectedPlan, setSelectedPlan] = useState(currentPlan?.type || 'free');
+
+  const plans = [
+    {
+      type: 'free',
+      name: 'Free Plan',
+      price: '$0',
+      period: 'month',
+      description: 'Basic features for individual users',
+      features: [
+        'Up to 5 resources per month',
+        'Basic search functionality',
+        'Email support',
+        'Standard templates',
+      ],
+      popular: false,
+    },
+    {
+      type: 'basic',
+      name: 'Basic Plan',
+      price: '$9.99',
+      period: 'month',
+      description: 'Perfect for small teams and growing businesses',
+      features: [
+        'Up to 50 resources per month',
+        'Advanced search and filters',
+        'Priority email support',
+        'Custom templates',
+        'Analytics dashboard',
+        'API access',
+      ],
+      popular: false,
+    },
+    {
+      type: 'pro',
+      name: 'Pro Plan',
+      price: '$29.99',
+      period: 'month',
+      description: 'Advanced features for professional teams',
+      features: [
+        'Unlimited resources',
+        'Advanced analytics',
+        'Phone and email support',
+        'Custom branding',
+        'White-label options',
+        'Advanced integrations',
+        'Team collaboration tools',
+        'Priority feature requests',
+      ],
+      popular: true,
+    },
+  ];
+
+  const handlePlanSelect = (planType: string) => {
+    setSelectedPlan(planType);
+  };
+
+  const handleUpgrade = () => {
+    onPlanChange(selectedPlan);
+  };
+
   return (
-    <Card>
-      <CardHeader
-        title="Subscription Plan"
-        action={
-          <Chip
-            label="Pro Plan"
-            color="primary"
-            icon={<StarIcon />}
-            size="small"
-          />
-        }
-      />
-      <CardContent>
-        <Box sx={{ mb: 3 }}>
+    <Paper elevation={2} sx={{ p: 4 }}>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Subscription Plans
+      </Typography>
+      <Typography variant="body2" color="text.secondary" paragraph>
+        Choose the plan that best fits your needs. You can upgrade or downgrade at any time.
+      </Typography>
+
+      {/* Current Plan Status */}
+      {currentPlan && (
+        <Box sx={{ mb: 4, p: 3, bgcolor: 'primary.light', borderRadius: 2 }}>
+          <Typography variant="h6" gutterBottom>
+            Current Plan: {currentPlan.name}
+          </Typography>
           <Typography variant="body2" color="text.secondary">
-            Manage your subscription and billing information
+            Next billing date: {currentPlan.nextBillingDate}
           </Typography>
         </Box>
+      )}
 
-        {/* Current Plan */}
-        <Paper sx={{ p: 3, mb: 3, bgcolor: 'primary.50' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-            <BusinessIcon color="primary" />
-            <Box>
-              <Typography variant="h6">Current Plan: Pro</Typography>
-              <Typography variant="body2" color="text.secondary">
-                $29.99/month • Next billing: January 15, 2024
-              </Typography>
-            </Box>
-          </Box>
-
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Typography variant="body2" color="text.secondary">
-                <strong>Plan Features:</strong>
-              </Typography>
-              <List dense>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Unlimited projects" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Advanced analytics" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Priority support" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Custom integrations" />
-                </ListItem>
-              </List>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Button variant="outlined" size="small">
-                  View Billing History
+      {/* Plan Selection */}
+      <Grid container spacing={3}>
+        {plans.map((plan) => (
+          <Grid xs={12} sm={6} md={4} key={plan.type}>
+            <Card
+              sx={{
+                height: '100%',
+                position: 'relative',
+                border: selectedPlan === plan.type ? '2px solid #1976d2' : '2px solid transparent',
+                transition: 'all 0.2s ease-in-out',
+                '&:hover': {
+                  transform: 'translateY(-4px)',
+                  boxShadow: 4,
+                },
+              }}
+            >
+              {plan.popular && (
+                <Chip
+                  label="Most Popular"
+                  color="primary"
+                  sx={{
+                    position: 'absolute',
+                    top: -12,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 1,
+                  }}
+                />
+              )}
+              <CardContent sx={{ pt: plan.popular ? 4 : 2 }}>
+                <Typography variant="h5" component="h3" gutterBottom>
+                  {plan.name}
+                </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
+                  <Typography variant="h4" component="span" color="primary">
+                    {plan.price}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
+                    /{plan.period}
+                  </Typography>
+                </Box>
+                <Typography variant="body2" color="text.secondary" paragraph>
+                  {plan.description}
+                </Typography>
+                <Box component="ul" sx={{ pl: 0, listStyle: 'none' }}>
+                  {plan.features.map((feature, index) => (
+                    <Box
+                      key={index}
+                      component="li"
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        mb: 1,
+                      }}
+                    >
+                      <CheckIcon sx={{ fontSize: 16, color: 'success.main', mr: 1 }} />
+                      <Typography variant="body2">{feature}</Typography>
+                    </Box>
+                  ))}
+                </Box>
+              </CardContent>
+              <CardActions sx={{ p: 2, pt: 0 }}>
+                <Button
+                  variant={selectedPlan === plan.type ? 'contained' : 'outlined'}
+                  fullWidth
+                  onClick={() => handlePlanSelect(plan.type)}
+                >
+                  {selectedPlan === plan.type ? 'Selected' : 'Select Plan'}
                 </Button>
-                <Button variant="outlined" size="small">
-                  Download Invoice
-                </Button>
-                <Button variant="outlined" size="small" color="warning">
-                  Cancel Subscription
-                </Button>
-              </Box>
-            </Grid>
+              </CardActions>
+            </Card>
           </Grid>
-        </Paper>
+        ))}
+      </Grid>
 
-        {/* Available Plans */}
-        <Typography variant="h6" gutterBottom>
-          Available Plans
-        </Typography>
+      {/* Action Buttons */}
+      <Box sx={{ mt: 4, display: 'flex', gap: 2, justifyContent: 'center' }}>
+        <Button
+          variant="contained"
+          size="large"
+          onClick={handleUpgrade}
+          disabled={selectedPlan === currentPlan?.type}
+        >
+          {selectedPlan === currentPlan?.type ? 'Current Plan' : 'Upgrade Plan'}
+        </Button>
+        <Button variant="outlined" size="large">
+          Cancel Subscription
+        </Button>
+      </Box>
 
-        <Grid container spacing={2}>
-          {/* Basic Plan */}
-          <Grid item xs={12} md={4}>
-            <Paper sx={{ p: 2, height: '100%', border: '1px solid #e0e0e0' }}>
-              <Box sx={{ textAlign: 'center', mb: 2 }}>
-                <PersonIcon sx={{ fontSize: 40, color: 'text.secondary' }} />
-                <Typography variant="h6">Basic</Typography>
-                <Typography variant="h4" color="primary">
-                  $9.99
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  per month
-                </Typography>
-              </Box>
-
-              <List dense>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="5 projects" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Basic analytics" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Email support" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CloseIcon color="error" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Custom integrations" />
-                </ListItem>
-              </List>
-
-              <Button
-                variant="outlined"
-                fullWidth
-                sx={{ mt: 2 }}
-              >
-                Downgrade
-              </Button>
-            </Paper>
-          </Grid>
-
-          {/* Pro Plan (Current) */}
-          <Grid item xs={12} md={4}>
-            <Paper sx={{ p: 2, height: '100%', border: '2px solid', borderColor: 'primary.main', bgcolor: 'primary.50' }}>
-              <Box sx={{ textAlign: 'center', mb: 2 }}>
-                <BusinessIcon sx={{ fontSize: 40, color: 'primary.main' }} />
-                <Typography variant="h6">Pro</Typography>
-                <Typography variant="h4" color="primary">
-                  $29.99
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  per month
-                </Typography>
-                <Chip label="Current Plan" color="primary" size="small" sx={{ mt: 1 }} />
-              </Box>
-
-              <List dense>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Unlimited projects" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Advanced analytics" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Priority support" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Custom integrations" />
-                </ListItem>
-              </List>
-
-              <Button
-                variant="contained"
-                fullWidth
-                sx={{ mt: 2 }}
-                disabled
-              >
-                Current Plan
-              </Button>
-            </Paper>
-          </Grid>
-
-          {/* Enterprise Plan */}
-          <Grid item xs={12} md={4}>
-            <Paper sx={{ p: 2, height: '100%', border: '1px solid #e0e0e0' }}>
-              <Box sx={{ textAlign: 'center', mb: 2 }}>
-                <DiamondIcon sx={{ fontSize: 40, color: 'secondary.main' }} />
-                <Typography variant="h6">Enterprise</Typography>
-                <Typography variant="h4" color="secondary">
-                  $99.99
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  per month
-                </Typography>
-              </Box>
-
-              <List dense>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Everything in Pro" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Dedicated support" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Custom branding" />
-                </ListItem>
-                <ListItem sx={{ py: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 24 }}>
-                    <CheckIcon color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="SLA guarantee" />
-                </ListItem>
-              </List>
-
-              <Button
-                variant="contained"
-                color="secondary"
-                fullWidth
-                sx={{ mt: 2 }}
-              >
-                Upgrade
-              </Button>
-            </Paper>
-          </Grid>
-        </Grid>
-
-        <Divider sx={{ my: 3 }} />
-
-        {/* Billing Information */}
+      {/* Billing Information */}
+      <Box sx={{ mt: 4, p: 3, bgcolor: 'grey.50', borderRadius: 2 }}>
         <Typography variant="h6" gutterBottom>
           Billing Information
         </Typography>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="body2" color="text.secondary">
-              <strong>Payment Method:</strong> Visa ending in 1234
+              Payment Method: •••• •••• •••• 1234
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="body2" color="text.secondary">
-              <strong>Billing Cycle:</strong> Monthly
+              Billing Address: 123 Main St, New York, NY 10001
             </Typography>
           </Grid>
         </Grid>
-      </CardContent>
-    </Card>
+        <Button variant="text" size="small" sx={{ mt: 1 }}>
+          Update Billing Information
+        </Button>
+      </Box>
+    </Paper>
   );
 };
 

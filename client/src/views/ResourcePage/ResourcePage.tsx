@@ -1,95 +1,71 @@
-import React, { useState } from 'react';
-import { Container, Grid } from '@mui/material';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ResourcePageState } from './types';
-import { mockResources } from '../Resources/mockData';
-import ResourceBreadcrumbs from './ResourceBreadcrumbs';
+import React from 'react';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/GridLegacy';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import ResourceHeader from './ResourceHeader';
-import ResourceTabs from './ResourceTabs';
-import ResourceOverview from './ResourceOverview';
-import ResourceServices from './ResourceServices';
+import ResourceDescription from './ResourceDescription';
+import ResourceContactInfo from './ResourceContactInfo';
 import ResourceContactHours from './ResourceContactHours';
+import ResourceLocation from './ResourceLocation';
+import ResourceServices from './ResourceServices';
 import ResourceReviews from './ResourceReviews';
-import ResourceSidebar from './ResourceSidebar';
+import ResourceMap from './ResourceMap';
+import ResourceAdditionalInfo from './ResourceAdditionalInfo';
+import ResourceRelatedResources from './ResourceRelatedResources';
+import ResourceSocialMedia from './ResourceSocialMedia';
+import ResourceDocuments from './ResourceDocuments';
+import ResourceFAQ from './ResourceFAQ';
+import { ResourcePageProps } from './types';
 
-const ResourcePage: React.FC = () => {
-  const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
-
-  // Find the resource by ID
-  const resource = mockResources.find(r => r.id === id);
-
-  const [state, setState] = useState<ResourcePageState>({
-    activeTab: 0,
-    isBookmarked: false,
-  });
-
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setState(prev => ({ ...prev, activeTab: newValue }));
-  };
-
-  const handleBookmarkToggle = () => {
-    setState(prev => ({ ...prev, isBookmarked: !prev.isBookmarked }));
-  };
-
-  const handleBackToResources = () => {
-    navigate('/resources');
-  };
-
-  // Show loading or error state if resource not found
+const ResourcePage: React.FC<ResourcePageProps> = ({ resource }) => {
   if (!resource) {
-    return (
-      <Container maxWidth="xl" sx={{ py: 4 }}>
-        <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-          <h2>Resource Not Found</h2>
-          <p>The resource you're looking for doesn't exist.</p>
-          <button onClick={handleBackToResources}>Back to Resources</button>
-        </div>
-      </Container>
-    );
+    return <div>Resource not found</div>;
   }
 
-  const renderTabContent = () => {
-    switch (state.activeTab) {
-      case 0:
-        return <ResourceOverview resource={resource} />;
-      case 1:
-        return <ResourceServices services={resource.services} />;
-      case 2:
-        return <ResourceContactHours resource={resource} />;
-      case 3:
-        return <ResourceReviews />;
-      default:
-        return <ResourceOverview resource={resource} />;
-    }
+  // Create a complete resource object with all required properties
+  const completeResource = {
+    ...resource,
+    services: resource.services || [],
+    faqs: resource.faqs || [],
+    contactInfo: resource.contactInfo || {},
+    location: resource.location || {},
+    socialMedia: resource.socialMedia || {},
+    documents: resource.documents || [],
+    relatedResources: resource.relatedResources || [],
+    coordinates: resource.coordinates || {},
   };
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
-      <ResourceBreadcrumbs resourceName={resource.name} />
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <ResourceHeader
+        resource={completeResource}
+        isBookmarked={false}
+        onBookmarkToggle={() => {}}
+      />
 
       <Grid container spacing={4}>
-        {/* Main Content */}
-        <Grid item xs={12} lg={8}>
-          <ResourceHeader
-            resource={resource}
-            isBookmarked={state.isBookmarked}
-            onBookmarkToggle={handleBookmarkToggle}
-          />
-
-          <ResourceTabs
-            activeTab={state.activeTab}
-            onTabChange={handleTabChange}
-          />
-
-          {renderTabContent()}
+        <Grid xs={12} lg={8}>
+          <ResourceDescription resource={completeResource} />
+          <ResourceServices resource={completeResource} />
+          <ResourceReviews resource={completeResource} />
+          <ResourceMap resource={completeResource} />
+          <ResourceAdditionalInfo resource={completeResource} />
+          <ResourceFAQ resource={completeResource} />
         </Grid>
-
-        {/* Sidebar */}
-        <Grid item xs={12} lg={4}>
-          <ResourceSidebar resource={resource} />
+        <Grid xs={12} lg={4}>
+          <ResourceContactInfo resource={completeResource} />
+          <ResourceContactHours hours={completeResource.hours} />
+          <ResourceLocation resource={completeResource} />
+          <ResourceSocialMedia resource={completeResource} />
+          <ResourceDocuments resource={completeResource} />
         </Grid>
       </Grid>
+
+      <Box sx={{ mt: 6 }}>
+        <ResourceRelatedResources resource={completeResource} />
+      </Box>
     </Container>
   );
 };

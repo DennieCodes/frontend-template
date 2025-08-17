@@ -64,3 +64,8 @@ export const aboutTeamData: AboutTeamProps = {
     }
   ]
 };
+
+export const mockData = {
+  teamMembers: aboutTeamData.teamMembers,
+  values: aboutValuesData.values,
+};
