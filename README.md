@@ -301,6 +301,15 @@ npm run build
 
 This project is licensed under the MIT License.
 
+## 📚 Documentation
+
+- [Developer Guide](./client/DEVELOPER_GUIDE.md) - Quick reference for developers
+- [Build Fixes](./client/BUILD_FIXES.md) - Recent improvements and fixes
+- [Type System](./client/TYPE_SYSTEM.md) - Comprehensive type system guide
+- [I18N Setup](./client/I18N_SETUP.md) - Internationalization documentation
+- [Component Documentation](./client/src/components/) - Individual component READMEs
+- [Type Definitions](./client/src/types/) - TypeScript type documentation
+
 ## 🆘 Support
 
 For support and questions:
