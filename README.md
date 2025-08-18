@@ -211,6 +211,9 @@ npm run test:watch    # Watch mode
 npm run test:ci       # CI mode with coverage
 ```
 
+**⚠️ Important Note for Template Users:**
+The test coverage threshold is currently set to 0% for template purposes. When implementing your actual project, you should update the coverage thresholds in `client/jest.config.ts` to your desired levels (typically 80% or higher for production applications).
+
 ## 📦 Component Library
 
 The project includes a comprehensive set of reusable components:
@@ -306,6 +309,7 @@ This project is licensed under the MIT License.
 - [Developer Guide](./client/DEVELOPER_GUIDE.md) - Quick reference for developers
 - [Build Fixes](./client/BUILD_FIXES.md) - Recent improvements and fixes
 - [Type System](./client/TYPE_SYSTEM.md) - Comprehensive type system guide
+- [Testing Setup](./client/TESTING_SETUP.md) - Testing configuration and best practices
 - [I18N Setup](./client/I18N_SETUP.md) - Internationalization documentation
 - [Component Documentation](./client/src/components/) - Individual component READMEs
 - [Type Definitions](./client/src/types/) - TypeScript type documentation
