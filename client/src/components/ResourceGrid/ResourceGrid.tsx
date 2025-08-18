@@ -7,7 +7,7 @@ import { layoutUtils, LAYOUT_CONSTANTS } from '../../constants/layout';
 const ResourceGrid: React.FC<ResourceGridProps> = ({
   resources,
   columns = 3,
-  _spacing = 3,
+  spacing = 3,
   variant = 'default',
   onResourceClick,
 }) => {

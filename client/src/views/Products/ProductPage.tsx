@@ -27,8 +27,10 @@ import {
   ShoppingCart,
   CheckCircle,
   Cancel,
+  Star,
 } from '@mui/icons-material';
 import { sampleProducts } from './mockData';
+import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
 
 
 interface TabPanelProps {

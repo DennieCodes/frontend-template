@@ -7,10 +7,14 @@ import {
   Box,
   Chip,
   Rating,
+  Button,
+  IconButton,
+  Tooltip,
 } from '@mui/material';
 import {
   FavoriteBorder,
   ShoppingCart,
+  Star,
 } from '@mui/icons-material';
 import { ProductCardProps } from '../../types/product';
 import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
