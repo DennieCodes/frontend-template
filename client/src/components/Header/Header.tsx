@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../slice/authSlice';
 import { ThemeToggle } from '../ThemeToggle';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import CartIcon from '../CartIcon';
 
 // Import modular components
 import HeaderBrand from './HeaderBrand';
@@ -115,6 +116,7 @@ const Header: React.FC = () => {
           >
             <LanguageSwitcher variant="dropdown" size="small" />
             <ThemeToggle />
+            <CartIcon />
             <HeaderUserControls onAccountMenuClick={handleAccountMenu} />
           </Stack>
         </Toolbar>

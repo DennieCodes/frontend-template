@@ -10,6 +10,8 @@ import {
   Button,
   IconButton,
   Tooltip,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import {
   FavoriteBorder,
@@ -18,14 +20,30 @@ import {
 } from '@mui/icons-material';
 import { ProductCardProps } from '../../types/product';
 import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
+import { useCart } from '../../contexts/CartContext';
+import { createCartItem } from '../../views/Cart/mockData';
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
   variant = 'default',
   onClick,
 }) => {
+  const { addItem } = useCart();
+  const [showAddedToCart, setShowAddedToCart] = React.useState(false);
+
   const handleClick = () => {
     onClick?.(product);
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const cartItem = createCartItem(product, 1);
+    addItem(cartItem);
+    setShowAddedToCart(true);
+  };
+
+  const handleCloseSnackbar = () => {
+    setShowAddedToCart(false);
   };
 
   const formatPrice = (price: number, currency: string) => {
@@ -136,7 +154,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </IconButton>
             </Tooltip>
             <Tooltip title="Add to cart">
-              <IconButton size="small" color="primary">
+              <IconButton size="small" color="primary" onClick={handleAddToCart} disabled={!product.inStock}>
                 <ShoppingCart fontSize="small" />
               </IconButton>
             </Tooltip>
@@ -261,7 +279,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </IconButton>
             </Tooltip>
             <Tooltip title="Add to cart">
-              <IconButton color="primary">
+              <IconButton
+                color="primary"
+                onClick={handleAddToCart}
+                disabled={!product.inStock}
+              >
                 <ShoppingCart />
               </IconButton>
             </Tooltip>
@@ -393,7 +415,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </IconButton>
             </Tooltip>
             <Tooltip title="Add to cart">
-              <IconButton color="primary" size="large">
+              <IconButton color="primary" size="large" onClick={handleAddToCart} disabled={!product.inStock}>
                 <ShoppingCart />
               </IconButton>
             </Tooltip>
@@ -421,14 +443,23 @@ const ProductCard: React.FC<ProductCardProps> = ({
     </Card>
   );
 
-  switch (variant) {
-    case 'compact':
-      return renderCompactCard();
-    case 'featured':
-      return renderFeaturedCard();
-    default:
-      return renderDefaultCard();
-  }
+  const card = variant === 'compact' ? renderCompactCard() : variant === 'featured' ? renderFeaturedCard() : renderDefaultCard();
+
+  return (
+    <>
+      {card}
+      <Snackbar
+        open={showAddedToCart}
+        autoHideDuration={2500}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity="success" variant="filled" sx={{ width: '100%' }}>
+          Added to cart
+        </Alert>
+      </Snackbar>
+    </>
+  );
 };
 
 export default ProductCard;

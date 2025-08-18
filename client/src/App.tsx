@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { CartProvider } from "./contexts/CartContext";
 import Home from "./views/Home";
 import SearchPage from "./views/Search";
 
@@ -27,6 +28,9 @@ import QuizPage from "./views/Quiz";
 import SurveyPage from "./views/Survey";
 import ProductsPage from "./views/Products";
 import ProductPage from "./views/Products/ProductPage";
+import CartPageWrapper from "./views/Cart/CartPageWrapper";
+import CheckoutPageWrapper from "./views/Checkout/CheckoutPageWrapper";
+import OrderConfirmationPage from "./views/OrderConfirmation";
 import EventsPage from "./views/Events";
 import EventPage from "./views/Events/EventPage";
 import UsersPage from "./views/Users";
@@ -40,12 +44,13 @@ import NotFound from "./views/NotFound";
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-          <Header />
-          <Box component="main" sx={{ flex: 1, width: '100%' }}>
-            <Container maxWidth="xl" sx={{ py: LAYOUT_CONSTANTS.CONTAINER.PADDING.MD }}>
-              <Routes>
+      <CartProvider>
+        <BrowserRouter>
+          <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <Header />
+            <Box component="main" sx={{ flex: 1, width: '100%' }}>
+              <Container maxWidth="xl" sx={{ py: LAYOUT_CONSTANTS.CONTAINER.PADDING.MD }}>
+                <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/about" element={<About />} />
@@ -61,6 +66,9 @@ function App() {
                 <Route path="/survey" element={<SurveyPage />} />
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/products/:id" element={<ProductPage />} />
+                <Route path="/cart" element={<CartPageWrapper />} />
+                <Route path="/checkout" element={<CheckoutPageWrapper />} />
+                <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/events/:id" element={<EventPage />} />
                 <Route path="/users" element={<UsersPage />} />
@@ -100,7 +108,8 @@ function App() {
           </Box>
           <Footer />
         </Box>
-      </BrowserRouter>
+        </BrowserRouter>
+      </CartProvider>
     </Provider>
   );
 }
