@@ -40,7 +40,7 @@ const QuizNavigation: React.FC<QuizNavigationProps> = ({
           {currentStep === totalSteps - 1 ? (
             <Button
               variant="contained"
-              onClick={onSubmit}
+              onClick={() => onSubmit()}
               color="primary"
               disabled={!canProceed}
             >

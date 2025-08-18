@@ -29,11 +29,13 @@ export interface BaseLocation {
   city: string;
   state: string;
   zipCode: string;
+  name?: string;
 }
 
 export interface BaseEvent extends BaseEntity {
   title: string;
   description?: string;
+  shortDescription?: string;
   date?: string;
   time?: string;
   category?: string;
@@ -44,7 +46,7 @@ export interface BaseEvent extends BaseEntity {
   price?: { type: string; currency?: string; amount?: number };
   capacity?: number;
   organizer?: string;
-  speakers?: string[];
+  speakers?: string[] | Array<{ name: string; title?: string; bio?: string; avatar?: string }>;
   tags?: string[];
   status?: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
   startDate?: string;
@@ -107,15 +109,18 @@ export interface BaseSocialLink extends BaseEntity {
 }
 
 export interface BaseArticle extends BaseEntity {
-  description?: string;
-  content?: string;
-  author?: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  publishedAt: string;
   date?: string;
-  readTime?: string;
+  readTime: number;
   thumbnail?: string;
   images?: string[];
-  tags?: string[];
-  category?: string;
+  imageUrl?: string;
+  tags: string[];
+  category: string;
   featured?: boolean;
   url?: string;
 }
@@ -222,6 +227,8 @@ export interface BaseSurveyStep {
 export interface BaseNavigationItem {
   label: string;
   path: string;
+  title?: string;
+  description?: string;
   icon?: React.ReactNode;
   requiresAuth?: boolean;
 }
@@ -253,6 +260,7 @@ export interface BaseStatItem {
   id: string;
   label: string;
   value: string | number;
+  description?: string;
   change?: string;
   color?: string;
   icon?: React.ReactNode;
@@ -263,6 +271,7 @@ export interface BaseActivityItem {
   type: 'post' | 'comment' | 'like';
   title: string;
   content: string;
+  description?: string;
   timestamp: string;
   likes: number;
   comments: number;
@@ -271,17 +280,20 @@ export interface BaseActivityItem {
 export interface BaseTeamMember {
   name: string;
   role: string;
+  position?: string;
   bio?: string;
   avatar?: string;
   email?: string;
   linkedin?: string;
   twitter?: string;
+  initials?: string;
+  avatarColor?: string;
 }
 
 export interface BaseValue {
   title: string;
   description: string;
-  icon?: React.ReactNode;
+  icon?: React.ReactNode | React.ComponentType;
 }
 
 export interface BaseArticleContent {

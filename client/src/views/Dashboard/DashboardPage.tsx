@@ -5,7 +5,7 @@ import { logout } from '../../slice/authSlice';
 import { RootState } from '../../store';
 import DashboardHeader from './DashboardHeader';
 import DashboardContent from './DashboardContent';
-import { User } from './types';
+import { BaseUser } from '../../types/common';
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -22,9 +22,11 @@ const DashboardPage: React.FC = () => {
     return null;
   }
 
-  const userData: User = {
+  const userData: BaseUser = {
     id: user.id || '1',
     name: user.name || 'User',
+    firstName: user.name?.split(' ')[0] || 'User',
+    lastName: user.name?.split(' ')[1] || '',
     email: user.email || 'user@example.com',
     avatar: user.avatar,
   };

@@ -1,12 +1,12 @@
 import React from 'react';
 import {
   Box,
-  Grid,
   Card,
   CardContent,
   Typography,
   Stack,
 } from '@mui/material';
+import Grid from '@mui/material/GridLegacy';
 import {
   People as PeopleIcon,
   PersonAdd as FollowingIcon,

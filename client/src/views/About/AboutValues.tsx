@@ -39,7 +39,7 @@ const AboutValues: React.FC<AboutValuesProps> = ({ title, subtitle, values = moc
               }}
             >
               <Box sx={{ mb: 2 }}>
-                {value.icon}
+                {React.isValidElement(value.icon) ? value.icon : typeof value.icon === 'function' ? React.createElement(value.icon) : value.icon}
               </Box>
               <Typography variant="h6" component="h3" gutterBottom>
                 {value.title}

@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
-import { SearchResultsProps } from './types';
+import { SearchResultsProps, SearchResult } from './types';
 
 const SearchResults: React.FC<SearchResultsProps> = ({
   results,

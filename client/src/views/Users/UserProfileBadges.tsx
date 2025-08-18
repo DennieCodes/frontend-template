@@ -4,10 +4,10 @@ import {
   Card,
   CardContent,
   Typography,
-  Grid,
   Chip,
   Tooltip,
 } from '@mui/material';
+import Grid from '@mui/material/GridLegacy';
 import { UserProfileBadgesProps } from './types';
 import { LAYOUT_CONSTANTS } from '../../constants/layout';
 
