@@ -1,12 +1,12 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Grid from '@mui/material/GridLegacy';
 import {
   Box,
   Typography,
   Paper,
   Button,
-  Grid,
   Card,
   CardContent,
 } from '@mui/material';
@@ -19,7 +19,7 @@ import { LAYOUT_CONSTANTS, typographyStyles } from '../../constants/layout';
 
 interface OrderConfirmationState {
   orderNumber: string;
-  orderData: any;
+  orderData: unknown;
 }
 
 const OrderConfirmationPage: React.FC = () => {

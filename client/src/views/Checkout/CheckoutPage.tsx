@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Grid from '@mui/material/GridLegacy';
 import {
   Box,
   Typography,
-  Grid,
   Paper,
   Breadcrumbs,
   Link,
@@ -20,9 +20,7 @@ import {
 import {
   Home,
   ShoppingCart,
-  LocalShipping,
   Payment,
-  Assignment,
   ArrowBack,
   ArrowForward,
 } from '@mui/icons-material';
@@ -207,7 +205,9 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
     setFormData({
       ...formData,
       shippingAddress: address,
-      billingAddress: formData.billingAddress.sameAsShipping ? address : formData.billingAddress,
+      billingAddress: formData.billingAddress.sameAsShipping
+        ? { ...address, sameAsShipping: true }
+        : formData.billingAddress,
     });
   };
 
@@ -236,9 +236,9 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
     setFormData({
       ...formData,
       billingAddress: {
-        ...formData.billingAddress,
-        sameAsShipping: checked,
-        ...(checked ? formData.shippingAddress : {}),
+        ...(checked
+          ? { ...formData.shippingAddress, sameAsShipping: true }
+          : { ...formData.billingAddress, sameAsShipping: false }),
       },
     });
   };

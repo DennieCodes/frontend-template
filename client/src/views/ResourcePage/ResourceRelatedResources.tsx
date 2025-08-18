@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 
 interface ResourceRelatedResourcesProps {
   resource?: {
-    relatedResources?: any[];
+    relatedResources?: Array<{ name: string }>;
   };
 }
 

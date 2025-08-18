@@ -12,7 +12,7 @@ interface ResourceMapProps {
   };
 }
 
-const ResourceMap: React.FC<ResourceMapProps> = ({ resource }) => {
+const ResourceMap: React.FC<ResourceMapProps> = ({ resource: _resource }) => {
   return (
     <Paper elevation={2} sx={{ p: 3, mb: 3 }}>
       <Typography variant="h6" gutterBottom>

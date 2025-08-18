@@ -1,10 +1,10 @@
 import React from 'react';
+import Grid from '@mui/material/GridLegacy';
 import {
   Box,
   Typography,
   Card,
   CardContent,
-  Grid,
   Divider,
   Chip,
   Avatar,
@@ -184,7 +184,7 @@ const OrderReview: React.FC<OrderReviewProps> = ({
             </Grid>
 
             {/* Shipping Method */}
-            <Grid item xs={12}>
+            <Grid xs={12}>
               <Card variant="outlined">
                 <CardContent>
                   <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
