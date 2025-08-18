@@ -47,18 +47,21 @@ export const aboutTeamData: AboutTeamProps = {
     {
       initials: "JD",
       name: "John Doe",
+      role: "Chief Executive Officer",
       position: "Chief Executive Officer",
       avatarColor: "primary.main"
     },
     {
       initials: "JS",
       name: "Jane Smith",
+      role: "Chief Technology Officer",
       position: "Chief Technology Officer",
       avatarColor: "secondary.main"
     },
     {
       initials: "MJ",
       name: "Mike Johnson",
+      role: "Head of Product",
       position: "Head of Product",
       avatarColor: "success.main"
     }

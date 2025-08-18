@@ -75,7 +75,7 @@ const SurveyNavigation: React.FC<SurveyNavigationProps> = ({
               <Button
                 variant="contained"
                 endIcon={<SendIcon />}
-                onClick={onSubmit}
+                onClick={() => onSubmit()}
                 disabled={!canProceed}
                 sx={{ minWidth: 140 }}
               >

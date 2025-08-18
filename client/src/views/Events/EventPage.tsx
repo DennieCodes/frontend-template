@@ -94,7 +94,7 @@ const EventPage: React.FC<EventPageProps> = ({ event }) => {
               Event Details
             </Typography>
             <Typography variant="body2" color="text.secondary" paragraph>
-              Price: {event.price}
+              Price: {typeof event.price === 'object' ? `${event.price.currency || '$'}${event.price.amount || 'Free'}` : event.price || 'Free'}
             </Typography>
             <Typography variant="body2" color="text.secondary" paragraph>
               Capacity: {event.capacity} attendees
@@ -115,22 +115,20 @@ const EventPage: React.FC<EventPageProps> = ({ event }) => {
             {event.speakers.map((speaker, index) => (
               <Grid xs={12} sm={6} md={4} key={index}>
                 <Card>
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={speaker.avatar}
-                    alt={speaker.name}
-                  />
                   <CardContent>
                     <Typography variant="h6" component="h3" gutterBottom>
-                      {speaker.name}
+                      {typeof speaker === 'string' ? speaker : speaker.name || 'Speaker'}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
-                      {speaker.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {speaker.bio}
-                    </Typography>
+                    {typeof speaker !== 'string' && speaker.title && (
+                      <Typography variant="body2" color="text.secondary" gutterBottom>
+                        {speaker.title}
+                      </Typography>
+                    )}
+                    {typeof speaker !== 'string' && speaker.bio && (
+                      <Typography variant="body2" color="text.secondary">
+                        {speaker.bio}
+                      </Typography>
+                    )}
                   </CardContent>
                 </Card>
               </Grid>
@@ -151,7 +149,7 @@ const EventPage: React.FC<EventPageProps> = ({ event }) => {
                   <CardMedia
                     component="img"
                     height="200"
-                    image={relatedEvent.image}
+                    image={relatedEvent.thumbnail || relatedEvent.images?.[0]}
                     alt={relatedEvent.title}
                   />
                   <CardContent>
@@ -159,7 +157,7 @@ const EventPage: React.FC<EventPageProps> = ({ event }) => {
                       {relatedEvent.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" gutterBottom>
-                      {relatedEvent.date}
+                      {relatedEvent.startDate}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       {relatedEvent.shortDescription}

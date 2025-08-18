@@ -15,7 +15,7 @@ const ResourceServices: React.FC<ResourceServicesProps> = ({ resource }) => {
             <ListItemIcon>
               <Star color="primary" />
             </ListItemIcon>
-            <ListItemText primary={service} />
+            <ListItemText primary={typeof service === 'string' ? service : service.name} />
           </ListItem>
         ))}
       </List>

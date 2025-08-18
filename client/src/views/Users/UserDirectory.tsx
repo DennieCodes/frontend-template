@@ -92,16 +92,18 @@ const UserDirectory: React.FC<UserDirectoryProps> = ({
     setFilters(prev => ({ ...prev, search: event.target.value }));
   };
 
-  const handleRoleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleRoleChange = (event: any) => {
     setFilters(prev => ({ ...prev, role: event.target.value }));
   };
 
-  const handleSortByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters(prev => ({ ...prev, sortBy: event.target.value }));
+  const handleSortByChange = (event: any) => {
+    const value = event.target.value as 'name' | 'joinDate' | 'reputation' | 'followers';
+    setFilters(prev => ({ ...prev, sortBy: value }));
   };
 
-  const handleSortOrderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters(prev => ({ ...prev, sortOrder: event.target.value }));
+  const handleSortOrderChange = (event: any) => {
+    const value = event.target.value as 'asc' | 'desc';
+    setFilters(prev => ({ ...prev, sortOrder: value }));
   };
 
   const clearFilters = () => {
@@ -160,7 +162,9 @@ const UserDirectory: React.FC<UserDirectoryProps> = ({
               value={filters.search}
               onChange={handleSearchChange}
               placeholder={t('pages.users.searchPlaceholder')}
-              startIcon={<SearchIcon />}
+              InputProps={{
+                startAdornment: <SearchIcon />
+              }}
               sx={{ flex: 1 }}
             />
 

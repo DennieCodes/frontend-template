@@ -113,7 +113,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
             <Select
               value={sortBy}
               label="Sort by"
-              onChange={onSortChange}
+              onChange={(e) => onSortChange(e.target.value)}
             >
               <MenuItem value="relevance">Relevance</MenuItem>
               <MenuItem value="date">Date</MenuItem>

@@ -36,8 +36,8 @@ const SearchPage: React.FC = () => {
     setCurrentPage(value);
   };
 
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(event.target.value);
+  const handleSortChange = (value: string) => {
+    setSortBy(value);
   };
 
   const handleTagFilter = (tags: string[]) => {

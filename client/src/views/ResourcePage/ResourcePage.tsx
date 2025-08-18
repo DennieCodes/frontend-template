@@ -29,11 +29,16 @@ const ResourcePage: React.FC<ResourcePageProps> = ({ resource }) => {
     services: resource.services || [],
     faqs: resource.faqs || [],
     contactInfo: resource.contactInfo || {},
-    location: resource.location || {},
+    location: resource.location || {
+      city: '',
+      state: '',
+      country: '',
+      coordinates: resource.coordinates || { lat: 0, lng: 0 }
+    },
     socialMedia: resource.socialMedia || {},
     documents: resource.documents || [],
     relatedResources: resource.relatedResources || [],
-    coordinates: resource.coordinates || {},
+    coordinates: resource.coordinates || { lat: 0, lng: 0 },
   };
 
   return (

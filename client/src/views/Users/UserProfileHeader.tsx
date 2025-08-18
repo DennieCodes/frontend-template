@@ -22,7 +22,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   isOwnProfile = false,
   onEditProfile,
   onFollowUser,
-  _onUnfollowUser,
+  onUnfollowUser,
 }) => {
   const formatJoinDate = (dateString: string) => {
     const date = new Date(dateString);

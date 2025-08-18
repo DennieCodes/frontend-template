@@ -1,10 +1,12 @@
 export interface ResourceFilters {
+  search?: string;
   searchTerm?: string;
   category?: string;
   subcategory?: string;
   location?: string;
   tags?: string[];
-  priceRange?: string;
+  priceRange?: number[];
+  rating?: number;
   ratingFilter?: number;
   verifiedOnly?: boolean;
 }
