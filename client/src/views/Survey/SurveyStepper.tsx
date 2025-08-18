@@ -7,7 +7,7 @@ import {
   Box,
 } from '@mui/material';
 import { SurveyStepperProps } from './types';
-import { LAYOUT_CONSTANTS, layoutUtils } from '../../constants/layout';
+
 
 const SurveyStepper: React.FC<SurveyStepperProps> = ({ steps, currentStep }) => {
   return (

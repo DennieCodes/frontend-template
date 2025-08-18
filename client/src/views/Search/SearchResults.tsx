@@ -23,7 +23,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     products: results.filter(result => result.type === 'product'),
   };
 
-  const renderResultCard = (result: any) => (
+  const renderResultCard = (result: SearchResult) => (
     <Card
       key={result.id}
       sx={{

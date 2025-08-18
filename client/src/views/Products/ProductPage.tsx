@@ -9,7 +9,6 @@ import {
   Rating,
   Button,
   TextField,
-  Divider,
   List,
   ListItem,
   ListItemText,
@@ -19,7 +18,6 @@ import {
   Link,
   IconButton,
   Tooltip,
-  Badge,
 } from '@mui/material';
 import Grid from '@mui/material/GridLegacy';
 import {
@@ -27,14 +25,11 @@ import {
   Favorite,
   FavoriteBorder,
   ShoppingCart,
-  Star,
-  LocalOffer,
   CheckCircle,
   Cancel,
 } from '@mui/icons-material';
 import { sampleProducts } from './mockData';
-import { Product } from '../../types/product';
-import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
+
 
 interface TabPanelProps {
   children?: React.ReactNode;

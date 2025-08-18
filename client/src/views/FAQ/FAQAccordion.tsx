@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FAQAccordionProps } from './types';
-import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
+import { layoutUtils } from '../../constants/layout';
 
 const FAQAccordion: React.FC<FAQAccordionProps> = ({ faqItems, expanded, onExpandedChange }) => {
   return (

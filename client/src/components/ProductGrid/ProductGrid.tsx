@@ -8,7 +8,7 @@ import { layoutUtils, LAYOUT_CONSTANTS } from '../../constants/layout';
 const ProductGrid: React.FC<ProductGridProps> = ({
   products,
   columns = 3,
-  spacing = 3,
+  _spacing = 3,
   variant = 'default',
   onProductClick,
 }) => {

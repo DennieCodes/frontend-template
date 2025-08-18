@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/GridLegacy';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+
 import Paper from '@mui/material/Paper';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';

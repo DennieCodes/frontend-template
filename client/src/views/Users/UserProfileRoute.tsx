@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Typography, CircularProgress } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import UserProfilePage from './UserProfilePage';
 import { mockUsers } from './mockData';
 import { LAYOUT_CONSTANTS } from '../../constants/layout';

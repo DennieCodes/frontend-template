@@ -6,7 +6,7 @@ import { contactInfo, faqItems } from './mockData';
 import { ContactFormData } from './types';
 
 const ContactPage: React.FC = () => {
-  const handleSubmit = (data: ContactFormData) => {
+  const handleSubmit = (_data: ContactFormData) => {
     // Handle form submission
     alert('Thank you for your message! We will get back to you soon.');
   };

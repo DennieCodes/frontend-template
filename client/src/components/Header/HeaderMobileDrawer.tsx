@@ -39,7 +39,7 @@ const HeaderMobileDrawer: React.FC<HeaderMobileDrawerProps> = ({
   onLogoutClick,
 }) => {
   const { t } = useTranslation();
-  const { user, isAuthenticated } = useSelector((state: RootState) => state.auth) as { user: User | null; isAuthenticated: boolean };
+  const { user: _user, isAuthenticated } = useSelector((state: RootState) => state.auth) as { user: User | null; isAuthenticated: boolean };
 
   // Navigation items grouped by category
   const mainNavigation: NavigationItem[] = [

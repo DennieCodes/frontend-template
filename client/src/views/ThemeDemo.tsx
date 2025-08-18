@@ -16,7 +16,7 @@ import { useTheme } from '@mui/material/styles';
 
 const ThemeDemo: React.FC = () => {
   const theme = useTheme();
-  const [darkMode, setDarkMode] = useState(false);
+  const [_darkMode, _setDarkMode] = useState(false);
 
   const colorPalette = [
     { name: 'Primary', color: theme.palette.primary.main },

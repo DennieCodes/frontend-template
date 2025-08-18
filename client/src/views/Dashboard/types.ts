@@ -23,13 +23,15 @@ export interface FeatureCardProps {
   description: string;
 }
 
+import { BaseStatItem, BaseActivityItem, BaseNavigationItem, BaseUser } from '../../types/common';
+
 export interface DashboardContentProps {
   title?: string;
   subtitle?: string;
-  stats?: any[];
-  recentActivity?: any[];
-  quickActions?: any[];
-  user?: any;
+  stats?: BaseStatItem[];
+  recentActivity?: BaseActivityItem[];
+  quickActions?: BaseNavigationItem[];
+  user?: BaseUser;
 }
 
 export interface DashboardPageState {

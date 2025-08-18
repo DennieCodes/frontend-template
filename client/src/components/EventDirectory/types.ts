@@ -1,8 +1,10 @@
+import { BaseEvent, BaseCategory } from '../../types/common';
+
 export interface EventDirectoryProps {
-  events?: any[];
-  categories?: any[];
+  events?: BaseEvent[];
+  categories?: BaseCategory[];
   title?: string;
   subtitle?: string;
   showFilters?: boolean;
-  onEventClick?: (event: any) => void;
+  onEventClick?: (event: BaseEvent) => void;
 }

@@ -4,7 +4,6 @@ import {
   CardContent,
   Typography,
   TextField,
-  Box,
 } from '@mui/material';
 
 interface TextareaQuestionProps {

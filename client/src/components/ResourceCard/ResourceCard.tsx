@@ -12,7 +12,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import LanguageIcon from '@mui/icons-material/Language';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
 import { ResourceCardProps } from '../../types/resource';
 
 const ResourceCard: React.FC<ResourceCardProps> = ({

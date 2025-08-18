@@ -31,7 +31,7 @@ export interface SearchHeaderProps {
   showFilters: boolean;
   onToggleFilters: () => void;
   sortBy: string;
-  onSortChange: (event: any) => void;
+  onSortChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   resultsCount: number;
 }
 

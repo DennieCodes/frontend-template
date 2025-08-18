@@ -6,13 +6,11 @@ import {
   Button,
   Chip,
   Stack,
-  IconButton,
   Tooltip,
 } from '@mui/material';
 import {
   Edit as EditIcon,
   PersonAdd as FollowIcon,
-  PersonRemove as UnfollowIcon,
   Verified as VerifiedIcon,
   Circle as OnlineIcon,
 } from '@mui/icons-material';
@@ -24,7 +22,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   isOwnProfile = false,
   onEditProfile,
   onFollowUser,
-  onUnfollowUser,
+  _onUnfollowUser,
 }) => {
   const formatJoinDate = (dateString: string) => {
     const date = new Date(dateString);

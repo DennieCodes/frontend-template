@@ -1,8 +1,10 @@
+import { BaseProduct, BaseCategory } from '../../types/common';
+
 export interface ProductDirectoryProps {
-  products?: any[];
-  categories?: any[];
+  products?: BaseProduct[];
+  categories?: BaseCategory[];
   title?: string;
   subtitle?: string;
   showFilters?: boolean;
-  onProductClick?: (product: any) => void;
+  onProductClick?: (product: BaseProduct) => void;
 }

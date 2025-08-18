@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import EventDirectory from '../../components/EventDirectory/EventDirectory';
 import { sampleEvents } from './mockData';
+import { BaseEvent } from '../../types/common';
 
 const EventsPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const handleEventClick = (event: any) => {
+  const handleEventClick = (event: BaseEvent) => {
     navigate(`/events/${event.id}`);
   };
 

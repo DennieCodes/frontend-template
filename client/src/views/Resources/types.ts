@@ -1,6 +1,17 @@
+export interface ResourceFilters {
+  searchTerm?: string;
+  category?: string;
+  subcategory?: string;
+  location?: string;
+  tags?: string[];
+  priceRange?: string;
+  ratingFilter?: number;
+  verifiedOnly?: boolean;
+}
+
 export interface ResourcesFiltersProps {
-  filters?: any;
-  onFiltersChange?: (filters: any) => void;
+  filters?: ResourceFilters;
+  onFiltersChange?: (filters: ResourceFilters) => void;
   searchTerm?: string;
   onSearchChange?: (term: string) => void;
   selectedCategory?: string;

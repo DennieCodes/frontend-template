@@ -7,10 +7,12 @@ export interface UserAccountBreadcrumbsProps {
   currentPage: string;
 }
 
+import { BaseUser, BaseStatItem } from '../../types/common';
+
 export interface AccountSummaryProps {
-  user?: any;
-  stats?: any;
-  summaryItems?: any[];
+  user?: BaseUser;
+  stats?: BaseStatItem[];
+  summaryItems?: SummaryItem[];
 }
 
 export interface SummaryItem {

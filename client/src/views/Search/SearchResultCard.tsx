@@ -12,7 +12,7 @@ import {
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import ShareIcon from '@mui/icons-material/Share';
 import { SearchResultCardProps } from './types';
-import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
+import { layoutUtils, typographyStyles } from '../../constants/layout';
 
 const SearchResultCard: React.FC<SearchResultCardProps> = ({ result, onTagFilter }) => {
   const getTypeColor = (type: string) => {

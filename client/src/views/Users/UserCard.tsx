@@ -14,9 +14,7 @@ import {
 } from '@mui/material';
 import {
   PersonAdd as FollowIcon,
-  PersonRemove as UnfollowIcon,
   Verified as VerifiedIcon,
-  Circle as OnlineIcon,
   LocationOn as LocationIcon,
 } from '@mui/icons-material';
 import { UserCardProps } from './types';
@@ -61,7 +59,7 @@ const UserCard: React.FC<UserCardProps> = ({
     onFollowUser?.(user.id);
   };
 
-  const handleUnfollowClick = (e: React.MouseEvent) => {
+  const _handleUnfollowClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onUnfollowUser?.(user.id);
   };

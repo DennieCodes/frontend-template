@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { ContactInfoItemProps } from './types';
-import { LAYOUT_CONSTANTS } from '../../constants/layout';
+
 
 const ContactInfoItem: React.FC<ContactInfoItemProps> = ({ info }) => {
   const renderContent = () => {

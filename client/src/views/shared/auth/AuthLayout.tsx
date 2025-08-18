@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Paper, Typography, Box, Alert } from '@mui/material';
+import { Container, Paper, Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { AuthLayoutProps } from './types';
 

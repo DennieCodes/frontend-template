@@ -35,9 +35,11 @@ export interface ContactInfoItemProps {
   info: ContactInfo;
 }
 
+import { BaseFAQItem } from '../../types/common';
+
 export interface ContactFAQProps {
-  faqs?: any[];
-  faqData?: any;
+  faqs?: BaseFAQItem[];
+  faqData?: BaseFAQItem[];
 }
 
 export interface ContactFAQItemProps {
@@ -47,11 +49,11 @@ export interface ContactFAQItemProps {
 export interface ContactContentProps {
   title?: string;
   subtitle?: string;
-  faqData?: any;
-  onFormSubmit?: (data: any) => void;
-  contactInfo?: any[];
-  onSubmit?: (data: any) => void;
-  faqItems?: any[];
+  faqData?: BaseFAQItem[];
+  onFormSubmit?: (data: ContactFormData) => void;
+  contactInfo?: ContactInfo[];
+  onSubmit?: (data: ContactFormData) => void;
+  faqItems?: BaseFAQItem[];
 }
 
 export interface ContactPageState {

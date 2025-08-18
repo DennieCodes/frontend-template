@@ -6,7 +6,6 @@ import {
   Typography,
   Stack,
   Button,
-  Chip,
 } from '@mui/material';
 import {
   Twitter as TwitterIcon,

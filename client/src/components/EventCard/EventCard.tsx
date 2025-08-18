@@ -6,17 +6,12 @@ import {
   Typography,
   Box,
   Chip,
-  IconButton,
-  Tooltip,
-  Badge,
 } from '@mui/material';
 import {
   CalendarToday,
   LocationOn,
   AccessTime,
   People,
-  Star,
-  Event,
 } from '@mui/icons-material';
 import { EventCardProps } from '../../types/event';
 import { LAYOUT_CONSTANTS, layoutUtils, typographyStyles } from '../../constants/layout';
@@ -30,7 +25,7 @@ const EventCard: React.FC<EventCardProps> = ({
     onClick?.(event);
   };
 
-  const formatPrice = (price: any) => {
+  const formatPrice = (price: { type: string; currency?: string; amount?: number }) => {
     if (price.type === 'free') {
       return 'Free';
     }
