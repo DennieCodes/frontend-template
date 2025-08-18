@@ -22,13 +22,16 @@ const ProductDirectory: React.FC<ProductDirectoryProps> = ({
   categories,
   onProductClick,
 }) => {
+  const safeProducts = products ?? [];
+  const safeCategories = categories ?? [];
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedPriceRange, setSelectedPriceRange] = useState('');
   const [selectedRating, setSelectedRating] = useState(0);
 
   const filteredProducts = useMemo(() => {
-    return products.filter(product => {
+    return safeProducts.filter(product => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            product.description.toLowerCase().includes(searchTerm.toLowerCase());
 
@@ -43,7 +46,7 @@ const ProductDirectory: React.FC<ProductDirectoryProps> = ({
 
       return matchesSearch && matchesCategory && matchesPrice && matchesRating;
     });
-  }, [products, searchTerm, selectedCategory, selectedPriceRange, selectedRating]);
+  }, [safeProducts, searchTerm, selectedCategory, selectedPriceRange, selectedRating]);
 
   const handleClearFilters = () => {
     setSearchTerm('');
@@ -82,7 +85,7 @@ const ProductDirectory: React.FC<ProductDirectoryProps> = ({
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
                 <MenuItem value="">All Categories</MenuItem>
-                {categories.map((category) => (
+                {safeCategories.map((category) => (
                   <MenuItem key={category} value={category}>
                     {category}
                   </MenuItem>
@@ -166,7 +169,7 @@ const ProductDirectory: React.FC<ProductDirectoryProps> = ({
                   boxShadow: 4,
                 },
               }}
-              onClick={() => onProductClick(product)}
+              onClick={() => onProductClick?.(product)}
             >
               <CardMedia
                 component="img"
@@ -202,7 +205,7 @@ const ProductDirectory: React.FC<ProductDirectoryProps> = ({
                 </Typography>
 
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {product.tags.slice(0, 3).map((tag, index) => (
+                  {(product.tags || []).slice(0, 3).map((tag, index) => (
                     <Chip key={index} label={tag} size="small" />
                   ))}
                 </Box>
@@ -252,7 +255,7 @@ const ProductDirectory: React.FC<ProductDirectoryProps> = ({
                       boxShadow: 4,
                     },
                   }}
-                  onClick={() => onProductClick(product)}
+                  onClick={() => onProductClick?.(product)}
                 >
                   <Chip
                     label="Featured"
