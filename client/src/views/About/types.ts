@@ -8,14 +8,16 @@ export interface AboutMissionProps {
   content: string[];
 }
 
+import { BaseValue, BaseTeamMember } from '../../types/common';
+
 export interface AboutValuesProps {
   title?: string;
   subtitle?: string;
-  values?: any[];
+  values?: BaseValue[];
 }
 
 export interface Value {
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
 }
@@ -24,7 +26,7 @@ export interface AboutTeamProps {
   title?: string;
   subtitle?: string;
   description?: string;
-  teamMembers?: any[];
+  teamMembers?: BaseTeamMember[];
 }
 
 export interface TeamMember {

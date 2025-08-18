@@ -22,7 +22,7 @@ const ResourcesFilters: React.FC<ResourcesFiltersProps> = ({
 }) => {
   const [localFilters, setLocalFilters] = useState(filters);
 
-  const handleFilterChange = (key: string, value: any) => {
+  const handleFilterChange = (key: string, value: unknown) => {
     const newFilters = { ...localFilters, [key]: value };
     setLocalFilters(newFilters);
     onFiltersChange(newFilters);

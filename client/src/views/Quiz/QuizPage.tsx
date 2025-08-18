@@ -38,7 +38,7 @@ const QuizPage: React.FC = () => {
     navigate('/');
   };
 
-  const handleSubmit = (_answers: Record<string, any>) => {
+  const handleSubmit = (_answers: Record<string, unknown>) => {
     // Handle quiz submission
     alert('Quiz submitted successfully!');
   };

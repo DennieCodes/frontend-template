@@ -31,7 +31,7 @@ export interface SurveyNavigationProps {
   onNext: () => void;
   onBack: () => void;
   onCancel: () => void;
-  onSubmit: (answers?: Record<string, any>) => void;
+  onSubmit: (answers?: Record<string, unknown>) => void;
   canProceed: boolean;
 }
 

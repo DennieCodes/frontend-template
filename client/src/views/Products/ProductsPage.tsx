@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ProductDirectory from '../../components/ProductDirectory';
 import { sampleProducts } from './mockData';
+import { BaseProduct } from '../../types/common';
 
 const ProductsPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const handleProductClick = (product: any) => {
+  const handleProductClick = (product: BaseProduct) => {
     navigate(`/products/${product.id}`);
   };
 

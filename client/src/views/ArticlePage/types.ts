@@ -1,7 +1,8 @@
 import { Article } from '../../types/article';
+import { BaseArticle } from '../../types/common';
 
 export interface ArticleHeaderProps {
-  article: any;
+  article: BaseArticle;
   onBack?: () => void;
 }
 
@@ -11,7 +12,7 @@ export interface ArticleMetaProps {
 
 export interface ArticleContentProps {
   content?: string;
-  article?: any;
+  article?: BaseArticle;
 }
 
 export interface ArticleSidebarProps {
@@ -31,5 +32,5 @@ export interface ArticlePageState {
 }
 
 export interface ArticlePageProps {
-  article?: any;
+  article?: BaseArticle;
 }

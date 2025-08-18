@@ -1,21 +1,15 @@
+import { BaseEvent } from '../../types/common';
+
+export interface Speaker {
+  name: string;
+  title?: string;
+  bio?: string;
+  avatar?: string;
+}
+
 export interface EventPageProps {
-  event?: {
-    id?: string;
-    title?: string;
-    description?: string;
-    date?: string;
-    location?: string | {
-      name: string;
-      address: string;
-    };
-    category?: string;
-    images?: string[];
-    tags?: string[];
-    time?: string;
-    price?: string;
-    capacity?: number;
-    organizer?: string;
-    speakers?: any[];
-    relatedEvents?: any[];
+  event?: BaseEvent & {
+    speakers?: Speaker[];
+    relatedEvents?: BaseEvent[];
   };
 }

@@ -92,15 +92,15 @@ const UserDirectory: React.FC<UserDirectoryProps> = ({
     setFilters(prev => ({ ...prev, search: event.target.value }));
   };
 
-  const handleRoleChange = (event: any) => {
+  const handleRoleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setFilters(prev => ({ ...prev, role: event.target.value }));
   };
 
-  const handleSortByChange = (event: any) => {
+  const handleSortByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setFilters(prev => ({ ...prev, sortBy: event.target.value }));
   };
 
-  const handleSortOrderChange = (event: any) => {
+  const handleSortOrderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setFilters(prev => ({ ...prev, sortOrder: event.target.value }));
   };
 

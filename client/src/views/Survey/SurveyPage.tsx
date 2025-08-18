@@ -38,7 +38,7 @@ const SurveyPage: React.FC = () => {
     navigate('/');
   };
 
-  const handleSubmit = (_answers: Record<string, any>) => {
+  const handleSubmit = (_answers: Record<string, unknown>) => {
     // Handle survey submission
     // You can add API call here to save survey responses
     alert('Survey submitted successfully!');

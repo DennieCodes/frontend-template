@@ -1,11 +1,20 @@
 import { Resource } from '../../types/resource';
+import {
+  BaseService,
+  BaseFAQItem,
+  BaseReview,
+  BaseSocialMedia,
+  BaseDocument,
+  BaseLocation,
+  BaseCoordinates
+} from '../../types/common';
 
 export interface ResourceBreadcrumbsProps {
   resourceName: string;
 }
 
 export interface ResourceHeaderProps {
-  resource: any;
+  resource: Resource;
   isBookmarked: boolean;
   onBookmarkToggle: () => void;
 }
@@ -21,17 +30,23 @@ export interface ResourceOverviewProps {
 
 export interface ResourceServicesProps {
   resource?: {
-    services?: any[];
+    services?: BaseService[];
   };
 }
 
 export interface ResourceContactHoursProps {
-  hours?: any;
-  resource?: any;
+  hours?: {
+    open?: string;
+    close?: string;
+    days?: string[];
+  };
+  resource?: Resource;
 }
 
 export interface ResourceReviewsProps {
-  resource?: any;
+  resource?: Resource & {
+    reviews?: BaseReview[];
+  };
 }
 
 export interface ResourceSidebarProps {
@@ -43,7 +58,7 @@ export interface ResourceContactCardProps {
 }
 
 export interface ResourceAdditionalInfoProps {
-  resource?: any;
+  resource?: Resource;
 }
 
 export interface ResourcePageState {
@@ -52,18 +67,18 @@ export interface ResourcePageState {
 }
 
 export interface ResourcePageProps {
-  resource?: {
-    id?: string;
-    name?: string;
-    description?: string;
-    hours?: any;
-    services?: any[];
-    faqs?: any[];
-    contactInfo?: any;
-    location?: any;
-    socialMedia?: any;
-    documents?: any[];
-    relatedResources?: any[];
-    coordinates?: any;
+  resource?: Resource & {
+    services?: BaseService[];
+    faqs?: BaseFAQItem[];
+    contactInfo?: {
+      phone?: string;
+      email?: string;
+      website?: string;
+    };
+    location?: BaseLocation;
+    socialMedia?: BaseSocialMedia[];
+    documents?: BaseDocument[];
+    relatedResources?: Resource[];
+    coordinates?: BaseCoordinates;
   };
 }
