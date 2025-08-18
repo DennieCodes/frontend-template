@@ -1,7 +1,7 @@
-import { BaseResource, BaseCategory } from '../../types/common';
+import { Resource } from '../../types/resource';
 
 export interface ResourceDirectoryProps {
-  resources?: BaseResource[];
-  categories?: BaseCategory[];
-  onResourceClick?: (resource: BaseResource) => void;
+  resources?: Resource[];
+  categories?: string[];
+  onResourceClick?: (resource: Resource) => void;
 }

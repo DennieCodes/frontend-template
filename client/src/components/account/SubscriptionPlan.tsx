@@ -70,7 +70,10 @@ const SubscriptionPlan: React.FC<SubscriptionPlanProps> = ({ currentPlan, onPlan
   };
 
   const handleUpgrade = () => {
-    onPlanChange(selectedPlan);
+    const plan = plans.find(p => p.type === selectedPlan);
+    if (plan && onPlanChange) {
+      onPlanChange(plan);
+    }
   };
 
   return (

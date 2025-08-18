@@ -24,11 +24,20 @@ export interface BaseProduct extends BaseEntity {
   tags?: string[];
 }
 
+export interface BaseLocation {
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+}
+
 export interface BaseEvent extends BaseEntity {
+  title: string;
   description?: string;
   date?: string;
   time?: string;
-  location?: string | { address: string; city: string; state: string; zipCode: string };
+  category?: string;
+  location?: string | BaseLocation;
   thumbnail?: string;
   images?: string[];
   featured?: boolean;
@@ -38,6 +47,7 @@ export interface BaseEvent extends BaseEntity {
   speakers?: string[];
   tags?: string[];
   status?: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
+  startDate?: string;
 }
 
 export interface BaseResource extends BaseEntity {
@@ -48,7 +58,7 @@ export interface BaseResource extends BaseEntity {
   rating?: number;
   reviewCount?: number;
   tags?: string[];
-  location?: string | { address: string; city: string; state: string; zipCode: string };
+  location?: string | BaseLocation;
   contactInfo?: {
     phone?: string;
     email?: string;

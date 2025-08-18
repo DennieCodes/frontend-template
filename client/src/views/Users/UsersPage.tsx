@@ -5,13 +5,13 @@ import { useTranslation } from 'react-i18next';
 import UserDirectory from './UserDirectory';
 import { mockUsers } from './mockData';
 import { LAYOUT_CONSTANTS, layoutUtils } from '../../constants/layout';
-import { BaseUser } from '../../types/common';
+import { User } from '../../types/user';
 
 const UsersPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const handleUserClick = (user: BaseUser) => {
+  const handleUserClick = (user: User) => {
     navigate(`/users/${user.id}`);
   };
 
