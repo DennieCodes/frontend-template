@@ -7,7 +7,6 @@ import {
   Box,
   Chip,
   Rating,
-  Button,
   IconButton,
   Tooltip,
   Snackbar,

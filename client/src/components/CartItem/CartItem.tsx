@@ -8,7 +8,6 @@ import {
   TextField,
   Chip,
   Avatar,
-  Divider,
 } from '@mui/material';
 import {
   Delete,

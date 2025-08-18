@@ -1,11 +1,9 @@
 import React from 'react';
+import Grid from '@mui/material/GridLegacy';
 import {
   Box,
   TextField,
-  Grid,
   Typography,
-  FormControlLabel,
-  Checkbox,
 } from '@mui/material';
 import { AddressFormProps } from '../../types/checkout';
 
@@ -13,7 +11,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
   address,
   onAddressChange,
   title,
-  isBilling = false,
+  isBilling: _isBilling = false,
 }) => {
   const handleFieldChange = (field: keyof typeof address, value: string) => {
     onAddressChange({

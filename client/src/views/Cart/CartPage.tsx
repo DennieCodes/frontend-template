@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Grid from '@mui/material/GridLegacy';
 import {
   Box,
   Typography,
-  Grid,
   Paper,
   Breadcrumbs,
   Link,
@@ -22,8 +22,8 @@ const CartPage: React.FC<CartPageProps> = ({
   cart,
   onUpdateQuantity,
   onRemoveItem,
-  onCheckout,
-  onContinueShopping,
+  onCheckout: _onCheckout,
+  onContinueShopping: _onContinueShopping,
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
