@@ -208,6 +208,9 @@ npm run test:watch    # Watch mode
 npm run test:ci       # CI mode with coverage
 ```
 
+**⚠️ Important Note for Template Users:**
+The test coverage threshold is currently set to 0% for template purposes. When implementing your actual project, you should update the coverage thresholds in `jest.config.ts` to your desired levels (typically 80% or higher for production applications).
+
 ## 📦 Component Library
 
 The project includes a comprehensive set of reusable components:
@@ -282,6 +285,7 @@ npm run build
 
 ## 📚 Documentation
 
+- [Testing Setup](./TESTING_SETUP.md) - Testing configuration and best practices
 - [I18N Setup](./I18N_SETUP.md) - Internationalization documentation
 - [Component Documentation](./src/components/) - Individual component READMEs
 - [Type Definitions](./src/types/) - TypeScript type documentation
